@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{152da2ad-d7ac-49a2-b0b3-ebe60149767d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Rendu3D">
+      <UniqueIdentifier>{4227656e-0aa6-4d1f-bdba-acd6ad221973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Physique">
+      <UniqueIdentifier>{429a11a6-2ad5-4b28-a7d6-2f8e0f2078c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Rendu3D">
+      <UniqueIdentifier>{e6359c12-d846-4fd6-833e-e87a66aeb5f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Physique">
+      <UniqueIdentifier>{69c35ee6-06a1-43b7-969a-7231040e720a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Objets">
+      <UniqueIdentifier>{56b7c160-d25f-4468-80c8-abc1600309d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Importeur">
+      <UniqueIdentifier>{b59a3be3-25c2-469b-bfd4-3c0e4083a731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Importeur">
+      <UniqueIdentifier>{f096abce-4be4-419a-b22d-feb3603f4af1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Objets">
+      <UniqueIdentifier>{aeefe556-b7af-44bb-a7aa-aeb8b71aa833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Objets\Test">
+      <UniqueIdentifier>{2989864b-0247-46ec-ae77-cdb11f8551d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Objets\Test">
+      <UniqueIdentifier>{6b0bcd3d-f227-4f10-bfdf-640460e7c17a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Simple">
+      <UniqueIdentifier>{167cec44-569f-48ae-b911-9c6fa724caf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Mini">
+      <UniqueIdentifier>{8bd77ac7-43f0-439d-ab50-fcfd5db95247}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Essai">
+      <UniqueIdentifier>{8d20423a-2aca-4dff-9bf7-11f676794d2c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="CDIManipulateur.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="DDSTextureLoader.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="dispositif.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="dispositifD3D11.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="GestionnaireDeTextures.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoDispositif.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Horloge.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Moteur.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PetitMoteur3D.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="MoteurWindows.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="sommetbloc.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Physique.cpp">
+      <Filter>Fichiers sources\Physique</Filter>
+    </ClCompile>
+    <ClCompile Include="Bloc.cpp">
+      <Filter>Fichiers sources\Objets</Filter>
+    </ClCompile>
+    <ClCompile Include="BlocEffet1.cpp">
+      <Filter>Fichiers sources\Objets</Filter>
+    </ClCompile>
+    <ClCompile Include="FileObject.cpp">
+      <Filter>Fichiers sources\Importeur</Filter>
+    </ClCompile>
+    <ClCompile Include="Objectimporter.cpp">
+      <Filter>Fichiers sources\Importeur</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Fichiers sources\Rendu3D</Filter>
+    </ClCompile>
+    <ClCompile Include="ImportedObject.cpp">
+      <Filter>Fichiers sources\Objets</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Fichiers sources\Objets\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Fichiers sources\Objets\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Fichiers sources\Objets\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicObject.cpp">
+      <Filter>Fichiers sources\Objets</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObject.cpp">
+      <Filter>Fichiers sources\Objets</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Fichiers sources\Objets\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Contact.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckPoint.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicColider.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="AfficheurSprite.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="AfficheurTexte.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="AfficheurPanneau.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuController.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Bonus.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="LOD.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="NosBonus.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="PanneauPE.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="CDIManipulateur.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="dispositifD3D11.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="dispositif.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="GestionnaireDeTextures.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Horloge.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoDispositif.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Moteur.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="MoteurWindows.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PetitMoteur3D.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="sommetbloc.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>Fichiers d%27en-tête\Rendu3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Physique.h">
+      <Filter>Fichiers d%27en-tête\Physique</Filter>
+    </ClInclude>
+    <ClInclude Include="Bloc.h">
+      <Filter>Fichiers d%27en-tête\Objets</Filter>
+    </ClInclude>
+    <ClInclude Include="BlocEffet1.h">
+      <Filter>Fichiers d%27en-tête\Objets</Filter>
+    </ClInclude>
+    <ClInclude Include="objet3d.h">
+      <Filter>Fichiers d%27en-tête\Objets</Filter>
+    </ClInclude>
+    <ClInclude Include="ImportedObject.h">
+      <Filter>Fichiers d%27en-tête\Objets</Filter>
+    </ClInclude>
+    <ClInclude Include="Objectimporter.h">
+      <Filter>Fichiers d%27en-tête\Importeur</Filter>
+    </ClInclude>
+    <ClInclude Include="FileObject.h">
+      <Filter>Fichiers d%27en-tête\Importeur</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Fichiers d%27en-tête\Objets\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Fichiers d%27en-tête\Objets\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Fichiers d%27en-tête\Objets\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicObject.h">
+      <Filter>Fichiers d%27en-tête\Objets</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObject.h">
+      <Filter>Fichiers d%27en-tête\Objets</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Fichiers d%27en-tête\Objets\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Contact.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckPoint.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicColider.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="AfficheurSprite.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="AfficheurTexte.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="AfficheurPanneau.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuController.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Bonus.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="LOD.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="NosBonus.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="PanneauPE.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PetitMoteur3D.ico">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="small.ico">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+    <None Include="SimplePhong.phl">
+      <Filter>Shaders\Simple</Filter>
+    </None>
+    <None Include="SimplePhong.vhl">
+      <Filter>Shaders\Simple</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="PetitMoteur3D.rc">
+      <Filter>Fichiers de ressources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ps1.phl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="vs1.vhl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="MiniPhong.phl">
+      <Filter>Shaders\Mini</Filter>
+    </FxCompile>
+    <FxCompile Include="MiniPhong.fx">
+      <Filter>Shaders\Mini</Filter>
+    </FxCompile>
+    <FxCompile Include="MiniPhong.vhl">
+      <Filter>Shaders\Mini</Filter>
+    </FxCompile>
+    <FxCompile Include="SimplePhong.fx">
+      <Filter>Shaders\Simple</Filter>
+    </FxCompile>
+    <FxCompile Include="Panneau.fx" />
+    <FxCompile Include="posteffect.fx" />
+  </ItemGroup>
+</Project>
