@@ -100,37 +100,45 @@ namespace PM3D
 	bool MenuController::doAction(string s)
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		
 		if (s == "Play.dds") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.sceneManager.addEntities(rMoteur.pEntityManager);
 			return false;
 		}
 		if (s == "Settings.dds") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			AfficheurMenuPrincipal->onScreen = false;
 			AfficheurOption->onScreen = true;
 		}
 		if (s == "CheckBoxFenetre.dds") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.pDispositif->GetSwapChain()->SetFullscreenState(TRUE, nullptr);
 			AfficheurOption->Display("CheckBoxPleinEcran.dds");
 			AfficheurOption->unDisplay("CheckBoxFenetre.dds");
 		}
 		if (s == "CheckBoxPleinEcran.dds") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.pDispositif->GetSwapChain()->SetFullscreenState(FALSE, nullptr);
 			AfficheurOption->Display("CheckBoxFenetre.dds");
 			AfficheurOption->unDisplay("CheckBoxPleinEcran.dds");
 		}
 		if (s == "Plus.dds") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.pEntityManager->AddEntity(rMoteur.PremierePosition, rMoteur.pDispositif);
 			string sEnemies = "Count of ennemies : " + to_string(rMoteur.pEntityManager->enemies.size());
 			wstring w_sEnemies(sEnemies.begin(), sEnemies.end());
 			optionEnnemies->Ecrire(w_sEnemies);
 		}
 		if (s == "Moins.dds") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.pEntityManager->DelEntity();
 			string sEnemies = "Count of ennemies : " + to_string(rMoteur.pEntityManager->enemies.size());
 			wstring w_sEnemies(sEnemies.begin(), sEnemies.end());
 			optionEnnemies->Ecrire(w_sEnemies);
 		}
 		if (s == "Left.ddsResolution") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.pDispositif->setLargeur(1024);
 			rMoteur.pDispositif->setHauteur(768);
 			rMoteur.pDispositif->Resize();
@@ -139,6 +147,7 @@ namespace PM3D
 			optionResolution->Ecrire(w_sResolution);
 		}
 		if (s == "Right.ddsResolution") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.pDispositif->setLargeur(1920);
 			rMoteur.pDispositif->setHauteur(1080);
 			rMoteur.pDispositif->Resize();
@@ -147,6 +156,7 @@ namespace PM3D
 			optionResolution->Ecrire(w_sResolution);
 		}
 		if (s == "Left.ddsShader") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			if (rMoteur.pPanneauPE->TECHNIQUE_USED != 0) {
 				rMoteur.pPanneauPE->TECHNIQUE_USED = (rMoteur.pPanneauPE->TECHNIQUE_USED - 1) % 4;
 			}
@@ -158,17 +168,20 @@ namespace PM3D
 			optionShader->Ecrire(w_sShader);
 		}
 		if (s == "Right.ddsShader") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.pPanneauPE->TECHNIQUE_USED = (rMoteur.pPanneauPE->TECHNIQUE_USED + 1) % 4;
 			string sShader = "Current Shader : " + shaders.at(rMoteur.pPanneauPE->TECHNIQUE_USED);
 			wstring w_sShader(sShader.begin(), sShader.end());
 			optionShader->Ecrire(w_sShader);
 		}
 		if (s == "Return.dds") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			AfficheurMenuPrincipal->onScreen = true;
 			AfficheurOption->onScreen = false;
 		}
 		//pSwapChain->SetFullscreenState(FALSE, nullptr);
 		if (s == "Quit.dds") {
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			PostQuitMessage(0);
 		}
 		return true;

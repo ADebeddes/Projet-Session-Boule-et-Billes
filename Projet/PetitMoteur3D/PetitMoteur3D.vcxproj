@@ -236,6 +236,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="sommetbloc.cpp" />
+    <ClCompile Include="SoundClass.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -287,6 +288,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="sommetbloc.h" />
+    <ClInclude Include="SoundClass.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="StaticObject.h" />
     <ClInclude Include="stdafx.h" />

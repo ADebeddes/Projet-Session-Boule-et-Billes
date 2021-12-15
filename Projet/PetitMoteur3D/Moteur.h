@@ -45,6 +45,8 @@
 #include <ctime> 
 #include <future>
 
+#include "SoundClass.h"
+
 #define PX_RELEASE(x)if(x) { x->release();x =NULL; }
 
 
@@ -146,12 +148,14 @@ namespace PM3D
 			pAfficheurSprite->onScreen = false;
 			pAfficheurPanneau->onScreen = false;
 			menuController->setOn();
+			m_Sound->PlayWaveFile(m_Sound->MusiqueMenuPrincipal);
 		}
 		void setMenuOff() {
 			sceneManager.onMenu = false;
 			pAfficheurSprite->onScreen = true;
 			pAfficheurPanneau->onScreen = true;
 			menuController->setOff();
+			m_Sound->fadeOut();
 		}
 		void updateRatioEcran() {
 			const float ratioDAspect = static_cast<float>(pDispositif->GetLargeur()) / static_cast<float>(pDispositif->GetHauteur());
@@ -582,7 +586,7 @@ namespace PM3D
 
 			/*sceneManager.addEntities(pEntityManager);*/
 			sceneManager.addToZone(new Skybox(pDispositif, "Boule.obj"));
-
+			m_Sound->PlayWaveFile(m_Sound->MusiqueMenuPrincipal);
 			return true;
 		}
 
@@ -636,6 +640,11 @@ namespace PM3D
 
 			pTexte1->Ecrire(w_speed);
 
+
+			if (m_Sound->musiqueFadeOut) {
+				m_Sound->DiminuerSon(m_Sound->MusiqueMenuPrincipal);
+			}
+
 			return true;
 		}
 
@@ -671,6 +680,8 @@ namespace PM3D
 		CameraManager camManager;
 
 	public:
+
+		SoundClass* m_Sound;
 		string HoveredOption;
 		bool pause = false;
 		// Le gestionnaire de texture
