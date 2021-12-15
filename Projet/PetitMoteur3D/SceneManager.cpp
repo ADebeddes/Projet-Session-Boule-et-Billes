@@ -164,9 +164,41 @@ namespace PM3D {
 
 	void SceneManager::resetBonus()
 	{
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 		for (auto bonus : bonus_pool) {
 			bonus->visible = true;
 			bonus->triggered = false;	
+
+			float x=0.0f;
+			float y=0.0f;
+			float z=0.0f;
+			if (bonus->terrain == 3) {
+				int pos = (int)(rand() / float(RAND_MAX) * rMoteur.pTerrain3->oi.object.points_.size());
+
+
+				  x = rMoteur.pTerrain3->oi.object.points_[pos].x;
+				  y = rMoteur.pTerrain3->oi.object.points_[pos].y;
+				  z = rMoteur.pTerrain3->oi.object.points_[pos].z;
+
+			}
+			else if (bonus->terrain == 2) {
+				int pos = (int)(rand() / float(RAND_MAX) * rMoteur.pTerrain2->oi.object.points_.size());
+
+
+				  x = rMoteur.pTerrain2->oi.object.points_[pos].x;
+				  y = rMoteur.pTerrain2->oi.object.points_[pos].y;
+				  z = rMoteur.pTerrain2->oi.object.points_[pos].z;
+			}
+			else if (bonus->terrain == 1) {
+				int pos = (int)(rand() / float(RAND_MAX) * rMoteur.pTerrain1->oi.object.points_.size());
+
+
+				x = rMoteur.pTerrain1->oi.object.points_[pos].x;
+				y = rMoteur.pTerrain1->oi.object.points_[pos].y;
+				z = rMoteur.pTerrain1->oi.object.points_[pos].z;
+			}
+
+			bonus->place(x, y + 2.0f, z);
 		}
 
 	}
@@ -187,6 +219,49 @@ namespace PM3D {
 
 	}
 
+	void SceneManager::resetZones()
+	{
+
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		for (auto bonus : obstacle_pool) {
+			
+
+			float x = 0.0f;
+			float y = 0.0f;
+			float z = 0.0f;
+			if (bonus->terrain == 3) {
+				int pos = (int)(rand() / float(RAND_MAX) * rMoteur.pTerrain3->oi.object.points_.size());
+
+
+				x = rMoteur.pTerrain3->oi.object.points_[pos].x;
+				y = rMoteur.pTerrain3->oi.object.points_[pos].y;
+				z = rMoteur.pTerrain3->oi.object.points_[pos].z;
+
+			}
+			else if (bonus->terrain == 2) {
+				int pos = (int)(rand() / float(RAND_MAX) * rMoteur.pTerrain2->oi.object.points_.size());
+
+
+				x = rMoteur.pTerrain2->oi.object.points_[pos].x;
+				y = rMoteur.pTerrain2->oi.object.points_[pos].y;
+				z = rMoteur.pTerrain2->oi.object.points_[pos].z;
+			}
+			else if (bonus->terrain == 1) {
+				int pos = (int)(rand() / float(RAND_MAX) * rMoteur.pTerrain1->oi.object.points_.size());
+
+
+				x = rMoteur.pTerrain1->oi.object.points_[pos].x;
+				y = rMoteur.pTerrain1->oi.object.points_[pos].y;
+				z = rMoteur.pTerrain1->oi.object.points_[pos].z;
+			}
+
+			bonus->place(x, y + 2.0f, z);
+		}
+
+	}
+
+	
+
 	void SceneManager::resetTime()
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
@@ -196,7 +271,7 @@ namespace PM3D {
 
 	void SceneManager::resetParty()
 	{
-		//resetZones();
+		resetZones();
 		resetCollider();
 		resetBonus();
 		resetEntities();
@@ -217,24 +292,12 @@ namespace PM3D {
 		const float x = where->oi.object.points_[pos].x;
 		const float y = where->oi.object.points_[pos].y;
 		const float z = where->oi.object.points_[pos].z;
-		Obstacle* obs = new Obstacle(rMoteur.pDispositif, obj);
+		Obstacle* obs = new Obstacle(rMoteur.pDispositif, obj,zone);
 		obs->SetTexture(rMoteur.TexturesManager.GetNewTexture(texture, rMoteur.pDispositif));
 		obs->place(x, y, z);
 		addToZone(zone, obs);
+		obstacle_pool.push_back(obs);
 	}
 
 
-	void SceneManager::placeRandomObstacle(int zone, Terrain* where, Obstacle obs)
-	{
-
-		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
-
-		int pos = (int)(rand() / float(RAND_MAX) * where->oi.object.points_.size());
-
-		const float x = where->oi.object.points_[pos].x;
-		const float y = where->oi.object.points_[pos].y;
-		const float z = where->oi.object.points_[pos].z;
-		obs.place(x, y, z);
-		addToZone(zone, &obs);
-	}
 }

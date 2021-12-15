@@ -362,7 +362,7 @@ namespace PM3D
 				const float x = pTerrain1->oi.object.points_[pos].x;
 				const float y = pTerrain1->oi.object.points_[pos].y;
 				const float z = pTerrain1->oi.object.points_[pos].z;
-				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "boule.obj");
+				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "boule.obj",1);
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(1, arbre);
 			}
@@ -375,7 +375,7 @@ namespace PM3D
 				const float x = pTerrain1->oi.object.points_[pos].x;
 				const float y = pTerrain1->oi.object.points_[pos].y;
 				const float z = pTerrain1->oi.object.points_[pos].z;
-				DiminuerBalle* arbre = new DiminuerBalle(pDispositif, "boule.obj");
+				DiminuerBalle* arbre = new DiminuerBalle(pDispositif, "boule.obj",1);
 
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(1, arbre);
@@ -391,7 +391,7 @@ namespace PM3D
 				const float x = pTerrain1->oi.object.points_[pos].x;
 				const float y = pTerrain1->oi.object.points_[pos].y;
 				const float z = pTerrain1->oi.object.points_[pos].z;
-				AgrandirBalle* arbre = new AgrandirBalle(pDispositif, "boule.obj");
+				AgrandirBalle* arbre = new AgrandirBalle(pDispositif, "boule.obj",1);
 
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(1, arbre);
@@ -408,7 +408,7 @@ namespace PM3D
 				const float x = pTerrain2->oi.object.points_[pos].x;
 				const float y = pTerrain2->oi.object.points_[pos].y;
 				const float z = pTerrain2->oi.object.points_[pos].z;
-				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "boule.obj");
+				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "boule.obj",2);
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(2, arbre);
 			}
@@ -421,7 +421,7 @@ namespace PM3D
 				const float x = pTerrain2->oi.object.points_[pos].x;
 				const float y = pTerrain2->oi.object.points_[pos].y;
 				const float z = pTerrain2->oi.object.points_[pos].z;
-				DiminuerBalle* arbre = new DiminuerBalle(pDispositif, "boule.obj");
+				DiminuerBalle* arbre = new DiminuerBalle(pDispositif, "boule.obj",2);
 
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(2, arbre);
@@ -437,7 +437,7 @@ namespace PM3D
 				const float x = pTerrain2->oi.object.points_[pos].x;
 				const float y = pTerrain2->oi.object.points_[pos].y;
 				const float z = pTerrain2->oi.object.points_[pos].z;
-				AgrandirBalle* arbre = new AgrandirBalle(pDispositif, "boule.obj");
+				AgrandirBalle* arbre = new AgrandirBalle(pDispositif, "boule.obj",2);
 
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(2, arbre);
@@ -455,7 +455,7 @@ namespace PM3D
 				const float x = pTerrain3->oi.object.points_[pos].x;
 				const float y = pTerrain3->oi.object.points_[pos].y;
 				const float z = pTerrain3->oi.object.points_[pos].z;
-				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "boule.obj");
+				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "boule.obj",3);
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(3, arbre);
 			}
@@ -468,7 +468,7 @@ namespace PM3D
 				const float x = pTerrain3->oi.object.points_[pos].x;
 				const float y = pTerrain3->oi.object.points_[pos].y;
 				const float z = pTerrain3->oi.object.points_[pos].z;
-				DiminuerBalle* arbre = new DiminuerBalle(pDispositif, "boule.obj");
+				DiminuerBalle* arbre = new DiminuerBalle(pDispositif, "boule.obj",3);
 
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(3, arbre);
@@ -484,7 +484,7 @@ namespace PM3D
 				const float x = pTerrain3->oi.object.points_[pos].x;
 				const float y = pTerrain3->oi.object.points_[pos].y;
 				const float z = pTerrain3->oi.object.points_[pos].z;
-				AgrandirBalle* arbre = new AgrandirBalle(pDispositif, "boule.obj");
+				AgrandirBalle* arbre = new AgrandirBalle(pDispositif, "boule.obj",3);
 
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(3, arbre);
@@ -710,9 +710,7 @@ namespace PM3D
 		int nbEnemies;
 
 
-		Terrain* pTerrain1;
-		Terrain* pTerrain2;
-		Terrain* pTerrain3;
+		
 
 		CAfficheurTexte* pTexte1;
 		CAfficheurTexte* pTexte2;
@@ -726,6 +724,10 @@ namespace PM3D
 		CameraManager camManager;
 
 	public:
+
+		Terrain* pTerrain1;
+		Terrain* pTerrain2;
+		Terrain* pTerrain3;
 		CAfficheurSprite* pAfficheurSprite;
 		SoundClass* m_Sound;
 		string HoveredOption;

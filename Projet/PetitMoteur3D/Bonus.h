@@ -7,10 +7,11 @@ namespace PM3D {
 
 	public:
 		int uid;
+		int terrain;
 		static int count;
 		string name;
 		bool triggered = false;
-		Bonus(CDispositifD3D11* pDispositif_, string path, LPCWSTR fong_file = L"SimplePhong.fx", bool need_filter = false);
+		Bonus(CDispositifD3D11* pDispositif_, string path, int terrain,LPCWSTR fong_file = L"SimplePhong.fx", bool need_filter = false);
 
 		void InitPhysique();
 		void Anime(float tempsEcoule) override;

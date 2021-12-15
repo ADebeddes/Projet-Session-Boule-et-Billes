@@ -30,6 +30,7 @@ namespace PM3D {
 		std::vector<int> zonesActives{};
 		std::vector<BasicColider*> collider_pool{};
 		std::vector<Bonus*> bonus_pool{};
+		std::vector<Obstacle*> obstacle_pool{};
 
 		SceneManager();
 

@@ -16,7 +16,7 @@ namespace PM3D
         public StaticObject
     {
     public:
-        Obstacle(CDispositifD3D11* pDispositif_, string path , LPCWSTR fong_file = L"SimplePhong.fx", bool need_filter = false);
+        Obstacle(CDispositifD3D11* pDispositif_, string path ,int terrain, LPCWSTR fong_file = L"SimplePhong.fx", bool need_filter = false);
 	
 		void InitPhysique(string path);
 		bool InitMesh(string path);
@@ -25,7 +25,7 @@ namespace PM3D
 		void createMesh(string path);
 		std::map<string, PxShape*> possible_shape; 
 
-	
+		int terrain;
 		void place(float x ,float y, float z);
 		
 	};
