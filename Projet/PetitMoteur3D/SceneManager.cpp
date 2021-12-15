@@ -5,6 +5,7 @@
 #include "EntityManager.h"
 #include "AfficheurPanneau.h"
 #include "Bonus.h"
+#include <random>
 
 namespace PM3D {
 	SceneManager::SceneManager()
@@ -124,34 +125,38 @@ namespace PM3D {
 	{
 		zonesActives.erase(std::find(zonesActives.begin(), zonesActives.end(), i));
 	}
-	void SceneManager::placeRandomObstacle(int zone,  Terrain* where, string obj, wstring texture)
+	void SceneManager::placeRandomObstacle(int zone, Terrain* where, string obj, wstring texture)
 	{
+
 
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 
-		int pos = (int)(rand() / float(RAND_MAX) * where->oi.object.points_.size());
+		int pos = uniform_int_distribution<int>{ 0, static_cast<int>(where->oi.object.points_.size()) }(prng);
 
 		const float x = where->oi.object.points_[pos].x;
 		const float y = where->oi.object.points_[pos].y;
 		const float z = where->oi.object.points_[pos].z;
 		Obstacle* obs = new Obstacle(rMoteur.pDispositif, obj);
+		rMoteur.mtx.lock(); 
 		obs->SetTexture(rMoteur.TexturesManager.GetNewTexture(texture, rMoteur.pDispositif));
+		rMoteur.mtx.unlock();
 		obs->place(x, y, z);
 		addToZone(zone, obs);
 	}
 
 
-	void SceneManager::placeRandomObstacle(int zone, Terrain* where, Obstacle obs)
+	void SceneManager::placeRandomBonus(int zone, Terrain* where, Bonus* obs)
 	{
+
 
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 
-		int pos = (int)(rand() / float(RAND_MAX) * where->oi.object.points_.size());
+		int pos = uniform_int_distribution<int>{ 0, static_cast<int>(where->oi.object.points_.size()) }(prng);
 
 		const float x = where->oi.object.points_[pos].x;
-		const float y = where->oi.object.points_[pos].y;
+		const float y = where->oi.object.points_[pos].y + 1;
 		const float z = where->oi.object.points_[pos].z;
-		obs.place(x, y, z);
-		addToZone(zone, &obs);
+		obs->place(x, y, z);
+		add(zone, obs);
 	}
 }

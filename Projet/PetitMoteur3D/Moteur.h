@@ -44,6 +44,7 @@
 #include <cstdlib> 
 #include <ctime> 
 #include <future>
+#include <mutex> 
 
 #define PX_RELEASE(x)if(x) { x->release();x =NULL; }
 
@@ -59,7 +60,9 @@ namespace PM3D
 	const int IMAGESPARSECONDE = 60;
 	const double EcartTemps = 1.0 / static_cast<double>(IMAGESPARSECONDE);
 
+	enum BonusTypes { UP, DOWN, LIGHTNING };
 
+	
 
 	//
 	//   TEMPLATE : CMoteur
@@ -78,6 +81,7 @@ namespace PM3D
 	{
 	public:
 		Physique Moteur_Physique{};
+		std::mutex mtx;
 	public:
 
 		virtual void Run()
@@ -280,14 +284,78 @@ namespace PM3D
 			return 0;
 		}
 
+		void createRandomObstacle(int numberof, int zone, Terrain* whereTo, std::map<string, wstring> list)
+		{
+			
+				for (const auto obj : list)
+				{
+
+					for (int i = 0; i < numberof; i++)
+					{
+					
+						sceneManager.placeRandomObstacle(zone, whereTo, obj.first, obj.second);
+						
+					}
+
+				}
+			
+		}
+
+		void createRandomBonus(int numberof, int zone, Terrain* whereTo, BonusTypes  type)
+		{
+			for (int i = 0; i < numberof; i++)
+			{
+				Bonus* b;
+
+				switch (type)
+				{
+				case BonusTypes::UP:
+				{
+					b = new AgrandirBalle(pDispositif, "boule.obj");
+					break;
+				}
+				case BonusTypes::DOWN:
+				{
+					b = new DiminuerBalle(pDispositif, "boule.obj");
+					break;
+				}
+
+				case BonusTypes::LIGHTNING:
+				{
+					b = new DiminuerAutreBalle(pDispositif, "boule.obj");
+					break;
+				}
+				default:
+				{
+					// but how ?
+					break;
+				}
+				}
+				sceneManager.placeRandomBonus(zone, whereTo, b);
+			}
+		}
+
+
+
+
+
 		bool InitObjets()
 		{
+			objToTextTree.emplace("Tree1.obj", L"fir_tree.dds");
+			objToTextTree.emplace("Tree2.obj", L"fir_tree.dds");
+			objToTextTree.emplace("Tree3.obj", L"fir_tree.dds");
+			objToTextStone.emplace("Rock1.obj", L"RockTexture.dds");
+			objToTextStone.emplace("Rock2.obj", L"RockTexture.dds");
+			objToTextStone.emplace("Rock3.obj", L"RockTexture.dds");
+
+
+
 			////Creation du terrain
 			pTerrain1 = new Terrain(pDispositif, "Pente1.obj");
-			
+
 			////Affectation des textures a notre terrain
 			pTerrain1->SetTexture(TexturesManager.GetNewTexture(L"snow.dds", pDispositif));
-	
+
 			////// Affectation du filtre a notre terrain
 			pTerrain1->SetFilter(TexturesManager.GetNewTexture(L"tundra_road_filter.dds", pDispositif));
 
@@ -328,221 +396,26 @@ namespace PM3D
 			//Rajoute notre terrain à la scene
 			sceneManager.addToZone(3, pTerrain3);
 
-			std::map<string, wstring> objToTextTree{};
-			std::map<string, wstring> objToTextStone{};
-			objToTextTree.emplace("Tree1.obj", L"fir_tree.dds");
-			objToTextTree.emplace("Tree2.obj", L"fir_tree.dds");
-			objToTextTree.emplace("Tree3.obj", L"fir_tree.dds");
-			objToTextStone.emplace("Rock1.obj", L"RockTexture.dds");
-			objToTextStone.emplace("Rock2.obj", L"RockTexture.dds");
-			objToTextStone.emplace("Rock3.obj", L"RockTexture.dds");
-			//Importation d'arbres que nous plaçons de maniere 
-			std::vector<string> trees = {	"Tree1.obj",
-											"Tree2.obj",
-											"Tree3.obj" };
-
-			
-
-			std::srand(static_cast<unsigned int>(std::time(nullptr)));
-			for (int i = 0; i < 3; i++)
 			{
+				auto handle1 = std::async(std::launch::async, [&]() {
+					createZone1();
+					});
+				auto handle2 = std::async(std::launch::async, [&]() {
+					createZone2();
+					});
+				auto handle3 = std::async(std::launch::async, [&]() {
+					createZone3();
+					});
+				auto handle4 = std::async(std::launch::async, [&]() {
+					createZone1Bonus();
+					createZone2Bonus();
+					createZone3Bonus();
+					});
+			};
 
-				int pos = (int)(rand() / float(RAND_MAX) * pTerrain1->oi.object.points_.size());
-
-
-				const float x = pTerrain1->oi.object.points_[pos].x;
-				const float y = pTerrain1->oi.object.points_[pos].y;
-				const float z = pTerrain1->oi.object.points_[pos].z;
-				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "boule.obj");
-				arbre->place(x, y + 2.0f, z);
-				sceneManager.add(1, arbre);
-			}
-			for (int i = 0; i < 3; i++)
-			{
-
-				int pos = (int)(rand() / float(RAND_MAX) * pTerrain1->oi.object.points_.size());
-
-
-				const float x = pTerrain1->oi.object.points_[pos].x;
-				const float y = pTerrain1->oi.object.points_[pos].y;
-				const float z = pTerrain1->oi.object.points_[pos].z;
-				DiminuerBalle* arbre = new DiminuerBalle(pDispositif, "boule.obj");
-
-				arbre->place(x, y + 2.0f, z);
-				sceneManager.add(1, arbre);
-			}
-
-
-			for (int i = 0; i < 3; i++)
-			{
-
-				int pos = (int)(rand() / float(RAND_MAX) * pTerrain1->oi.object.points_.size());
-
-
-				const float x = pTerrain1->oi.object.points_[pos].x;
-				const float y = pTerrain1->oi.object.points_[pos].y;
-				const float z = pTerrain1->oi.object.points_[pos].z;
-				AgrandirBalle* arbre = new AgrandirBalle(pDispositif, "boule.obj");
-
-				arbre->place(x, y + 2.0f, z);
-				sceneManager.add(1, arbre);
-			}
-			//		});
-			//		auto handleB = std::async(std::launch::async, [&]() {
-
-			for (int i = 0; i < 3; i++)
-			{
-
-				int pos = (int)(rand() / float(RAND_MAX) * pTerrain2->oi.object.points_.size());
-
-
-				const float x = pTerrain2->oi.object.points_[pos].x;
-				const float y = pTerrain2->oi.object.points_[pos].y;
-				const float z = pTerrain2->oi.object.points_[pos].z;
-				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "boule.obj");
-				arbre->place(x, y + 2.0f, z);
-				sceneManager.add(2, arbre);
-			}
-			for (int i = 0; i < 3; i++)
-			{
-
-				int pos = (int)(rand() / float(RAND_MAX) * pTerrain2->oi.object.points_.size());
-
-
-				const float x = pTerrain2->oi.object.points_[pos].x;
-				const float y = pTerrain2->oi.object.points_[pos].y;
-				const float z = pTerrain2->oi.object.points_[pos].z;
-				DiminuerBalle* arbre = new DiminuerBalle(pDispositif, "boule.obj");
-
-				arbre->place(x, y + 2.0f, z);
-				sceneManager.add(2, arbre);
-			}
-
-
-			for (int i = 0; i <3 ; i++)
-			{
-
-				int pos = (int)(rand() / float(RAND_MAX) * pTerrain2->oi.object.points_.size());
-
-
-				const float x = pTerrain2->oi.object.points_[pos].x;
-				const float y = pTerrain2->oi.object.points_[pos].y;
-				const float z = pTerrain2->oi.object.points_[pos].z;
-				AgrandirBalle* arbre = new AgrandirBalle(pDispositif, "boule.obj");
-
-				arbre->place(x, y + 2.0f, z);
-				sceneManager.add(2, arbre);
-			}
-
-			//			});
-		//			auto handleC = std::async(std::launch::async, [&]() {
-
-			for (int i = 0; i < 3; i++)
-			{
-
-				int pos = (int)(rand() / float(RAND_MAX) * pTerrain3->oi.object.points_.size());
-
-
-				const float x = pTerrain3->oi.object.points_[pos].x;
-				const float y = pTerrain3->oi.object.points_[pos].y;
-				const float z = pTerrain3->oi.object.points_[pos].z;
-				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "boule.obj");
-				arbre->place(x, y + 2.0f, z);
-				sceneManager.add(3, arbre);
-			}
-			for (int i = 0; i < 3; i++)
-			{
-
-				int pos = (int)(rand() / float(RAND_MAX) * pTerrain3->oi.object.points_.size());
-
-
-				const float x = pTerrain3->oi.object.points_[pos].x;
-				const float y = pTerrain3->oi.object.points_[pos].y;
-				const float z = pTerrain3->oi.object.points_[pos].z;
-				DiminuerBalle* arbre = new DiminuerBalle(pDispositif, "boule.obj");
-
-				arbre->place(x, y + 2.0f, z);
-				sceneManager.add(3, arbre);
-			}
-
-
-			for (int i = 0; i < 3; i++)
-			{
-
-				int pos = (int)(rand() / float(RAND_MAX) * pTerrain3->oi.object.points_.size());
-
-
-				const float x = pTerrain3->oi.object.points_[pos].x;
-				const float y = pTerrain3->oi.object.points_[pos].y;
-				const float z = pTerrain3->oi.object.points_[pos].z;
-				AgrandirBalle* arbre = new AgrandirBalle(pDispositif, "boule.obj");
-
-				arbre->place(x, y + 2.0f, z);
-				sceneManager.add(3, arbre);
-			}
-			//		});
-			for (const auto obj : objToTextTree)
-			{
-
-				for (int i = 0; i < 2; i++)
-				{
-					sceneManager.placeRandomObstacle(1, pTerrain1, obj.first, obj.second);
-				}
-
-			}
-
-			for (const auto obj : objToTextTree)
-			{
-
-				for (int i = 0; i < 2; i++)
-				{
-					sceneManager.placeRandomObstacle(2, pTerrain2, obj.first, obj.second);
-				}
-
-			}
-
-			for (const auto obj : objToTextTree)
-			{
-
-				for (int i = 0; i < 2; i++)
-				{
-					sceneManager.placeRandomObstacle(3, pTerrain3, obj.first, obj.second);
-				}
-
-			}
-
-			for (const auto obj : objToTextStone)
-			{
-
-				for (int i = 0; i < 2; i++)
-				{
-					sceneManager.placeRandomObstacle(1, pTerrain1, obj.first, obj.second);
-				}
-
-			}
-
-			for (const auto obj : objToTextStone)
-			{
-
-				for (int i = 0; i < 2; i++)
-				{
-					sceneManager.placeRandomObstacle(2, pTerrain2, obj.first, obj.second);
-				}
-
-			}
-
-			for (const auto obj : objToTextStone)
-			{
-
-				for (int i = 0; i < 2; i++)
-				{
-					sceneManager.placeRandomObstacle(3, pTerrain3, obj.first, obj.second);
-				}
-
-			}
 			pEntityManager = new EntityManager(nbEnemies, PxVec3(-50, pTerrain1->getHeightAt(-50, -60) + 10, -60), pDispositif);
 
-			pAfficheurSprite = new CAfficheurSprite(pDispositif); 
+			pAfficheurSprite = new CAfficheurSprite(pDispositif);
 			CAfficheurTexte::Init();
 			/*const Gdiplus::FontFamily oFamily(L"Arial", nullptr);
 			pPolice1 = std::make_unique<Gdiplus::Font>(&oFamily, 16.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
@@ -559,10 +432,10 @@ namespace PM3D
 			auto e_Hauteur = pDispositif->GetHauteur();
 
 			//pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(), e_largeur-128, e_Hauteur- 24 );
-			pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(),"speed", e_largeur - 128, e_Hauteur - 24);
-			
+			pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(), "speed", e_largeur - 128, e_Hauteur - 24);
+
 			pAfficheurPanneau = new CAfficheurPanneau(pDispositif);
-			pAfficheurPanneau->AjouterPanneau("panic.dds",XMFLOAT3(50,50,50),10,10);
+			pAfficheurPanneau->AjouterPanneau("panic.dds", XMFLOAT3(50, 50, 50), 10, 10);
 
 
 			sceneManager.addToUI(pAfficheurSprite);
@@ -570,15 +443,15 @@ namespace PM3D
 			sceneManager.addToUI(menuController->AfficheurMenuPrincipal);
 			sceneManager.addToUI(menuController->AfficheurOption);
 
-			/*BasicColider* porte = new BasicColider(200, 200, 1); 
+			/*BasicColider* porte = new BasicColider(200, 200, 1);
 			porte->place(-50, pTerrain1->getHeightAt(-50, -60) + 10, -70);
 
-			sceneManager.add(porte);*/ 
+			sceneManager.add(porte);*/
 
-			
+
 			nbEnemies = 10;
 			PremierePosition = PxVec3(-50, pTerrain1->getHeightAt(-50, -60) + 10, -60);
-			
+
 
 			/*sceneManager.addEntities(pEntityManager);*/
 			sceneManager.addToZone(new Skybox(pDispositif, "Boule.obj"));
@@ -588,7 +461,7 @@ namespace PM3D
 
 		bool AnimeScene(float tempsEcoule)
 		{
-			
+
 			if (!sceneManager.onMenu && !pause) {
 				{
 					Moteur_Physique.stepPhysics(true);
@@ -661,6 +534,9 @@ namespace PM3D
 		Terrain* pTerrain2;
 		Terrain* pTerrain3;
 
+		std::map<string, wstring> objToTextTree{};
+		std::map<string, wstring> objToTextStone{};
+
 		CAfficheurTexte* pTexte1;
 		CAfficheurSprite* pAfficheurSprite;
 		std::wstring str;
@@ -671,6 +547,58 @@ namespace PM3D
 		CameraManager camManager;
 
 	public:
+		void createZone3()
+		{
+
+			createRandomObstacle(100, 3, pTerrain3, objToTextTree);
+			createRandomObstacle(20, 3, pTerrain3, objToTextStone);
+
+		}
+		void createZone2()
+		{
+
+			createRandomObstacle(100, 2, pTerrain2, objToTextTree);
+
+		}
+		void createZone1()
+		{
+
+			createRandomObstacle(100, 1, pTerrain1, objToTextTree);
+			createRandomObstacle(20, 1, pTerrain1, objToTextStone);
+
+		}
+
+		void createZone3Bonus()
+		{
+
+			createRandomBonus(10, 3, pTerrain3, BonusTypes::UP);
+			createRandomBonus(10, 3, pTerrain3, BonusTypes::DOWN);
+			createRandomBonus(10, 3, pTerrain3, BonusTypes::LIGHTNING);
+
+		}
+
+		void createZone2Bonus()
+		{
+
+			createRandomBonus(10, 2, pTerrain2, BonusTypes::UP);
+			createRandomBonus(10, 2, pTerrain2, BonusTypes::DOWN);
+			createRandomBonus(10, 2, pTerrain2, BonusTypes::LIGHTNING);
+
+		}
+
+		void createZone1Bonus()
+		{
+
+			createRandomBonus(10, 1, pTerrain1, BonusTypes::UP);
+			createRandomBonus(10, 1, pTerrain1, BonusTypes::DOWN);
+			createRandomBonus(10, 1, pTerrain1, BonusTypes::LIGHTNING);
+
+		}
+
+
+
+
+
 		string HoveredOption;
 		bool pause = false;
 		// Le gestionnaire de texture
