@@ -21,7 +21,9 @@ namespace PM3D
 
         bool playing;
 
-        int duration;
+        int max_duration;
+
+        int current_duration;
 
         unsigned int particle_number = 0;
 

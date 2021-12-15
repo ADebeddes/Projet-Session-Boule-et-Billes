@@ -294,5 +294,6 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 		// On l'ajoute à notre vecteur
 		tabPanneau.push_back(std::move(pPanneau));
 	}
+
 }// namespace PM3D
 

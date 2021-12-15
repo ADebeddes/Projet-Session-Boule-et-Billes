@@ -15,7 +15,7 @@ namespace PM3D {
 	{
 		playerCharacter = object;
 		playerCharacter.body->setGlobalPose(PxTransform(pos));
-		pParticleManager = new ParticleManager(CMoteurWindows::GetInstance().pDispositif, XMFLOAT3(pos.x, pos.y, pos.z),10);
+		pParticleManager = new ParticleManager(CMoteurWindows::GetInstance().pDispositif, XMFLOAT3(pos.x, pos.y, pos.z),20);
 		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
 		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
 		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
