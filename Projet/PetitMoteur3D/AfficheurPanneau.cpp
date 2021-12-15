@@ -8,8 +8,8 @@
 namespace PM3D {
 struct ShadersParams
 {
-	XMMATRIX matW;	// la matrice totale 
-	XMMATRIX matVP;
+	XMMATRIX matWVP;	// la matrice totale 
+	//XMMATRIX matVP;
 };
 // Definir l'organisation de notre sommet
 D3D11_INPUT_ELEMENT_DESC CSommetPanneau::layout[] =
@@ -22,12 +22,12 @@ UINT CSommetPanneau::numElements = ARRAYSIZE(layout);
 
 CSommetPanneau CAfficheurPanneau::sommets[6] =
 {
-				CSommetPanneau(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 1.0f)),
-				CSommetPanneau(XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f)),
-				CSommetPanneau(XMFLOAT3(1.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f)),
-				CSommetPanneau(XMFLOAT3(0.0f, 0.0f, 0.0f), XMFLOAT2(0.0f, 1.0f)),
-				CSommetPanneau(XMFLOAT3(1.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f)),
-				CSommetPanneau(XMFLOAT3(1.0f, 0.0f, 0.0f), XMFLOAT2(1.0f, 1.0f))
+	CSommetPanneau(XMFLOAT3(-0.5f, -0.5f, 0.0f), XMFLOAT2(0.0f, 1.0f)),
+	CSommetPanneau(XMFLOAT3(-0.5f, 0.5f, 0.0f), XMFLOAT2(0.0f, 0.0f)),
+	CSommetPanneau(XMFLOAT3(0.5f, 0.5f, 0.0f), XMFLOAT2(1.0f, 0.0f)),
+	CSommetPanneau(XMFLOAT3(-0.5f, -0.5f, 0.0f), XMFLOAT2(0.0f, 1.0f)),
+	CSommetPanneau(XMFLOAT3(0.5f, 0.5f, 0.0f), XMFLOAT2(1.0f, 0.0f)),
+	CSommetPanneau(XMFLOAT3(0.5f, -0.5f, 0.0f), XMFLOAT2(1.0f, 1.0f))
 };
 	CAfficheurPanneau::CAfficheurPanneau(CDispositifD3D11* _pDispositif)
 		: pDispositif(_pDispositif)
@@ -91,7 +91,7 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 		// Pour l'effet
 		ID3DBlob* pFXBlob = nullptr;
 
-		DXEssayer(D3DCompileFromFile(L"Panneau.fx", 0, 0, 0,
+		DXEssayer(D3DCompileFromFile(L"Sprite1.fx", 0, 0, 0,
 			"fx_5_0", 0, 0,
 			&pFXBlob, 0),
 			DXE_ERREURCREATION_FX);
@@ -185,10 +185,41 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 			{
 				// Initialiser et sélectionner les «constantes» de l'effet
 				ShadersParams sp;
-				XMMATRIX viewProj = CMoteurWindows::GetInstance().GetMatViewProj();
+				
+				
+				if(sprite->idle){
+					XMVECTOR dir = XMLoadFloat3(&sprite->position);
+					float rotationY = static_cast<float>(atan2(dir.vector4_f32[0], dir.vector4_f32[2]));
 
-				sp.matVP = XMMatrixTranspose(matWorld * viewProj);
-				sp.matW = XMMatrixTranspose(matWorld);
+					XMMATRIX rotY = DirectX::XMMatrixRotationY(rotationY);
+					XMVECTOR v = XMLoadFloat3(&sprite->position);
+
+					XMMATRIX trans = DirectX::XMMatrixTranslationFromVector(v);
+					sp.matWVP = DirectX::XMMatrixTranspose(XMMatrixScaling(sprite->dimension.x, sprite->dimension.y, 1.0f)  * rotY* trans * (CMoteurWindows::GetInstance().GetMatViewProj()));
+				}
+				else {
+					XMVECTOR dir = XMLoadFloat3(&sprite->position) - CMoteurWindows::GetInstance().camManager.getActive().position;
+
+					dir = XMVector3Normalize(dir);
+
+					float rotationY = static_cast<float>(atan2(dir.vector4_f32[0], dir.vector4_f32[2]));
+
+					XMMATRIX rotY = DirectX::XMMatrixRotationY(rotationY);
+
+					XMVECTOR z = XMVECTOR{ 1.0f, 0.0f, 0.0f };
+					XMVECTOR zBillboard = XMVector3Transform(z, rotY);
+
+					float rotationZ = -static_cast<float>(asin(dir.vector4_f32[1]));
+
+					XMMATRIX rotZ = DirectX::XMMatrixRotationAxis(zBillboard, rotationZ);
+
+					XMVECTOR v = XMLoadFloat3(&sprite->position);
+
+					XMMATRIX trans = DirectX::XMMatrixTranslationFromVector(v);
+					sp.matWVP = DirectX::XMMatrixTranspose(XMMatrixScaling(sprite->dimension.x, sprite->dimension.y, 1.0f) * rotY * rotZ * trans * (CMoteurWindows::GetInstance().GetMatViewProj()));
+				}
+					
+
 				pImmediateContext->UpdateSubresource(pConstantBuffer, 0, nullptr,
 					&sp, 0, 0);
 
@@ -223,7 +254,7 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 	}
 	void CAfficheurPanneau::AjouterPanneau(const std::string& NomTexture,
 		const XMFLOAT3& _position,
-		float _dx, float _dy)
+		float _dx, float _dy, bool _idle)
 	{
 		// Initialisation de la texture
 		CGestionnaireDeTextures& TexturesManager =
@@ -265,7 +296,10 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 		const XMMATRIX& viewProj = CMoteurWindows::GetInstance().GetMatViewProj();
 		pPanneau->name = NomTexture;
 		pPanneau->position = _position;
+		pPanneau->idle = _idle;
 
+		pPanneau->matPosDim = XMMatrixScaling(pPanneau->dimension.x, pPanneau->dimension.y, 1.0f) * 
+			XMMatrixTranslation(pPanneau->position.x, pPanneau->position.y, pPanneau->position.z);
 		/*pPanneau->matPosDim = XMMatrixScaling(pPanneau->dimension.x,
 			pPanneau->dimension.y, 1.0f) *
 			XMMatrixTranslation(pPanneau->position.x,

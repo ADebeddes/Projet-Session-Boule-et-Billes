@@ -33,7 +33,7 @@ namespace PM3D
 		virtual void Draw() override;
 
 		void AjouterPanneau(const std::string& NomTexture, const XMFLOAT3& _position,
-			float _dx = 0, float _dy = 0);
+			float _dx = 0, float _dy = 0, bool _idle = false);
 		bool onScreen;
 
 	private:
@@ -42,6 +42,7 @@ namespace PM3D
 		public:
 			ID3D11ShaderResourceView* pTextureD3D;
 
+			bool idle;
 			XMMATRIX matPosDim;
 			std::string name;
 			XMFLOAT3 position;

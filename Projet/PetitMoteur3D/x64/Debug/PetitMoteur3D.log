@@ -1,4 +1,75 @@
-﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
-  
-  compilation object save succeeded; see D:\Infographie\GitHub\equipealpha\Projet\x64\Debug\MiniPhong.cso
-  PetitMoteur3D.vcxproj -> D:\Infographie\GitHub\equipealpha\Projet\x64\Debug\PetitMoteur3D.exe
+﻿  AfficheurPanneau.cpp
+  AfficheurSprite.cpp
+  BasicColider.cpp
+  Bloc.cpp
+  BlocEffet1.cpp
+  Bonus.cpp
+  Camera.cpp
+  CameraManager.cpp
+  Contact.cpp
+  Cube.cpp
+  Enemy.cpp
+  EntityManager.cpp
+  ImportedObject.cpp
+  MenuController.cpp
+  Moteur.cpp
+  MoteurWindows.cpp
+  NosBonus.cpp
+  Obstacle.cpp
+  PetitMoteur3D.cpp
+  Player.cpp
+  SceneManager.cpp
+  Skybox.cpp
+  Sphere.cpp
+  StaticObject.cpp
+  Terrain.cpp
+  LINK : D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe not found or not built by the last incremental link; performing full link
+PhysXExtensions_static_64.lib(ExtCpuWorkerThread.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtCpuWorkerThread.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtD6Joint.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtD6Joint.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtDefaultCpuDispatcher.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtDefaultCpuDispatcher.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtDefaultErrorCallback.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtDefaultErrorCallback.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtDefaultSimulationFilterShader.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtDefaultSimulationFilterShader.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtDefaultStreams.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtDefaultStreams.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtDistanceJoint.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtDistanceJoint.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtContactJoint.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtContactJoint.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtExtensions.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtExtensions.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtFixedJoint.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtFixedJoint.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtJoint.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtJoint.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtMetaData.obj) : warning LNK4099: PDB '' was not found with 'PhysXExtensions_static_64.lib(ExtMetaData.obj)' or at ''; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtPrismaticJoint.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtPrismaticJoint.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtPvd.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtPvd.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtRevoluteJoint.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtRevoluteJoint.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtRigidBodyExt.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtRigidBodyExt.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(ExtSphericalJoint.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtSphericalJoint.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(PxExtensionAutoGeneratedMetaDataObjects.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(PxExtensionAutoGeneratedMetaDataObjects.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnSerialization.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnSerialization.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnSerializationRegistry.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnSerializationRegistry.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnSerialUtils.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnSerialUtils.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnJointRepXSerializer.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnJointRepXSerializer.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnRepXCoreSerializer.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnRepXCoreSerializer.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnBinaryDeserialization.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnBinaryDeserialization.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnBinarySerialization.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnBinarySerialization.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnConvX.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnConvX_Align.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX_Align.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnConvX_Convert.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX_Convert.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnConvX_Error.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX_Error.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnConvX_MetaData.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX_MetaData.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnConvX_Output.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX_Output.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnConvX_Union.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX_Union.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnSerializationContext.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnSerializationContext.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXPvdSDK_static_64.lib(PxProfileEventImpl.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxProfileEventImpl.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
+PhysXPvdSDK_static_64.lib(PxPvd.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvd.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
+PhysXPvdSDK_static_64.lib(PxPvdDataStream.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdDataStream.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
+PhysXPvdSDK_static_64.lib(PxPvdDefaultSocketTransport.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdDefaultSocketTransport.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
+PhysXPvdSDK_static_64.lib(PxPvdImpl.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdImpl.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
+PhysXPvdSDK_static_64.lib(PxPvdMemClient.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdMemClient.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
+PhysXPvdSDK_static_64.lib(PxPvdObjectModelMetaData.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdObjectModelMetaData.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
+PhysXPvdSDK_static_64.lib(PxPvdObjectRegistrar.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdObjectRegistrar.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
+PhysXPvdSDK_static_64.lib(PxPvdProfileZoneClient.obj) : warning LNK4099: PDB '' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdProfileZoneClient.obj)' or at ''; linking object as if no debug info
+Effects11d.lib(d3dxGlobal.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(d3dxGlobal.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
+Effects11d.lib(EffectAPI.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectAPI.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
+Effects11d.lib(EffectLoad.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectLoad.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
+Effects11d.lib(EffectNonRuntime.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectNonRuntime.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
+Effects11d.lib(EffectReflection.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectReflection.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
+Effects11d.lib(EffectRuntime.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectRuntime.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
+  PetitMoteur3D.vcxproj -> D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe

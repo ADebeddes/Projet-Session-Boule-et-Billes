@@ -2,18 +2,18 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\Infographie\GitHub\equipealpha\Projet\x64\Debug\PetitMoteur3D.exe</FullPath>
+      <FullPath>D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>D:\Infographie\GitHub\equipealpha\Projet\x64\Debug\MiniPhong.cso</FullPath>
+      <FullPath>D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\MiniPhong.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\Infographie\GitHub\equipealpha\Projet\x64\Debug\ps1.cso</FullPath>
+      <FullPath>D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\ps1.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>D:\Infographie\GitHub\equipealpha\Projet\x64\Debug\vs1.cso</FullPath>
+      <FullPath>D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\vs1.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />
