@@ -39,6 +39,34 @@ namespace PM3D {
 		return false;
 	}
 
+	bool SceneManager::addLastZone(int key, Terrain* objet)
+	{
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		zones[key].emplace_back(objet);
+		rMoteur.Moteur_Physique.gScene->addCollection(*(objet->collection));
+
+		if (key > 1) {
+			BasicColider* porte = new BasicColider(500, 100, 1);
+			float x = (objet->oi.object.min_x + objet->oi.object.max_x) / 2;
+			float z = objet->oi.object.max_z - 70;
+			porte->place(x, objet->getHeightAt(x, z) + 10, z);
+			porte->pred = std::bind(&SceneManager::desactiverZone, this, key - 1);
+
+			add(porte);
+			collider_pool.push_back(porte);
+		}
+
+		BasicColider* porte = new BasicColider(500, 500, 1);
+		float x = (objet->oi.object.min_x + objet->oi.object.max_x) / 2;
+		float z = objet->oi.object.min_z+20;
+		porte->place(x, objet->getHeightAt(x, z), z);
+		porte->pred = std::bind(&SceneManager::afficherSceneFin, this);
+
+		add(porte);
+		collider_pool.push_back(porte);
+		return false;
+	}
+
 	bool SceneManager::addToZone(int key, StaticObject* objet)
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
@@ -109,6 +137,20 @@ namespace PM3D {
 		
 	}
 
+	bool SceneManager::afficherSceneFin()
+	{
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		rMoteur.m_Sound->fadeOut2();
+		rMoteur.m_Sound->stopWaveFile(rMoteur.m_Sound->Growth);
+		rMoteur.m_Sound->growthPlayed = false;
+		rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Victory);
+		onMenu = true;
+		rMoteur.pAfficheurSprite->onScreen = false;
+		rMoteur.pAfficheurPanneau->onScreen = false;
+		rMoteur.menuController->AfficheurVictoire->onScreen = true;
+		return true;
+	}
+
 	void SceneManager::resetCollider()
 	{
 		zonesActives.clear();
@@ -118,6 +160,47 @@ namespace PM3D {
 			
 			zonesActives.push_back(collider->number);
 		}
+	}
+
+	void SceneManager::resetBonus()
+	{
+		for (auto bonus : bonus_pool) {
+			bonus->visible = true;
+			bonus->triggered = false;	
+		}
+
+	}
+
+	void SceneManager::resetEntities()
+	{
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+
+		
+		rMoteur.Moteur_Physique.gScene->removeActor(*(rMoteur.pEntityManager->pPlayer->playerCharacter.body));
+
+		for (auto enemy : rMoteur.pEntityManager->enemies) {
+			rMoteur.Moteur_Physique.gScene->removeActor(*(enemy->enemyCharacter.body));
+		}
+
+		//zones[0].clear();
+		rMoteur.pEntityManager->resetEntities();
+
+	}
+
+	void SceneManager::resetTime()
+	{
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		rMoteur.minutePassee = 0;
+		rMoteur.secondePassee = 0.0f;
+	}
+
+	void SceneManager::resetParty()
+	{
+		//resetZones();
+		resetCollider();
+		resetBonus();
+		resetEntities();
+		resetTime();
 	}
 
 	void SceneManager::desactiverZone(int i)

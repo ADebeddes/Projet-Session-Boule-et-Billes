@@ -335,7 +335,7 @@ namespace PM3D
 			sceneManager.createZone(3);
 
 			//Rajoute notre terrain à la scene
-			sceneManager.addToZone(3, pTerrain3);
+			sceneManager.addLastZone(3, pTerrain3);
 
 			std::map<string, wstring> objToTextTree{};
 			std::map<string, wstring> objToTextStone{};
@@ -582,6 +582,8 @@ namespace PM3D
 			sceneManager.addToUI(pAfficheurPanneau);
 			sceneManager.addToUI(menuController->AfficheurMenuPrincipal);
 			sceneManager.addToUI(menuController->AfficheurOption);
+			sceneManager.addToUI(menuController->AfficheurVictoire);
+		
 
 			/*BasicColider* porte = new BasicColider(200, 200, 1); 
 			porte->place(-50, pTerrain1->getHeightAt(-50, -60) + 10, -70);
@@ -714,7 +716,7 @@ namespace PM3D
 
 		CAfficheurTexte* pTexte1;
 		CAfficheurTexte* pTexte2;
-		CAfficheurSprite* pAfficheurSprite;
+
 		std::wstring str;
 
 		std::unique_ptr<Gdiplus::Font> pPolice;
@@ -724,7 +726,7 @@ namespace PM3D
 		CameraManager camManager;
 
 	public:
-
+		CAfficheurSprite* pAfficheurSprite;
 		SoundClass* m_Sound;
 		string HoveredOption;
 		bool pause = false;

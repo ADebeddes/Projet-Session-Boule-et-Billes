@@ -131,6 +131,7 @@ namespace PM3D {
 		playerCharacter.UpdatePhysique(playerCharacter.scale);
 		playerCharacter.body->setMaxLinearVelocity(12.0f * playerCharacter.scale);
 		playerCharacter.body->setMass(100.0f * playerCharacter.scale);
+		playerCharacter.body->setLinearVelocity(PxVec3(0.0f, 0.0f, 0.0f));
 		rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Respawn);
 
 	}

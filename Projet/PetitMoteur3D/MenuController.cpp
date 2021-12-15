@@ -75,6 +75,17 @@ namespace PM3D
 
 		AfficheurOption->onScreen = false;
 
+		AfficheurVictoire = new CAfficheurSprite(pDispositif);
+
+		TitreVictoire = new CAfficheurTexte(_pDispositif, 200, 48, pPolice1.get());
+		string sVictoire = "Victoire!";
+		wstring w_sVictoire(sVictoire.begin(), sVictoire.end());
+		TitreVictoire->Ecrire(w_sVictoire);
+		AfficheurVictoire->AjouterSpriteTexte(TitreVictoire->GetTextureView(), "TitreVictoire", e_largeur / 2, e_hauteur / 8 * 2);
+		AfficheurVictoire->onScreen = false;
+		AfficheurVictoire->AjouterSprite("Replay.dds", e_largeur / 2, (e_hauteur / 10) * 5, e_largeur / 4, e_hauteur / 10);
+
+
 
 	}
 	void MenuController::setOn()
@@ -104,6 +115,7 @@ namespace PM3D
 		if (s == "Play.dds") {
 			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.sceneManager.addEntities(rMoteur.pEntityManager);
+			//rMoteur.pEntityManager->respawnEntities();
 			return false;
 		}
 		if (s == "Settings.dds") {
@@ -183,6 +195,18 @@ namespace PM3D
 		if (s == "Quit.dds") {
 			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			PostQuitMessage(0);
+		}
+
+		if(s == "Replay.dds") {
+			rMoteur.sceneManager.resetParty();
+			rMoteur.m_Sound->stopWaveFile(rMoteur.m_Sound->Victory);
+			rMoteur.m_Sound->fadeIn1();
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->MusiqueMenuPrincipal);
+			AfficheurMenuPrincipal->onScreen = true;
+			AfficheurVictoire->onScreen = false;
+			AfficheurOption->Display("Plus.dds");
+			AfficheurOption->Display("Moins.dds");
+			AfficheurOption->Display("optionEnnemies");
 		}
 		return true;
 	}

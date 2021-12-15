@@ -11,9 +11,11 @@ namespace PM3D
 		MenuController(CDispositifD3D11* _pDispositif);
 		CAfficheurSprite* AfficheurMenuPrincipal;
 		CAfficheurSprite* AfficheurOption;
+		CAfficheurSprite* AfficheurVictoire;
 		CDispositifD3D11* pDispositif;
 		CAfficheurTexte* TitrePrincipal;
 		CAfficheurTexte* TitreOption;
+		CAfficheurTexte* TitreVictoire;
 		CAfficheurTexte* optionEnnemies;
 		CAfficheurTexte* optionPleinEcran;
 		CAfficheurTexte* optionResolution;

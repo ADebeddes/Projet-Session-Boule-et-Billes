@@ -104,14 +104,12 @@ namespace PM3D {
 	void Enemy::Respawn()
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
-		PxShape* shape = rMoteur.Moteur_Physique.gPhysics->createShape(PxSphereGeometry(0.8f * enemyCharacter.scale), *rMoteur.Moteur_Physique.gMaterial, true);
-
-		enemyCharacter.body->attachShape(*shape);
-		enemyCharacter.body->setGlobalPose(PxTransform(lastCheckPointPos));
 		enemyCharacter.scale = 1;
-
+		enemyCharacter.body->setGlobalPose(PxTransform(lastCheckPointPos));
+		enemyCharacter.UpdatePhysique(enemyCharacter.scale);
 		enemyCharacter.body->setMaxLinearVelocity(12.0f * enemyCharacter.scale);
 		enemyCharacter.body->setMass(100.0f * enemyCharacter.scale);
+		enemyCharacter.body->setLinearVelocity(PxVec3(0.0f, 0.0f, 0.0f));
 	}
 
 }

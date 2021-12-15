@@ -50,4 +50,26 @@ namespace PM3D {
 		pPlayer->Anime();
 		std::for_each(begin(enemies), end(enemies), [](auto e) {e->Anime(); });
 	}
+	void EntityManager::resetEntities()
+	{
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		pPlayer->lastCheckPointPos = rMoteur.PremierePosition;
+		pPlayer->Respawn();
+	
+		for (auto i = 1; i <= enemies.size(); i++) {
+			enemies[i - 1]->lastCheckPointPos = rMoteur.PremierePosition + PxVec3(5.0f, 0, 0) * static_cast<float>(i);
+			enemies[i - 1]->Respawn();
+		}
+	
+	
+	}
+
+	void EntityManager::respawnEntities()
+	{
+		pPlayer->Respawn();
+		for (auto enemy : enemies) {
+			enemy->Respawn();
+		}
+	}
+		
 }
