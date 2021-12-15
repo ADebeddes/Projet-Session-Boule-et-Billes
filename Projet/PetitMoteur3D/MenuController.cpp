@@ -86,9 +86,9 @@ namespace PM3D
 	{
 		onMenu = false;
 		AfficheurMenuPrincipal->onScreen = false;
-		AfficheurOption->unDisplay("Plus.dds");
-		AfficheurOption->unDisplay("Moins.dds");
-		AfficheurOption->unDisplay("optionEnnemies");
+		//AfficheurOption->unDisplay("Plus.dds");
+		//AfficheurOption->unDisplay("Moins.dds");
+		//AfficheurOption->unDisplay("optionEnnemies");
 	}
 	void MenuController::InitShader()
 	{

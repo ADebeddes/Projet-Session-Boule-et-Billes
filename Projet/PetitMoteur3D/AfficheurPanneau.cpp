@@ -174,7 +174,7 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 			variableTexture =
 				pEffet->GetVariableByName("textureEntree")->AsShaderResource();
 
-			pDispositif->ActiverMelangeAlpha();
+			//pDispositif->ActiverMelangeAlpha();
 
 			CDIManipulateur& GestionnaireDeSaisie =
 				CMoteurWindows::GetInstance().GetGestionnaireDeSaisie();
@@ -225,19 +225,6 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 
 				pCB->SetConstantBuffer(pConstantBuffer);
 
-				/*auto e_largeur = pDispositif->GetLargeur();
-				auto e_hauteur = pDispositif->GetHauteur();
-				float debX = sp.matWVP.r[0].vector4_f32[0];
-				float debY = sp.matWVP.r[1].vector4_f32[1];
-
-				if (GestionnaireDeSaisie.x >= (int)((e_largeur / sprite->pX) - (e_largeur / sprite->dX) * 0.5) &&
-					GestionnaireDeSaisie.y >= (int)((e_hauteur / sprite->pY) - (e_hauteur / sprite->dY)) &&
-					GestionnaireDeSaisie.x <= (int)((e_largeur / sprite->pX) + (e_largeur / sprite->dX) * 0.5) &&
-					GestionnaireDeSaisie.y <= (int)((e_hauteur / sprite->pY))) {
-					hover = true;
-					CMoteurWindows::GetInstance().HoveredOption = sprite->name;
-				}
-				if (!hover)CMoteurWindows::GetInstance().HoveredOption = "None";*/
 				// Activation de la texture
 				variableTexture->SetResource(sprite->pTextureD3D);
 
@@ -248,8 +235,6 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 				pImmediateContext->Draw(6, 0);
 				pDispositif->DesactiverMelangeAlpha();
 			}
-
-			pDispositif->DesactiverMelangeAlpha();
 		}
 	}
 	void CAfficheurPanneau::AjouterPanneau(const std::string& NomTexture,

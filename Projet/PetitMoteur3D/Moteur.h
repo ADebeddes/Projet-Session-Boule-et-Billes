@@ -562,7 +562,7 @@ namespace PM3D
 			pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(),"speed", e_largeur - 128, e_Hauteur - 24);
 			
 			pAfficheurPanneau = new CAfficheurPanneau(pDispositif);
-			pAfficheurPanneau->AjouterPanneau("panic.dds",XMFLOAT3(0,0,0),100,100);
+			//pAfficheurPanneau->AjouterPanneau("panic.dds",XMFLOAT3(0,0,0),100,100);
 			pAfficheurPanneau->AjouterPanneau("Finish.dds", XMFLOAT3(20,-275,-1470), 220, 25, true);
 
 

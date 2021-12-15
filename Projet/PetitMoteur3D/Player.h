@@ -2,6 +2,8 @@
 #include "DynamicObject.h"
 #include "Sphere.h"
 #include "Cube.h"
+#include "AfficheurPanneau.h"
+#include "ParticleManager.h"
 
 
 namespace PM3D {
@@ -14,6 +16,7 @@ namespace PM3D {
 		bool need_to_respawn = false; 
 		PxVec3 lastCheckPointPos;
 		PxVec3 lastCheckPointDir;
+		ParticleManager* pParticleManager;
 	
 		//Player(PxVec3 pos, PxVec3 initialLookAt, DynamicObject& object);
 

@@ -96,13 +96,13 @@ namespace PM3D {
 			
 			//Ajout a la scene de rendu
 			zones[0].emplace_back(&(pEm->pPlayer->playerCharacter));
-
+			UI.emplace_back(pEm->pPlayer->pParticleManager->pAfficheurParticule);
 			//Ajout à la scene Physique
 			rMoteur.Moteur_Physique.gScene->addActor(*(pEm->pPlayer->playerCharacter.body));
 			for (auto enemy : pEm->enemies) {
 				zones[0].emplace_back(&(enemy->enemyCharacter));
 				rMoteur.Moteur_Physique.gScene->addActor(*(enemy->enemyCharacter.body));
-				;
+				UI.emplace_back(enemy->pParticleManager->pAfficheurParticule);
 			}
 
 			return true;

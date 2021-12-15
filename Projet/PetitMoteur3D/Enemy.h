@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "DynamicObject.h"
+#include "AfficheurPanneau.h"
+#include "ParticleManager.h"
 
 //
 //   TEMPLATE : Enemy
@@ -12,6 +14,7 @@ namespace PM3D {
 	{
 	public:
 		DynamicObject& enemyCharacter;
+		ParticleManager* pParticleManager;
 		const char* nom;
 
 		PxVec3 lastCheckPointPos;
