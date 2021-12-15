@@ -570,6 +570,10 @@ namespace PM3D
 			//pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(), e_largeur-128, e_Hauteur- 24 );
 			pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(),"speed", e_largeur - 128, e_Hauteur - 24);
 			
+			pPolice2 = std::make_unique<Gdiplus::Font>(&oFamily, 48.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
+			pTexte2 = new CAfficheurTexte(pDispositif, 135, 48, pPolice2.get());
+			pAfficheurSprite->AjouterSpriteTexte(pTexte2->GetTextureView(), "temps", e_largeur/2-67, 48);
+
 			pAfficheurPanneau = new CAfficheurPanneau(pDispositif);
 			pAfficheurPanneau->AjouterPanneau("panic.dds",XMFLOAT3(50,50,50),10,10);
 
@@ -602,6 +606,11 @@ namespace PM3D
 			if (!sceneManager.onMenu && !pause) {
 				{
 					Moteur_Physique.stepPhysics(true);
+					secondePassee += tempsEcoule;
+					if (secondePassee > 60) {
+						minutePassee++;
+						secondePassee = fmod(secondePassee, 60.0f);
+					}
 				}
 
 			}
@@ -634,6 +643,8 @@ namespace PM3D
 				GestionnaireDeSaisie.click = false;
 			}
 
+
+			//Vitesse
 			string speed = std::to_string(pEntityManager->pPlayer->playerCharacter.body->getLinearVelocity().magnitude()) + " m/s ";
 			std::wstring w_speed(speed.begin(), speed.end());
 
@@ -643,8 +654,21 @@ namespace PM3D
 			std::wstring w_position(position.begin(), position.end());*/
 
 
-
 			pTexte1->Ecrire(w_speed);
+
+			//Temps
+			string temps = std::to_string(minutePassee) + ":" + std::to_string(static_cast<int>(secondePassee));
+			if (minutePassee < 10) {
+				 temps = std::to_string(0) + std::to_string(minutePassee) + ":" + std::to_string(static_cast<int>(secondePassee));
+				if (secondePassee < 10) {
+					 temps = std::to_string(0) + std::to_string(minutePassee) + ":" + std::to_string(0) + std::to_string(static_cast<int>(secondePassee));
+				}
+				
+			}
+			
+			std::wstring w_temps(temps.begin(), temps.end());
+			pTexte2->Ecrire(w_temps);
+
 
 
 			if (m_Sound->musiqueFadeOut1) {
@@ -689,10 +713,12 @@ namespace PM3D
 		Terrain* pTerrain3;
 
 		CAfficheurTexte* pTexte1;
+		CAfficheurTexte* pTexte2;
 		CAfficheurSprite* pAfficheurSprite;
 		std::wstring str;
 
 		std::unique_ptr<Gdiplus::Font> pPolice;
+		std::unique_ptr<Gdiplus::Font> pPolice2;
 
 
 		CameraManager camManager;
@@ -713,6 +739,8 @@ namespace PM3D
 		EntityManager* pEntityManager;
 		std::unique_ptr<CPanneauPE> pPanneauPE;
 		CDIManipulateur& GetGestionnaireDeSaisie() { return GestionnaireDeSaisie; }
+		int minutePassee;
+		float secondePassee;
 	};
 
 } // namespace PM3D
