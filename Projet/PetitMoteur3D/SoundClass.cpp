@@ -45,6 +45,57 @@ namespace PM3D {
 			return false;
 		}
 
+		result = LoadWaveFile("thunder.wav", &Thunder);
+		if (!result)
+		{
+			return false;
+		}
+
+		result = LoadWaveFile("up.wav", &Up);
+		if (!result)
+		{
+			return false;
+		}
+
+		result = LoadWaveFile("down.wav", &Down);
+		if (!result)
+		{
+			return false;
+		}
+
+		result = LoadWaveFile("respawn.wav", &Respawn);
+		if (!result)
+		{
+			return false;
+		}
+
+		result = LoadWaveFile("Victory.wav", &Victory);
+		if (!result)
+		{
+			return false;
+		}
+
+
+		result = LoadWaveFile("GameMusic.wav", &GameMusic);
+		if (!result)
+		{
+			return false;
+		}
+
+		result = LoadWaveFile("Impact.wav", &Crash);
+		if (!result)
+		{
+			return false;
+		}
+
+		result = LoadWaveFile("growth.wav", &Growth);
+		if (!result)
+		{
+			return false;
+		}
+
+		Growth->SetVolume(-2000);
+
 		// Play the wave file now that it has been loaded.
 		
 
@@ -321,8 +372,6 @@ namespace PM3D {
 	{
 		HRESULT result;
 
-		musiqueFadeOut = false;
-		volume = 0;
 
 		// Set position at the beginning of the sound buffer.
 		result = secondaryBuffer->SetCurrentPosition(0);
@@ -331,12 +380,6 @@ namespace PM3D {
 			return false;
 		}
 
-		// Set volume of the buffer to 100%.
-		result = secondaryBuffer->SetVolume(DSBVOLUME_MAX);
-		if (FAILED(result))
-		{
-			return false;
-		}
 
 		// Play the contents of the secondary sound buffer.
 		result = secondaryBuffer->Play(0, 0, 0);
@@ -347,26 +390,84 @@ namespace PM3D {
 
 		return true;
 	}
-	bool SoundClass::fadeOut()
+	bool SoundClass::fadeOut1()
 	{
-		musiqueFadeOut = true;
+		musiqueFadeOut1 = true;
 		return true;
 	}
-	bool SoundClass::DiminuerSon(IDirectSoundBuffer8* secondaryBuffer)
+
+	bool SoundClass::fadeOut2()
 	{
-		
-		
-		
-		if (volume > DSBVOLUME_MIN) {
-			volume-=60;
-			secondaryBuffer->SetVolume(volume );
+		musiqueFadeOut2 = true;
+		return false;
+	}
+
+	bool SoundClass::fadeIn1()
+	{
+		musiqueFadeIn1 = true;
+		return true;
+	}
+
+	bool SoundClass::fadeIn2()
+	{
+		musiqueFadeIn2 = true;
+		return true;
+	}
+
+	bool SoundClass::DiminuerSon1(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadeout)
+	{
+		if (volume1 > DSBVOLUME_MIN) {
+			volume1 -= 60;
+			secondaryBuffer->SetVolume(volume1);
 		}
 		else {
-			musiqueFadeOut = false;
-			volume = 0;
+			musiqueFadeOut1= false;
 		}
 		return  true;
 	}
+	
+	bool SoundClass::DiminuerSon2(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadeout)
+	{
+		if (volume2 > DSBVOLUME_MIN) {
+			volume2 -= 60;
+			secondaryBuffer->SetVolume(volume2);
+		}
+		else {
+			musiqueFadeOut2 = false;
+		}
+		return  true;
+	}
+	
+	
+	
+
+
+
+	bool SoundClass::AugmenterSon1(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadein)
+	{
+		if (volume1< volumeMax) {
+			volume1 += 160;
+			secondaryBuffer->SetVolume(volume1);
+		}
+		else {
+			musiqueFadeIn1 = false;
+		}
+		return  true;
+	}
+
+	bool SoundClass::AugmenterSon2(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadein)
+	{
+		if (volume2 < volumeMax) {
+			volume2 += 160;
+			secondaryBuffer->SetVolume(volume2);
+		}
+		else {
+			musiqueFadeIn2 = false;
+		}
+		return  true;
+	}
+	
+	
 	bool SoundClass::stopWaveFile(IDirectSoundBuffer8* secondaryBuffer)
 	{
 		// Set position at the beginning of the sound buffer.

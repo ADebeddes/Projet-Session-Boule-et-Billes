@@ -149,13 +149,18 @@ namespace PM3D
 			pAfficheurPanneau->onScreen = false;
 			menuController->setOn();
 			m_Sound->PlayWaveFile(m_Sound->MusiqueMenuPrincipal);
+			m_Sound->fadeIn1();
+			m_Sound->fadeOut2();
 		}
 		void setMenuOff() {
 			sceneManager.onMenu = false;
 			pAfficheurSprite->onScreen = true;
 			pAfficheurPanneau->onScreen = true;
 			menuController->setOff();
-			m_Sound->fadeOut();
+			m_Sound->PlayWaveFile(m_Sound->GameMusic);
+			m_Sound->fadeIn2();
+			m_Sound->fadeOut1();
+
 		}
 		void updateRatioEcran() {
 			const float ratioDAspect = static_cast<float>(pDispositif->GetLargeur()) / static_cast<float>(pDispositif->GetHauteur());
@@ -348,7 +353,7 @@ namespace PM3D
 			
 
 			std::srand(static_cast<unsigned int>(std::time(nullptr)));
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 20; i++)
 			{
 
 				int pos = (int)(rand() / float(RAND_MAX) * pTerrain1->oi.object.points_.size());
@@ -361,7 +366,7 @@ namespace PM3D
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(1, arbre);
 			}
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 20; i++)
 			{
 
 				int pos = (int)(rand() / float(RAND_MAX) * pTerrain1->oi.object.points_.size());
@@ -377,7 +382,7 @@ namespace PM3D
 			}
 
 
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 20; i++)
 			{
 
 				int pos = (int)(rand() / float(RAND_MAX) * pTerrain1->oi.object.points_.size());
@@ -586,6 +591,7 @@ namespace PM3D
 
 			/*sceneManager.addEntities(pEntityManager);*/
 			sceneManager.addToZone(new Skybox(pDispositif, "Boule.obj"));
+			m_Sound->fadeIn1();
 			m_Sound->PlayWaveFile(m_Sound->MusiqueMenuPrincipal);
 			return true;
 		}
@@ -641,8 +647,20 @@ namespace PM3D
 			pTexte1->Ecrire(w_speed);
 
 
-			if (m_Sound->musiqueFadeOut) {
-				m_Sound->DiminuerSon(m_Sound->MusiqueMenuPrincipal);
+			if (m_Sound->musiqueFadeOut1) {
+				m_Sound->DiminuerSon1(m_Sound->MusiqueMenuPrincipal, &m_Sound->volume1, &m_Sound->musiqueFadeOut1);
+			}
+
+			if (m_Sound->musiqueFadeOut2) {
+				m_Sound->DiminuerSon2(m_Sound->GameMusic, &m_Sound->volume2, &m_Sound->musiqueFadeOut2);
+			}
+
+			if (m_Sound->musiqueFadeIn1) {
+				m_Sound->AugmenterSon1(m_Sound->MusiqueMenuPrincipal, &m_Sound->volume1, &m_Sound->musiqueFadeIn1);
+			}
+
+			if (m_Sound->musiqueFadeIn2) {
+				m_Sound->AugmenterSon2(m_Sound->GameMusic, &m_Sound->volume2, &m_Sound->musiqueFadeIn2);
 			}
 
 			return true;

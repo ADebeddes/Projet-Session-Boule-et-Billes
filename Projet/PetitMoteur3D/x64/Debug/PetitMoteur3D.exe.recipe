@@ -2,18 +2,18 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\sart2302\Documents\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe</FullPath>
+      <FullPath>C:\Users\tibos\OneDrive\Documents\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>C:\Users\sart2302\Documents\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\MiniPhong.cso</FullPath>
+      <FullPath>C:\Users\tibos\OneDrive\Documents\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\MiniPhong.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\sart2302\Documents\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\ps1.cso</FullPath>
+      <FullPath>C:\Users\tibos\OneDrive\Documents\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\ps1.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>C:\Users\sart2302\Documents\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\vs1.cso</FullPath>
+      <FullPath>C:\Users\tibos\OneDrive\Documents\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\vs1.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

@@ -46,15 +46,47 @@ namespace PM3D {
 		void Shutdown();
 		bool PlayWaveFile(IDirectSoundBuffer8* secondaryBuffer);
 
-		bool fadeOut();
+		bool fadeOut1();
+		bool fadeOut2();
 
-		bool DiminuerSon(IDirectSoundBuffer8* secondaryBuffer);
+		bool fadeIn1();
+		bool fadeIn2();
+
+		bool DiminuerSon1(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadeout);
+		bool DiminuerSon2(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadeout);
+		bool AugmenterSon1(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadein);
+		bool AugmenterSon2(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadein);
+
+
+		
+
 
 		bool stopWaveFile(IDirectSoundBuffer8* secondaryBuffer);
 		IDirectSoundBuffer8* MusiqueMenuPrincipal;
-		bool musiqueFadeOut = false;
-		int volume = 0;
+		bool musiqueFadeOut1 = false;
+		bool musiqueFadeIn1 = false;
+		int volume1 = 0;
+
+		IDirectSoundBuffer8* GameMusic;
+		bool musiqueFadeIn2 = false;
+		bool musiqueFadeOut2 = false;
+		int volume2 = DSBVOLUME_MIN;
+
+
+		int volumeMax = -1000;
 		IDirectSoundBuffer8* Click;
+		IDirectSoundBuffer8* Thunder;
+		IDirectSoundBuffer8* Up;
+		IDirectSoundBuffer8* Down;
+		IDirectSoundBuffer8* Respawn;
+		IDirectSoundBuffer8* Crash;
+
+		bool growthPlayed=false;
+		IDirectSoundBuffer8* Growth;
+
+
+
+		IDirectSoundBuffer8* Victory;
 	private:
 		bool InitializeDirectSound(HWND);
 		void ShutdownDirectSound();
