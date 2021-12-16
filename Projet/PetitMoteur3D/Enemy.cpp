@@ -77,6 +77,9 @@ namespace PM3D {
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 
 		enemyCharacter.UpdatePhysique(enemyCharacter.scale); 
+		if (need_to_respawn) {
+			Respawn();
+		}
 	}
 
 
@@ -97,7 +100,7 @@ namespace PM3D {
 		enemyCharacter.scale -= 0.005f;
 		if (enemyCharacter.scale < 0.1)
 		{
-			Respawn(); 
+			need_to_respawn = true;
 		}
 	}
 
@@ -110,6 +113,7 @@ namespace PM3D {
 		enemyCharacter.body->setMaxLinearVelocity(12.0f * enemyCharacter.scale);
 		enemyCharacter.body->setMass(100.0f * enemyCharacter.scale);
 		enemyCharacter.body->setLinearVelocity(PxVec3(0.0f, 0.0f, 0.0f));
+		need_to_respawn = false;
 	}
 
 }

@@ -151,9 +151,6 @@ namespace PM3D
 	{
 		gScene->simulate(1.0f / 60.0f);
 		gScene->fetchResults(true);
-
-
-
 	}
 }
 

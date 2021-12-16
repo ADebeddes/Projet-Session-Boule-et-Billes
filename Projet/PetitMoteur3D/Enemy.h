@@ -13,7 +13,7 @@ namespace PM3D {
 	public:
 		DynamicObject& enemyCharacter;
 		const char* nom;
-
+		bool need_to_respawn = false;
 		PxVec3 lastCheckPointPos;
 	
 		Enemy(PxVec3 pos, DynamicObject& object,const char* nom);

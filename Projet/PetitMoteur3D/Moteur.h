@@ -47,6 +47,8 @@
 
 #include "SoundClass.h"
 
+#include "Scoreboard.h"
+
 #define PX_RELEASE(x)if(x) { x->release();x =NULL; }
 
 
@@ -147,6 +149,7 @@ namespace PM3D
 			sceneManager.onMenu = true;
 			pAfficheurSprite->onScreen = false;
 			pAfficheurPanneau->onScreen = false;
+			scoreboard.pAfficheurScoreboard->onScreen = false;
 			menuController->setOn();
 			m_Sound->PlayWaveFile(m_Sound->MusiqueMenuPrincipal);
 			m_Sound->fadeIn1();
@@ -229,6 +232,10 @@ namespace PM3D
 			for (auto& object3D : sceneManager.UI)
 			{
 				object3D->Draw();
+			}
+
+			if (scoreboard.init) {
+				scoreboard.pAfficheurScoreboard->Draw();
 			}
 
 			EndRenderSceneSpecific();
@@ -455,7 +462,7 @@ namespace PM3D
 				const float x = pTerrain3->oi.object.points_[pos].x;
 				const float y = pTerrain3->oi.object.points_[pos].y;
 				const float z = pTerrain3->oi.object.points_[pos].z;
-				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "boule.obj",3);
+				DiminuerAutreBalle* arbre = new DiminuerAutreBalle(pDispositif, "Lightning.obj",3);
 				arbre->place(x, y + 2.0f, z);
 				sceneManager.add(3, arbre);
 			}
@@ -493,7 +500,7 @@ namespace PM3D
 			for (const auto obj : objToTextTree)
 			{
 
-				for (int i = 0; i < 2; i++)
+				for (int i = 0; i < 1; i++)
 				{
 					sceneManager.placeRandomObstacle(1, pTerrain1, obj.first, obj.second);
 				}
@@ -503,7 +510,7 @@ namespace PM3D
 			for (const auto obj : objToTextTree)
 			{
 
-				for (int i = 0; i < 2; i++)
+				for (int i = 0; i < 1; i++)
 				{
 					sceneManager.placeRandomObstacle(2, pTerrain2, obj.first, obj.second);
 				}
@@ -513,7 +520,7 @@ namespace PM3D
 			for (const auto obj : objToTextTree)
 			{
 
-				for (int i = 0; i < 2; i++)
+				for (int i = 0; i < 1; i++)
 				{
 					sceneManager.placeRandomObstacle(3, pTerrain3, obj.first, obj.second);
 				}
@@ -549,6 +556,7 @@ namespace PM3D
 				}
 
 			}
+			nbEnemies = 5;
 			pEntityManager = new EntityManager(nbEnemies, PxVec3(-50, pTerrain1->getHeightAt(-50, -60) + 10, -60), pDispositif);
 
 			pAfficheurSprite = new CAfficheurSprite(pDispositif); 
@@ -557,8 +565,8 @@ namespace PM3D
 			pPolice1 = std::make_unique<Gdiplus::Font>(&oFamily, 16.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
 			pTexte1 = new CAfficheurTexte(pDispositif, 128, 24, pPolice1.get());*/
 			const Gdiplus::FontFamily oFamily(L"Arial", nullptr);
-			pPolice = std::make_unique<Gdiplus::Font>(&oFamily, 16.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
-			pTexte1 = new CAfficheurTexte(pDispositif, 128, 24, pPolice.get());
+			pPolice = std::make_unique<Gdiplus::Font>(&oFamily, 48.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
+			pTexte1 = new CAfficheurTexte(pDispositif, 170, 52, pPolice.get());
 
 			pPanneauPE = std::make_unique<CPanneauPE>(pDispositif);
 
@@ -572,7 +580,7 @@ namespace PM3D
 			
 			pPolice2 = std::make_unique<Gdiplus::Font>(&oFamily, 48.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
 			pTexte2 = new CAfficheurTexte(pDispositif, 135, 48, pPolice2.get());
-			pAfficheurSprite->AjouterSpriteTexte(pTexte2->GetTextureView(), "temps", e_largeur/2-67, 48);
+			pAfficheurSprite->AjouterSpriteTexte(pTexte2->GetTextureView(), "temps", e_largeur/2, 48);
 
 			pAfficheurPanneau = new CAfficheurPanneau(pDispositif);
 			pAfficheurPanneau->AjouterPanneau("panic.dds",XMFLOAT3(50,50,50),10,10);
@@ -591,8 +599,8 @@ namespace PM3D
 			sceneManager.add(porte);*/ 
 
 			
-			nbEnemies = 10;
 			PremierePosition = PxVec3(-50, pTerrain1->getHeightAt(-50, -60) + 10, -60);
+			
 			
 
 			/*sceneManager.addEntities(pEntityManager);*/
@@ -647,7 +655,7 @@ namespace PM3D
 
 
 			//Vitesse
-			string speed = std::to_string(pEntityManager->pPlayer->playerCharacter.body->getLinearVelocity().magnitude()) + " m/s ";
+			string speed = std::to_string(static_cast<int>(pEntityManager->pPlayer->playerCharacter.body->getLinearVelocity().magnitude())) + " m/s ";
 			std::wstring w_speed(speed.begin(), speed.end());
 
 			/*string position = "x : " + std::to_string(camManager.getActive().position.vector4_f32[0]) +
@@ -689,6 +697,14 @@ namespace PM3D
 				m_Sound->AugmenterSon2(m_Sound->GameMusic, &m_Sound->volume2, &m_Sound->musiqueFadeIn2);
 			}
 
+			if (scoreboard.init) {
+				scoreboard.pAfficheurScoreboard->Draw();
+			}
+
+			if (scoreboard.init) {
+				scoreboard.Anime();
+			}
+
 			return true;
 		}
 
@@ -724,7 +740,7 @@ namespace PM3D
 		CameraManager camManager;
 
 	public:
-
+		Scoreboard scoreboard;
 		Terrain* pTerrain1;
 		Terrain* pTerrain2;
 		Terrain* pTerrain3;

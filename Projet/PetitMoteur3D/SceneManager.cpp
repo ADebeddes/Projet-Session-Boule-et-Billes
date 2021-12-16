@@ -5,6 +5,7 @@
 #include "EntityManager.h"
 #include "AfficheurPanneau.h"
 #include "Bonus.h"
+#include <utility>
 
 namespace PM3D {
 	SceneManager::SceneManager()
@@ -147,6 +148,7 @@ namespace PM3D {
 		onMenu = true;
 		rMoteur.pAfficheurSprite->onScreen = false;
 		rMoteur.pAfficheurPanneau->onScreen = false;
+		rMoteur.scoreboard.pAfficheurScoreboard->onScreen = false;
 		rMoteur.menuController->AfficheurVictoire->onScreen = true;
 		return true;
 	}
@@ -255,12 +257,39 @@ namespace PM3D {
 				z = rMoteur.pTerrain1->oi.object.points_[pos].z;
 			}
 
-			bonus->place(x, y + 2.0f, z);
+			bonus->place(x, y, z);
 		}
 
 	}
 
-	
+	vector<std::pair<string,float>> SceneManager::PlusProcheFin() {
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		auto posPlayer = rMoteur.pEntityManager->pPlayer->playerCharacter.body->getGlobalPose().p;
+		auto posEnd = collider_pool[collider_pool.size() - 1]->body->getGlobalPose().p;
+		auto disPlayer = (posPlayer - posEnd).magnitude();
+		vector<std::pair<string, float>> ret;
+		 ret.push_back(make_pair(string(rMoteur.pEntityManager->pPlayer->nom),disPlayer)) ;
+
+		for (auto enemy : rMoteur.pEntityManager->enemies) {
+
+			auto posEnemy = enemy->enemyCharacter.body->getGlobalPose().p;
+			auto disEnemy = (posEnemy - posEnd).magnitude();
+			bool inser = false;
+			for (int i = 0; i < ret.size(); i++) {
+				if (disEnemy < ret[i].second) {
+					ret.insert(ret.begin() + i, make_pair(string(enemy->nom), disEnemy));
+					inser = true;
+					break;
+				}
+			}
+			if (!inser) {
+				ret.push_back(make_pair(string(enemy->nom), disEnemy));
+			}
+			
+		}
+		return ret;
+
+	}
 
 	void SceneManager::resetTime()
 	{

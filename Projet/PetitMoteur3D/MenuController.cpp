@@ -85,6 +85,9 @@ namespace PM3D
 		AfficheurVictoire->onScreen = false;
 		AfficheurVictoire->AjouterSprite("Replay.dds", e_largeur / 2, (e_hauteur / 10) * 5, e_largeur / 4, e_hauteur / 10);
 
+		AfficheurMenuPrincipal->AjouterSprite("Replay.dds", e_largeur / 5 *4 , (e_hauteur / 10) *5, e_largeur / 4, e_hauteur / 10);
+		AfficheurMenuPrincipal->unDisplay("Replay.dds");
+
 
 
 	}
@@ -97,6 +100,7 @@ namespace PM3D
 	{
 		onMenu = false;
 		AfficheurMenuPrincipal->onScreen = false;
+		AfficheurMenuPrincipal->Display("Replay.dds");
 		AfficheurOption->unDisplay("Plus.dds");
 		AfficheurOption->unDisplay("Moins.dds");
 		AfficheurOption->unDisplay("optionEnnemies");
@@ -115,6 +119,7 @@ namespace PM3D
 		if (s == "Play.dds") {
 			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.sceneManager.addEntities(rMoteur.pEntityManager);
+			rMoteur.scoreboard.Init();
 			//rMoteur.pEntityManager->respawnEntities();
 			return false;
 		}
@@ -203,6 +208,8 @@ namespace PM3D
 			rMoteur.m_Sound->fadeIn1();
 			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->MusiqueMenuPrincipal);
 			AfficheurMenuPrincipal->onScreen = true;
+			AfficheurMenuPrincipal->unDisplay("Replay.dds");
+			rMoteur.scoreboard.init = false;
 			AfficheurVictoire->onScreen = false;
 			AfficheurOption->Display("Plus.dds");
 			AfficheurOption->Display("Moins.dds");

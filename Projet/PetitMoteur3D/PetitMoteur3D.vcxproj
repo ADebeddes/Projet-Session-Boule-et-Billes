@@ -234,6 +234,7 @@
     <ClCompile Include="Physique.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="sommetbloc.cpp" />
     <ClCompile Include="SoundClass.cpp" />
@@ -286,6 +287,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="sommetbloc.h" />
     <ClInclude Include="SoundClass.h" />

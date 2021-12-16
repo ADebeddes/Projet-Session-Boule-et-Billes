@@ -52,6 +52,7 @@ namespace PM3D {
 		void resetBonus();
 		void resetEntities();
 		void resetZones();
+		vector<std::pair<string, float>> PlusProcheFin();
 		void resetTime();
 
 		void resetParty();
