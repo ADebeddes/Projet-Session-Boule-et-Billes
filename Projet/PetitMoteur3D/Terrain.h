@@ -9,7 +9,7 @@ namespace PM3D
 	class Terrain : public StaticObject
 	{
 	public:
-		Terrain(CDispositifD3D11* pDispositif_, string path, PxVec3 pos = PxVec3(0, 0, 0), LPCWSTR fong_file = L"MiniPhong.fx", bool need_filter = true );
+		Terrain(CDispositifD3D11* pDispositif_, string path, PxVec3 pos = PxVec3(0, 0, 0), LPCWSTR fong_file = L"Terrain.fx", bool need_filter = true );
 		void InitPhysique(PxVec3 pos);
 
 		//Creer le Mesh si le .dat n'existe pas 

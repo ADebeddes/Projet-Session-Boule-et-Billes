@@ -8,7 +8,7 @@ namespace PM3D
 
 ULONG_PTR CAfficheurTexte::token = 0;
 
-CAfficheurTexte::CAfficheurTexte(CDispositifD3D11* pDispositif, int largeur, int hauteur, Gdiplus::Font* pPolice)
+CAfficheurTexte::CAfficheurTexte(CDispositifD3D11* pDispositif, int largeur, int hauteur, Gdiplus::Font* pPolice,bool _fond)
 	: pDispo(pDispositif)
 	, TexWidth(largeur)
 	, TexHeight(hauteur)
@@ -19,6 +19,7 @@ CAfficheurTexte::CAfficheurTexte(CDispositifD3D11* pDispositif, int largeur, int
 	, pCharBitmap(nullptr)
 	, pCharGraphics(nullptr)
 	, pBlackBrush(nullptr)
+	, fond(_fond)
 {
 	// Créer le bitmap et un objet GRAPHICS (un dessinateur)
 	pCharBitmap = std::make_unique<Gdiplus::Bitmap>(TexWidth, TexHeight, PixelFormat32bppARGB);
@@ -107,7 +108,13 @@ CAfficheurTexte::~CAfficheurTexte()
 void CAfficheurTexte::Ecrire(const std::wstring& s)
 {
 	// Effacer
-	pCharGraphics->Clear(Gdiplus::Color(125, 0, 200, 255));
+	if (fond) {
+		pCharGraphics->Clear(Gdiplus::Color(150, 0, 200, 255));
+	}
+	else {
+		pCharGraphics->Clear(Gdiplus::Color(0, 0, 0, 0));
+	}
+	
 
 	// Écrire le nouveau texte
 	pCharGraphics->DrawString(s.c_str(), static_cast<int>(s.size()), pFont, Gdiplus::PointF(0.0f, 0.0f), pBlackBrush.get());

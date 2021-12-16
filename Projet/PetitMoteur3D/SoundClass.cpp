@@ -51,18 +51,20 @@ namespace PM3D {
 			return false;
 		}
 
+		Thunder->SetVolume(-2000);
+
 		result = LoadWaveFile("up.wav", &Up);
 		if (!result)
 		{
 			return false;
 		}
-
+		Up->SetVolume(-2000);
 		result = LoadWaveFile("down.wav", &Down);
 		if (!result)
 		{
 			return false;
 		}
-
+	
 		result = LoadWaveFile("respawn.wav", &Respawn);
 		if (!result)
 		{
@@ -94,7 +96,7 @@ namespace PM3D {
 			return false;
 		}
 
-		Growth->SetVolume(-2000);
+		Growth->SetVolume(-4000);
 
 		// Play the wave file now that it has been loaded.
 		

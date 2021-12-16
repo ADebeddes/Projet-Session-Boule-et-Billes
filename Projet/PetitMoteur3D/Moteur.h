@@ -256,9 +256,12 @@ namespace PM3D
 			// d�truire les objets
 			
 			sceneManager.zones.clear();
+			sceneManager.obstacle_pool.clear();
+			sceneManager.bonus_pool.clear();
+
 			pEntityManager->enemies.clear();
 			free(pEntityManager->pPlayer);
-			//free(pEntityManager);
+			free(pEntityManager);
 
 			// D�truire le dispositif
 			if (pDispositif)
@@ -373,6 +376,8 @@ namespace PM3D
 
 			////Affectation des textures a notre terrain
 			pTerrain1->SetTexture(TexturesManager.GetNewTexture(L"snow.dds", pDispositif));
+			pTerrain1->SetTexture(TexturesManager.GetNewTexture(L"delimitation.dds", pDispositif));
+			pTerrain1->SetTexture(TexturesManager.GetNewTexture(L"poudreuse.dds", pDispositif));
 
 			////// Affectation du filtre a notre terrain
 			pTerrain1->SetFilter(TexturesManager.GetNewTexture(L"tundra_road_filter.dds", pDispositif));
@@ -389,6 +394,8 @@ namespace PM3D
 
 			////Affectation des textures a notre terrain
 			pTerrain2->SetTexture(TexturesManager.GetNewTexture(L"snow.dds", pDispositif));
+			pTerrain2->SetTexture(TexturesManager.GetNewTexture(L"delimitation.dds", pDispositif));
+			pTerrain2->SetTexture(TexturesManager.GetNewTexture(L"poudreuse.dds", pDispositif));
 
 			////// Affectation du filtre a notre terrain
 			pTerrain2->SetFilter(TexturesManager.GetNewTexture(L"tundra_road_filter.dds", pDispositif));
@@ -400,10 +407,12 @@ namespace PM3D
 			sceneManager.addToZone(2, pTerrain2);
 
 			////Creation du terrain
-			pTerrain3 = new Terrain(pDispositif, "Pente3PlusTunnel.obj");
+			pTerrain3 = new Terrain(pDispositif, "Pente4.obj");
 
 			////Affectation des textures a notre terrain
 			pTerrain3->SetTexture(TexturesManager.GetNewTexture(L"snow.dds", pDispositif));
+			pTerrain3->SetTexture(TexturesManager.GetNewTexture(L"delimitation.dds", pDispositif));
+			pTerrain3->SetTexture(TexturesManager.GetNewTexture(L"poudreuse.dds", pDispositif));
 
 			////// Affectation du filtre a notre terrain
 			pTerrain3->SetFilter(TexturesManager.GetNewTexture(L"tundra_road_filter.dds", pDispositif));
@@ -411,8 +420,27 @@ namespace PM3D
 			//Rajoute une zone à notre SceneManager
 			sceneManager.createZone(3);
 
-			//Rajoute notre terrain à la scene
 			sceneManager.addLastZone(3, pTerrain3);
+
+			pTunnel1 = new Terrain(pDispositif, "Tunnel2.obj");
+
+			////Affectation des textures a notre terrain
+			pTunnel1->SetTexture(TexturesManager.GetNewTexture(L"granite.dds", pDispositif));
+
+			////// Affectation du filtre a notre terrain
+			pTunnel1->SetFilter(TexturesManager.GetNewTexture(L"tundra_road_filter.dds", pDispositif));
+
+			pTunnel2 = new Terrain(pDispositif, "Tunnel2Invers.obj");
+
+			////Affectation des textures a notre terrain
+			pTunnel2->SetTexture(TexturesManager.GetNewTexture(L"granite.dds", pDispositif));
+
+			////// Affectation du filtre a notre terrain
+			pTunnel2->SetFilter(TexturesManager.GetNewTexture(L"tundra_road_filter.dds", pDispositif));
+
+			//Rajoute notre terrain à la scene
+			sceneManager.addToZone(2, pTunnel1, true);
+			sceneManager.addToZone(2, pTunnel2, true);
 
 			{
 				auto handle1 = std::async(std::launch::async, [&]() {
@@ -440,8 +468,8 @@ namespace PM3D
 			pPolice1 = std::make_unique<Gdiplus::Font>(&oFamily, 16.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
 			pTexte1 = new CAfficheurTexte(pDispositif, 128, 24, pPolice1.get());*/
 			const Gdiplus::FontFamily oFamily(L"Arial", nullptr);
-			pPolice = std::make_unique<Gdiplus::Font>(&oFamily, 48.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
-			pTexte1 = new CAfficheurTexte(pDispositif, 170, 52, pPolice.get());
+			pPolice = std::make_unique<Gdiplus::Font>(&oFamily, 36.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
+			pTexte1 = new CAfficheurTexte(pDispositif, 135, 40, pPolice.get());
 
 			pPanneauPE = std::make_unique<CPanneauPE>(pDispositif);
 
@@ -451,16 +479,17 @@ namespace PM3D
 			auto e_Hauteur = pDispositif->GetHauteur();
 
 			//pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(), e_largeur-128, e_Hauteur- 24 );
-			pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(),"speed", e_largeur - 128, e_Hauteur - 24);
+			pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(),"speed", e_largeur - 120, e_Hauteur - 90);
+			pAfficheurSprite->AjouterSprite("CompteurBleu.dds", e_largeur -128, e_Hauteur-24, e_largeur / 4, e_Hauteur / 4);
 			
-			pPolice2 = std::make_unique<Gdiplus::Font>(&oFamily, 48.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
-			pTexte2 = new CAfficheurTexte(pDispositif, 135, 48, pPolice2.get());
-			pAfficheurSprite->AjouterSpriteTexte(pTexte2->GetTextureView(), "temps", e_largeur/2, 48);
-			pAfficheurSprite->AjouterSprite("Chronofond.dds", e_largeur / 2, (e_Hauteur / 10) * 3, e_largeur / 2, e_Hauteur / 4);
+			pPolice2 = std::make_unique<Gdiplus::Font>(&oFamily, 36.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
+			pTexte2 = new CAfficheurTexte(pDispositif, 110, 36, pPolice2.get(),true);
+			pAfficheurSprite->AjouterSpriteTexte(pTexte2->GetTextureView(), "temps", e_largeur/2+50, 67);
+			pAfficheurSprite->AjouterSprite("chrono.dds", e_largeur / 2- 100, 100, e_largeur / 8, e_Hauteur / 8);
 
 			pAfficheurPanneau = new CAfficheurPanneau(pDispositif);
 			//pAfficheurPanneau->AjouterPanneau("panic.dds",XMFLOAT3(0,0,0),100,100);
-			pAfficheurPanneau->AjouterPanneau("Finish.dds", XMFLOAT3(20,-275,-1470), 220, 25, true);
+			pAfficheurPanneau->AjouterPanneau("Finish.dds", XMFLOAT3(20,-275,pTerrain3->oi.object.min_z+50), 220, 25, true);
 
 
 			sceneManager.addToUI(pAfficheurSprite);
@@ -532,14 +561,19 @@ namespace PM3D
 
 			//Vitesse
 			string speed = std::to_string(static_cast<int>(pEntityManager->pPlayer->playerCharacter.body->getLinearVelocity().magnitude())) + " m/s ";
+			
+			if (static_cast<int>(pEntityManager->pPlayer->playerCharacter.body->getLinearVelocity().magnitude()) < 10) {
+				speed = " "s + speed;
+			}
+
 			std::wstring w_speed(speed.begin(), speed.end());
 
-			string position = "x : " + std::to_string(camManager.getActive().position.vector4_f32[0]) +
+			/*string position = "x : " + std::to_string(camManager.getActive().position.vector4_f32[0]) +
 				" , y : " + std::to_string(camManager.getActive().position.vector4_f32[1]) +
 				" , z : " + std::to_string(camManager.getActive().position.vector4_f32[2]);
-			std::wstring w_position(position.begin(), position.end());
+			std::wstring w_position(position.begin(), position.end());*/
 
-
+			
 			pTexte1->Ecrire(w_speed);
 
 			//Temps
@@ -618,20 +652,20 @@ namespace PM3D
 		void createZone3()
 		{
 
-			createRandomObstacle(100, 3, pTerrain3, objToTextTree);
+			createRandomObstacle(120, 3, pTerrain3, objToTextTree);
 			createRandomObstacle(20, 3, pTerrain3, objToTextStone);
 
 		}
 		void createZone2()
 		{
 
-			createRandomObstacle(100, 2, pTerrain2, objToTextTree);
-
+			createRandomObstacle(80, 2, pTerrain2, objToTextTree);
+			createRandomObstacle(20, 2, pTerrain2, objToTextStone);
 		}
 		void createZone1()
 		{
 
-			createRandomObstacle(100, 1, pTerrain1, objToTextTree);
+			createRandomObstacle(60, 1, pTerrain1, objToTextTree);
 			createRandomObstacle(20, 1, pTerrain1, objToTextStone);
 
 		}
@@ -667,6 +701,8 @@ namespace PM3D
 		Terrain* pTerrain1;
 		Terrain* pTerrain2;
 		Terrain* pTerrain3;
+		Terrain* pTunnel1;
+		Terrain* pTunnel2;
 		Scoreboard scoreboard;
 		SoundClass* m_Sound;
 		string HoveredOption;

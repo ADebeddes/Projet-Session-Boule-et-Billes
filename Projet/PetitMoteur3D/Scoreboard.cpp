@@ -23,7 +23,7 @@ void PM3D::Scoreboard::Init()
 	auto e_Hauteur = rMoteur.pDispositif->GetHauteur();
 	textes.clear();
 
-	textes.push_back(new CAfficheurTexte(rMoteur.pDispositif, 135, 26, pPolice.get()));
+	textes.push_back(new CAfficheurTexte(rMoteur.pDispositif, 135, 26, pPolice.get(), true));
 	pAfficheurScoreboard->AjouterSpriteTexte(textes[textes.size() - 1]->GetTextureView(), "noms", e_largeur - 80, e_Hauteur / 20 * 2 + count*26);
 
 	string nom = to_string(count) + "- "s + string(rMoteur.pEntityManager->pPlayer->nom);
@@ -33,14 +33,13 @@ void PM3D::Scoreboard::Init()
 
 	for (auto enemy : rMoteur.pEntityManager->enemies) {
 
-		textes.push_back(new CAfficheurTexte(rMoteur.pDispositif, 135, 26, pPolice.get()));
+		textes.push_back(new CAfficheurTexte(rMoteur.pDispositif, 135, 26, pPolice.get(), true));
 		pAfficheurScoreboard->AjouterSpriteTexte(textes[textes.size() - 1]->GetTextureView(), "noms", e_largeur - 80, e_Hauteur / 20 * 2 + count * 26);
 		count++;
 		string nom = to_string(count) + "- "s + string(enemy->nom);
 		std::wstring w_nom(nom.begin(), nom.end());
 		textes[textes.size() - 1]->Ecrire(w_nom);
 	}
-	pAfficheurScoreboard->AjouterSprite("ArriereScoreboard.dds", e_largeur, (e_Hauteur / 10) * 5, e_largeur / 2, e_Hauteur / 4);
 	pAfficheurScoreboard->onScreen = true;
 	init = true;
 

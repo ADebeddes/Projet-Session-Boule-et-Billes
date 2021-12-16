@@ -25,6 +25,7 @@ namespace PM3D
 		unique_ptr<Gdiplus::Font> pPolice1;
 		unique_ptr<Gdiplus::Font> pPolice2;
 		bool onMenu = true;
+		bool alreadyPlayed = false;
 		void setOn();
 		void setOff();
 		void InitShader();

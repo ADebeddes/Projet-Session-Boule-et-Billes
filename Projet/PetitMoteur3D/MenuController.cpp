@@ -119,8 +119,13 @@ namespace PM3D
 		
 		if (s == "Play.dds") {
 			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
-			rMoteur.sceneManager.addEntities(rMoteur.pEntityManager);
-			rMoteur.scoreboard.Init();
+			if (!alreadyPlayed){
+				rMoteur.sceneManager.addEntities(rMoteur.pEntityManager);
+				alreadyPlayed = true;
+				rMoteur.scoreboard.Init();
+			}
+			
+			
 			//rMoteur.pEntityManager->respawnEntities();
 			return false;
 		}
@@ -205,6 +210,8 @@ namespace PM3D
 
 		if(s == "Replay.dds") {
 			rMoteur.sceneManager.resetParty();
+			rMoteur.sceneManager.zones[0].emplace_back(new Skybox(pDispositif, "Boule.obj"));
+			alreadyPlayed = false;
 			rMoteur.m_Sound->stopWaveFile(rMoteur.m_Sound->Victory);
 			rMoteur.m_Sound->fadeIn1();
 			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->MusiqueMenuPrincipal);

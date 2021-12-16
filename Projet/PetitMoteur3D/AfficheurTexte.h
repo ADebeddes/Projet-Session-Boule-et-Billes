@@ -13,7 +13,7 @@ namespace PM3D
 class CAfficheurTexte
 {
 public:
-	CAfficheurTexte(CDispositifD3D11* pDispositif, int largeur, int hauteur, Gdiplus::Font* pPolice);
+	CAfficheurTexte(CDispositifD3D11* pDispositif, int largeur, int hauteur, Gdiplus::Font* pPolice, bool _fond = false);
 	~CAfficheurTexte();
 	void Ecrire(const std::wstring& s);
 	ID3D11ShaderResourceView* GetTextureView() { return pTextureView; }
@@ -30,6 +30,7 @@ private:
 	ID3D11ShaderResourceView* pTextureView;
 	CDispositifD3D11* pDispo;
 
+	bool fond;
 	Gdiplus::Font* pFont;
 	std::unique_ptr<Gdiplus::Bitmap> pCharBitmap;
 	std::unique_ptr<Gdiplus::Graphics> pCharGraphics;

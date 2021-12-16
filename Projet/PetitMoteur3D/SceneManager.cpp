@@ -23,12 +23,12 @@ namespace PM3D {
 		return true;
 	}
 
-	bool SceneManager::addToZone(int key, Terrain* objet) {
+	bool SceneManager::addToZone(int key, Terrain* objet, bool is_tunnel) {
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 		zones[key].emplace_back(objet);
 		rMoteur.Moteur_Physique.gScene->addCollection(*(objet->collection));
 
-		if (key > 1) {
+		if (key > 1 and !is_tunnel) {
 			BasicColider* porte = new BasicColider(500, 100, 1);
 			float x = (objet->oi.object.min_x+ objet->oi.object.max_x)/2;
 			float z = objet->oi.object.max_z-70;
@@ -60,7 +60,7 @@ namespace PM3D {
 
 		BasicColider* porte = new BasicColider(500, 500, 1);
 		float x = (objet->oi.object.min_x + objet->oi.object.max_x) / 2;
-		float z = objet->oi.object.min_z+20;
+		float z = objet->oi.object.min_z+50;
 		porte->place(x, objet->getHeightAt(x, z), z);
 		porte->pred = std::bind(&SceneManager::afficherSceneFin, this);
 
@@ -114,9 +114,11 @@ namespace PM3D {
 	bool SceneManager::add(int key, Bonus* bonus)
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		rMoteur.mtxAddZone.lock();
 		zones[key].emplace_back(bonus);
 		rMoteur.Moteur_Physique.gScene->addActor(*(bonus->body));
 		bonus_pool.push_back(bonus);
+		rMoteur.mtxAddZone.unlock();
 		return true;
 	}
 
@@ -136,6 +138,8 @@ namespace PM3D {
 				rMoteur.Moteur_Physique.gScene->addActor(*(enemy->enemyCharacter.body));
 				UI.emplace_back(enemy->pParticleManager->pAfficheurParticule);
 			}
+
+			
 
 			return true;
 		
@@ -219,7 +223,8 @@ namespace PM3D {
 			rMoteur.Moteur_Physique.gScene->removeActor(*(enemy->enemyCharacter.body));
 		}
 
-		//zones[0].clear();
+	
+		zones[0].clear();
 		rMoteur.pEntityManager->resetEntities();
 
 	}
@@ -331,7 +336,9 @@ namespace PM3D {
 		rMoteur.mtx.unlock();
 		obs->place(x, y, z);
 		addToZone(zone, obs);
+		rMoteur.mtxAddZone.lock();
 		obstacle_pool.push_back(obs);
+		rMoteur.mtxAddZone.unlock();
 	}
 
 

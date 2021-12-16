@@ -53,14 +53,23 @@ namespace PM3D {
 	void EntityManager::resetEntities()
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
-		pPlayer->lastCheckPointPos = rMoteur.PremierePosition;
-		pPlayer->Respawn();
-	
-		for (auto i = 1; i <= enemies.size(); i++) {
-			enemies[i - 1]->lastCheckPointPos = rMoteur.PremierePosition + PxVec3(5.0f, 0, 0) * static_cast<float>(i);
-			enemies[i - 1]->Respawn();
+		pPlayer = new Player(rMoteur.PremierePosition, PxVec3(0, -1, 0), *(new Sphere(rMoteur.pDispositif, "Boule.obj", "Player")));
+		pPlayer->playerCharacter.SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"snow.dds", rMoteur.pDispositif));
+		int nbEnemies = static_cast<int>(enemies.size());
+		enemies.clear();
+		for (int i = 1; i <= nbEnemies; i++) {
+			auto name = new string("Enemy"s + to_string(i));
+
+
+
+			enemies.push_back(
+				new Enemy(
+					rMoteur.PremierePosition + PxVec3(5.0f, 0, 0) * static_cast<float>(i)
+					, *(new Sphere(rMoteur.pDispositif, "Boule.obj", const_cast<char*>((*name).c_str())))
+					, (*name).c_str()));
+			enemies[i - 1]->enemyCharacter.SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"granite.dds", rMoteur.pDispositif));
 		}
-	
+
 	
 	}
 

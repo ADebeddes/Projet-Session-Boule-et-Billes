@@ -37,7 +37,7 @@ namespace PM3D {
 		SceneManager();
 
 		bool createZone(int key);
-		bool addToZone(int key, Terrain* objet);
+		bool addToZone(int key, Terrain* objet, bool is_tunnel = false);
 		bool addLastZone(int key, Terrain* objet);
 		bool addToZone(int key, StaticObject* objet);
 		bool addToZone(int key, DynamicObject* objet);
