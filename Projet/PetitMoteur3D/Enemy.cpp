@@ -35,8 +35,13 @@ namespace PM3D {
 		enemyCharacter = object; 
 
 		enemyCharacter.body->setGlobalPose(PxTransform(pos));
-		
-
+		pParticleManager = new ParticleManager(CMoteurWindows::GetInstance().pDispositif,XMFLOAT3(pos.x, pos.y, pos.z), 20);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		//pAfficheurParticule->onScreen = true;
 	}
 
 	//void Enemy::Anime()
@@ -80,6 +85,8 @@ namespace PM3D {
 		if (need_to_respawn) {
 			Respawn();
 		}
+
+		pParticleManager->play();
 	}
 
 
@@ -89,6 +96,15 @@ namespace PM3D {
 
 		enemyCharacter.body->setMaxLinearVelocity(12.0f * enemyCharacter.scale);
 		enemyCharacter.body->setMass(100.0f * enemyCharacter.scale);
+
+		pParticleManager->UpdatePosition(XMFLOAT3(
+			enemyCharacter.body->getGlobalPose().p.x, 
+			enemyCharacter.body->getGlobalPose().p.y,
+			enemyCharacter.body->getGlobalPose().p.z
+		));
+		/*for (auto& p : pParticleManager->pAfficheurParticule->tabPanneau) {
+			p->position = XMFLOAT3(enemyCharacter.body->getGlobalPose().p.x, enemyCharacter.body->getGlobalPose().p.y, enemyCharacter.body->getGlobalPose().p.z);
+		}*/
 	}
 
 	void Enemy::Growth()
