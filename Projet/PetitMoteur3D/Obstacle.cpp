@@ -85,7 +85,7 @@ namespace PM3D
 		}
 		PxTriangleMeshGeometry geometry = physx::PxTriangleMeshGeometry(aTriangleMesh);
 
-		physx::PxShape* shape = rMoteur.Moteur_Physique.gPhysics->createShape(geometry, *rMoteur.Moteur_Physique.gMaterial, false);
+		physx::PxShape* shape = rMoteur.Moteur_Physique.gPhysics->createShape(geometry, *rMoteur.Moteur_Physique.gMaterial, true);
 
 		PxFilterData filterData;
 		filterData.word0 = FilterGroup::obstacle;

@@ -237,7 +237,7 @@ namespace PM3D
 		virtual void Cleanup()
 		{
 			// d�truire les objets
-			Moteur_Physique.cleanupPhysics(true);
+			
 			sceneManager.zones.clear();
 			pEntityManager->enemies.clear();
 			free(pEntityManager->pPlayer);
@@ -249,6 +249,7 @@ namespace PM3D
 				delete pDispositif;
 				pDispositif = nullptr;
 			}
+			Moteur_Physique.cleanupPhysics(true);
 		}
 
 		virtual int InitScene()

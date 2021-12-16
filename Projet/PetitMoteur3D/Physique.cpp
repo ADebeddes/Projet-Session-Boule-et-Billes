@@ -130,9 +130,16 @@ namespace PM3D
 
 	void Physique::cleanupPhysics(bool /*interactive*/)
 	{
-		PX_RELEASE(gScene);
-		PX_RELEASE(gDispatcher);
-		PX_RELEASE(gPhysics);
+		try {
+			PX_RELEASE(gScene);
+			PX_RELEASE(gDispatcher);
+			PX_RELEASE(gPhysics);
+		}
+		catch (...)
+		{
+			// this is fine 
+		}
+		
 
 		if (gPvd)
 		{
