@@ -422,7 +422,7 @@ namespace PM3D
 			pTexte1 = new CAfficheurTexte(pDispositif, 128, 24, pPolice1.get());*/
 			const Gdiplus::FontFamily oFamily(L"Arial", nullptr);
 			pPolice = std::make_unique<Gdiplus::Font>(&oFamily, 16.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
-			pTexte1 = new CAfficheurTexte(pDispositif, 128, 24, pPolice.get());
+			pTexte1 = new CAfficheurTexte(pDispositif, 512, 24, pPolice.get());
 
 			pPanneauPE = std::make_unique<CPanneauPE>(pDispositif);
 
@@ -435,7 +435,8 @@ namespace PM3D
 			pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(), "speed", e_largeur - 128, e_Hauteur - 24);
 
 			pAfficheurPanneau = new CAfficheurPanneau(pDispositif);
-			pAfficheurPanneau->AjouterPanneau("panic.dds", XMFLOAT3(50, 50, 50), 10, 10);
+			//pAfficheurPanneau->AjouterPanneau("panic.dds",XMFLOAT3(0,0,0),100,100);
+			pAfficheurPanneau->AjouterPanneau("Finish.dds", XMFLOAT3(20,-275,-1470), 220, 25, true);
 
 
 			sceneManager.addToUI(pAfficheurSprite);
@@ -500,14 +501,15 @@ namespace PM3D
 			string speed = std::to_string(pEntityManager->pPlayer->playerCharacter.body->getLinearVelocity().magnitude()) + " m/s ";
 			std::wstring w_speed(speed.begin(), speed.end());
 
-			/*string position = "x : " + std::to_string(camManager.getActive().position.vector4_f32[0]) +
+			string position = "x : " + std::to_string(camManager.getActive().position.vector4_f32[0]) +
 				" , y : " + std::to_string(camManager.getActive().position.vector4_f32[1]) +
 				" , z : " + std::to_string(camManager.getActive().position.vector4_f32[2]);
-			std::wstring w_position(position.begin(), position.end());*/
+			std::wstring w_position(position.begin(), position.end());
 
 
 
-			pTexte1->Ecrire(w_speed);
+			//pTexte1->Ecrire(w_speed);
+			pTexte1->Ecrire(w_position);
 
 			return true;
 		}
@@ -543,8 +545,6 @@ namespace PM3D
 
 		std::unique_ptr<Gdiplus::Font> pPolice;
 
-
-		CameraManager camManager;
 
 	public:
 		void createZone3()
@@ -612,6 +612,7 @@ namespace PM3D
 		EntityManager* pEntityManager;
 		std::unique_ptr<CPanneauPE> pPanneauPE;
 		CDIManipulateur& GetGestionnaireDeSaisie() { return GestionnaireDeSaisie; }
+		CameraManager camManager;
 	};
 
 } // namespace PM3D

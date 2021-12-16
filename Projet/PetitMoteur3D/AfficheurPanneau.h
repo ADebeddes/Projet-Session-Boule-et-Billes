@@ -33,15 +33,15 @@ namespace PM3D
 		virtual void Draw() override;
 
 		void AjouterPanneau(const std::string& NomTexture, const XMFLOAT3& _position,
-			float _dx = 0, float _dy = 0);
+			float _dx = 0, float _dy = 0, bool _idle = false);
 		bool onScreen;
-
-	private:
+		
 		class CPanneau
 		{
 		public:
 			ID3D11ShaderResourceView* pTextureD3D;
 
+			bool idle;
 			XMMATRIX matPosDim;
 			std::string name;
 			XMFLOAT3 position;
@@ -51,6 +51,9 @@ namespace PM3D
 
 			}
 		};
+
+	private:
+		
 
 		XMMATRIX matWorld;
 		static CSommetPanneau sommets[6];
@@ -65,11 +68,11 @@ namespace PM3D
 
 		ID3D11SamplerState* pSampleState;
 
-		// Tous nos sprites
-		std::vector<std::unique_ptr<CPanneau>> tabPanneau;
-
 
 		void InitEffet();
+	public:
+		// Tous nos sprites
+		std::vector<std::unique_ptr<CPanneau>> tabPanneau;
 	};
 
 } // namespace PM3D

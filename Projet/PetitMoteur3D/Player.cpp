@@ -15,6 +15,13 @@ namespace PM3D {
 	{
 		playerCharacter = object;
 		playerCharacter.body->setGlobalPose(PxTransform(pos));
+		pParticleManager = new ParticleManager(CMoteurWindows::GetInstance().pDispositif, XMFLOAT3(pos.x, pos.y, pos.z),20);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		//pAfficheurParticule->onScreen = true;
 	}
 
 	Player::Player(PxVec3 pos, PxVec3 dir, Cube& object)
@@ -25,7 +32,14 @@ namespace PM3D {
 		, nom{ "Player" }
 	{
 		playerCharacter = object;
-		playerCharacter.body->setGlobalPose(PxTransform(pos));
+		/*playerCharacter.body->setGlobalPose(PxTransform(pos));
+		pAfficheurParticule = new CAfficheurPanneau(CMoteurWindows::GetInstance().pDispositif);
+		pAfficheurParticule->AjouterPanneau("SnowParticle.dds", XMFLOAT3(pos.x, pos.y, pos.z), 1, 1);
+		pAfficheurParticule->AjouterPanneau("SnowParticle.dds", XMFLOAT3(pos.x, pos.y, pos.z), 1, 1);
+		pAfficheurParticule->AjouterPanneau("SnowParticle.dds", XMFLOAT3(pos.x, pos.y, pos.z), 1, 1);
+		pAfficheurParticule->AjouterPanneau("SnowParticle.dds", XMFLOAT3(pos.x, pos.y, pos.z), 1, 1);
+		pAfficheurParticule->AjouterPanneau("SnowParticle.dds", XMFLOAT3(pos.x, pos.y, pos.z), 1, 1);
+		pAfficheurParticule->onScreen = true;*/
 	}
 
 	void Player::Anime()
@@ -74,6 +88,7 @@ namespace PM3D {
 			Respawn();
 		}
 
+		pParticleManager->play();
 		playerCharacter.UpdatePhysique(playerCharacter.scale);
 		//playerCharacter.body->setGlobalPose(PxTransform(mEye));
 		const auto v = playerCharacter.body->getLinearVelocity();
@@ -89,6 +104,14 @@ namespace PM3D {
 		playerCharacter.body->setMaxLinearVelocity(12.0f * playerCharacter.scale);
 		playerCharacter.body->setMass(100.0f * playerCharacter.scale);
 
+		pParticleManager->UpdatePosition(XMFLOAT3(
+			playerCharacter.body->getGlobalPose().p.x,
+			playerCharacter.body->getGlobalPose().p.y,
+			playerCharacter.body->getGlobalPose().p.z
+		));
+		/*for (auto& p : pParticleManager->pAfficheurParticule->tabPanneau) {
+			p->position = XMFLOAT3(playerCharacter.body->getGlobalPose().p.x, playerCharacter.body->getGlobalPose().p.y, playerCharacter.body->getGlobalPose().p.z);
+		}*/
 	}
 
 	void Player::Growth()

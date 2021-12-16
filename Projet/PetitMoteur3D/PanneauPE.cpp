@@ -304,6 +304,10 @@ namespace PM3D
 		distance = pEffet->GetVariableByName("distance")->AsScalar();
 		distance->SetFloat((float)0.02f);
 
+		/*ID3DX11EffectScalarVariable* randomNB;
+		randomNB = pEffet->GetVariableByName("randomNB")->AsScalar();
+		randomNB->SetFloat((float)fmod(float(rand())/float((RAND_MAX)), 1.0f));*/
+
 		ID3DX11EffectShaderResourceVariable* variableTexture;
 		variableTexture = pEffet->GetVariableByName("textureEntree")->AsShaderResource();
 

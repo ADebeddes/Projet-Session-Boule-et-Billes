@@ -230,6 +230,7 @@
     <ClCompile Include="Objectimporter.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="PanneauPE.cpp" />
+    <ClCompile Include="ParticleManager.cpp" />
     <ClCompile Include="PetitMoteur3D.cpp" />
     <ClCompile Include="Physique.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -280,6 +281,7 @@
     <ClInclude Include="objet3d.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PanneauPE.h" />
+    <ClInclude Include="ParticleManager.h" />
     <ClInclude Include="PetitMoteur3D.h" />
     <ClInclude Include="Physique.h" />
     <ClInclude Include="Player.h" />
