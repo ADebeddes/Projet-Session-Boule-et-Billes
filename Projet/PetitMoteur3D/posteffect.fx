@@ -4,8 +4,10 @@
 #define EPSILON 0.000011
 
 
-Texture2D textureEntree; // la texture
+Texture2D textureEntree; // les textures
 SamplerState SampleState; // l'etat de sampling
+float randomNB;
+
 
 // blur variables
 float distance;
@@ -49,6 +51,11 @@ float4 NulPS(VS_Sortie vs) : SV_Target
 	float4 couleur;
 
 	couleur = textureEntree.Sample(SampleState, vs.CoordTex);
+
+    /*if (int(randomNB * 10) == 3) {
+        couleur = float4(1.0f, 1.0f, 1.0f, 1.0f);
+    }*/
+    //couleur = float4(randomNB, 0.0f, 0.0f, 1.0f);
 
     return couleur;
 }
@@ -144,7 +151,10 @@ float4 BNWhitePS(VS_Sortie vs) : SV_Target
     return couleur;
 }
 
+float2 generateFlake() {
+    return(float2(randomNB, 1.0f));
 
+}
 
 
 //-----------------------------------------------------
