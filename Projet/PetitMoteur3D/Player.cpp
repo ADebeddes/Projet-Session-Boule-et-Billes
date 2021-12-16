@@ -101,6 +101,8 @@ namespace PM3D {
 	{
 		playerCharacter.scale = playerCharacter.scale / 2;
 
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Crash);
 		playerCharacter.body->setMaxLinearVelocity(12.0f * playerCharacter.scale);
 		playerCharacter.body->setMass(100.0f * playerCharacter.scale);
 
@@ -116,16 +118,31 @@ namespace PM3D {
 
 	void Player::Growth()
 	{
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 		playerCharacter.scale += 0.005f;
+		if (!rMoteur.m_Sound->growthPlayed) {
+			rMoteur.m_Sound->growthPlayed = true;
+			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Growth);
+		}
+		
+	
 	}
 
 	void Player::Shrink()
 	{
+
+		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		if (rMoteur.m_Sound->growthPlayed) {
+			rMoteur.m_Sound->growthPlayed = false;
+			rMoteur.m_Sound->stopWaveFile(rMoteur.m_Sound->Growth);
+		}
 		playerCharacter.scale -= 0.005f;
 		if (playerCharacter.scale < 0.1)
 		{
 			need_to_respawn = true; 
 		}
+
+
 	}
 
 	void Player::Respawn()
@@ -137,6 +154,8 @@ namespace PM3D {
 		playerCharacter.UpdatePhysique(playerCharacter.scale);
 		playerCharacter.body->setMaxLinearVelocity(12.0f * playerCharacter.scale);
 		playerCharacter.body->setMass(100.0f * playerCharacter.scale);
+		playerCharacter.body->setLinearVelocity(PxVec3(0.0f, 0.0f, 0.0f));
+		rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Respawn);
 
 	}
 

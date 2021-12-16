@@ -82,6 +82,9 @@ namespace PM3D {
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 
 		enemyCharacter.UpdatePhysique(enemyCharacter.scale); 
+		if (need_to_respawn) {
+			Respawn();
+		}
 
 		pParticleManager->play();
 	}
@@ -113,21 +116,20 @@ namespace PM3D {
 		enemyCharacter.scale -= 0.005f;
 		if (enemyCharacter.scale < 0.1)
 		{
-			Respawn(); 
+			need_to_respawn = true;
 		}
 	}
 
 	void Enemy::Respawn()
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
-		PxShape* shape = rMoteur.Moteur_Physique.gPhysics->createShape(PxSphereGeometry(0.8f * enemyCharacter.scale), *rMoteur.Moteur_Physique.gMaterial, true);
-
-		enemyCharacter.body->attachShape(*shape);
-		enemyCharacter.body->setGlobalPose(PxTransform(lastCheckPointPos));
 		enemyCharacter.scale = 1;
-
+		enemyCharacter.body->setGlobalPose(PxTransform(lastCheckPointPos));
+		enemyCharacter.UpdatePhysique(enemyCharacter.scale);
 		enemyCharacter.body->setMaxLinearVelocity(12.0f * enemyCharacter.scale);
 		enemyCharacter.body->setMass(100.0f * enemyCharacter.scale);
+		enemyCharacter.body->setLinearVelocity(PxVec3(0.0f, 0.0f, 0.0f));
+		need_to_respawn = false;
 	}
 
 }

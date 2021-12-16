@@ -101,6 +101,23 @@ int CMoteurWindows::InitialisationsSpecific()
 	Show();
 
 	GestionnaireDeSaisie.Init(hAppInstance, hMainWnd);
+	// Create the sound object.
+	m_Sound = new SoundClass;
+	if (!m_Sound)
+	{
+		return false;
+	}
+
+	// Initialize the sound object.
+	auto result = m_Sound->Initialize(hMainWnd);
+	if (!result)
+	{
+		MessageBox(hMainWnd, L"Could not initialize Direct Sound.", L"Error", MB_OK);
+		return false;
+	}
+
+	return true;
+
 
 	return 0;
 }

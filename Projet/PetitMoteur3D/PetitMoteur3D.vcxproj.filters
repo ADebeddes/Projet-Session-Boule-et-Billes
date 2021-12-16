@@ -186,7 +186,14 @@
     <ClCompile Include="PanneauPE.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="SoundClass.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Scoreboard.cpp">
+=======
     <ClCompile Include="ParticleManager.cpp">
+>>>>>>> main
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -326,7 +333,14 @@
     <ClInclude Include="PanneauPE.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="SoundClass.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Scoreboard.h">
+=======
     <ClInclude Include="ParticleManager.h">
+>>>>>>> main
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

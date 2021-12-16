@@ -32,11 +32,13 @@ namespace PM3D {
 		std::vector<BasicColider*> collider_pool{};
 		std::vector<Bonus*> bonus_pool{};
 		mt19937 prng{ random_device{}() };
+		std::vector<Obstacle*> obstacle_pool{};
 
 		SceneManager();
 
 		bool createZone(int key);
 		bool addToZone(int key, Terrain* objet);
+		bool addLastZone(int key, Terrain* objet);
 		bool addToZone(int key, StaticObject* objet);
 		bool addToZone(int key, DynamicObject* objet);
 		bool addToZone(Skybox* s);
@@ -46,7 +48,16 @@ namespace PM3D {
 		bool add(int key, Bonus* bonus);
 		bool addEntities(EntityManager* pEm);
 
+		bool afficherSceneFin();
+
 		void resetCollider();
+		void resetBonus();
+		void resetEntities();
+		void resetZones();
+		vector<std::pair<string, float>> PlusProcheFin();
+		void resetTime();
+
+		void resetParty();
 
 		void desactiverZone(int i);
 

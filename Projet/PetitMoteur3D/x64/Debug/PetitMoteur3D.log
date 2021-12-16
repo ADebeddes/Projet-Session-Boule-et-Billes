@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+﻿  PetitMoteur3D.vcxproj -> D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe
+=======
 ﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
   
   compilation object save succeeded; see D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\MiniPhong.cso
@@ -99,3 +102,4 @@ Effects11d.lib(EffectNonRuntime.obj) : warning LNK4099: PDB 'Effects11d.pdb' was
 Effects11d.lib(EffectReflection.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectReflection.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
 Effects11d.lib(EffectRuntime.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectRuntime.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
   PetitMoteur3D.vcxproj -> D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe
+>>>>>>> main

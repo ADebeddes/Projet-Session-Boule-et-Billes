@@ -46,6 +46,10 @@
 #include <future>
 #include <mutex> 
 
+#include "SoundClass.h"
+
+#include "Scoreboard.h"
+
 #define PX_RELEASE(x)if(x) { x->release();x =NULL; }
 
 
@@ -149,13 +153,21 @@ namespace PM3D
 			sceneManager.onMenu = true;
 			pAfficheurSprite->onScreen = false;
 			pAfficheurPanneau->onScreen = false;
+			scoreboard.pAfficheurScoreboard->onScreen = false;
 			menuController->setOn();
+			m_Sound->PlayWaveFile(m_Sound->MusiqueMenuPrincipal);
+			m_Sound->fadeIn1();
+			m_Sound->fadeOut2();
 		}
 		void setMenuOff() {
 			sceneManager.onMenu = false;
 			pAfficheurSprite->onScreen = true;
 			pAfficheurPanneau->onScreen = true;
 			menuController->setOff();
+			m_Sound->PlayWaveFile(m_Sound->GameMusic);
+			m_Sound->fadeIn2();
+			m_Sound->fadeOut1();
+
 		}
 		void updateRatioEcran() {
 			const float ratioDAspect = static_cast<float>(pDispositif->GetLargeur()) / static_cast<float>(pDispositif->GetHauteur());
@@ -224,6 +236,10 @@ namespace PM3D
 			for (auto& object3D : sceneManager.UI)
 			{
 				object3D->Draw();
+			}
+
+			if (scoreboard.init) {
+				scoreboard.pAfficheurScoreboard->Draw();
 			}
 
 			EndRenderSceneSpecific();
@@ -394,7 +410,7 @@ namespace PM3D
 			sceneManager.createZone(3);
 
 			//Rajoute notre terrain à la scene
-			sceneManager.addToZone(3, pTerrain3);
+			sceneManager.addLastZone(3, pTerrain3);
 
 			{
 				auto handle1 = std::async(std::launch::async, [&]() {
@@ -413,6 +429,7 @@ namespace PM3D
 					});
 			};
 
+			nbEnemies = 5;
 			pEntityManager = new EntityManager(nbEnemies, PxVec3(-50, pTerrain1->getHeightAt(-50, -60) + 10, -60), pDispositif);
 
 			pAfficheurSprite = new CAfficheurSprite(pDispositif);
@@ -421,8 +438,8 @@ namespace PM3D
 			pPolice1 = std::make_unique<Gdiplus::Font>(&oFamily, 16.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
 			pTexte1 = new CAfficheurTexte(pDispositif, 128, 24, pPolice1.get());*/
 			const Gdiplus::FontFamily oFamily(L"Arial", nullptr);
-			pPolice = std::make_unique<Gdiplus::Font>(&oFamily, 16.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
-			pTexte1 = new CAfficheurTexte(pDispositif, 512, 24, pPolice.get());
+			pPolice = std::make_unique<Gdiplus::Font>(&oFamily, 48.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
+			pTexte1 = new CAfficheurTexte(pDispositif, 170, 52, pPolice.get());
 
 			pPanneauPE = std::make_unique<CPanneauPE>(pDispositif);
 
@@ -432,7 +449,11 @@ namespace PM3D
 			auto e_Hauteur = pDispositif->GetHauteur();
 
 			//pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(), e_largeur-128, e_Hauteur- 24 );
-			pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(), "speed", e_largeur - 128, e_Hauteur - 24);
+			pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(),"speed", e_largeur - 128, e_Hauteur - 24);
+			
+			pPolice2 = std::make_unique<Gdiplus::Font>(&oFamily, 48.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
+			pTexte2 = new CAfficheurTexte(pDispositif, 135, 48, pPolice2.get());
+			pAfficheurSprite->AjouterSpriteTexte(pTexte2->GetTextureView(), "temps", e_largeur/2, 48);
 
 			pAfficheurPanneau = new CAfficheurPanneau(pDispositif);
 			//pAfficheurPanneau->AjouterPanneau("panic.dds",XMFLOAT3(0,0,0),100,100);
@@ -443,20 +464,22 @@ namespace PM3D
 			sceneManager.addToUI(pAfficheurPanneau);
 			sceneManager.addToUI(menuController->AfficheurMenuPrincipal);
 			sceneManager.addToUI(menuController->AfficheurOption);
+			sceneManager.addToUI(menuController->AfficheurVictoire);
+		
 
-			/*BasicColider* porte = new BasicColider(200, 200, 1);
+			/*BasicColider* porte = new BasicColider(200, 200, 1); 
 			porte->place(-50, pTerrain1->getHeightAt(-50, -60) + 10, -70);
 
 			sceneManager.add(porte);*/
 
-
-			nbEnemies = 10;
+			
 			PremierePosition = PxVec3(-50, pTerrain1->getHeightAt(-50, -60) + 10, -60);
 
 
 			/*sceneManager.addEntities(pEntityManager);*/
 			sceneManager.addToZone(new Skybox(pDispositif, "Boule.obj"));
-
+			m_Sound->fadeIn1();
+			m_Sound->PlayWaveFile(m_Sound->MusiqueMenuPrincipal);
 			return true;
 		}
 
@@ -466,6 +489,11 @@ namespace PM3D
 			if (!sceneManager.onMenu && !pause) {
 				{
 					Moteur_Physique.stepPhysics(true);
+					secondePassee += tempsEcoule;
+					if (secondePassee > 60) {
+						minutePassee++;
+						secondePassee = fmod(secondePassee, 60.0f);
+					}
 				}
 
 			}
@@ -498,7 +526,9 @@ namespace PM3D
 				GestionnaireDeSaisie.click = false;
 			}
 
-			string speed = std::to_string(pEntityManager->pPlayer->playerCharacter.body->getLinearVelocity().magnitude()) + " m/s ";
+
+			//Vitesse
+			string speed = std::to_string(static_cast<int>(pEntityManager->pPlayer->playerCharacter.body->getLinearVelocity().magnitude())) + " m/s ";
 			std::wstring w_speed(speed.begin(), speed.end());
 
 			string position = "x : " + std::to_string(camManager.getActive().position.vector4_f32[0]) +
@@ -507,9 +537,46 @@ namespace PM3D
 			std::wstring w_position(position.begin(), position.end());
 
 
+			pTexte1->Ecrire(w_speed);
 
-			//pTexte1->Ecrire(w_speed);
-			pTexte1->Ecrire(w_position);
+			//Temps
+			string temps = std::to_string(minutePassee) + ":" + std::to_string(static_cast<int>(secondePassee));
+			if (minutePassee < 10) {
+				 temps = std::to_string(0) + std::to_string(minutePassee) + ":" + std::to_string(static_cast<int>(secondePassee));
+				if (secondePassee < 10) {
+					 temps = std::to_string(0) + std::to_string(minutePassee) + ":" + std::to_string(0) + std::to_string(static_cast<int>(secondePassee));
+				}
+				
+			}
+			
+			std::wstring w_temps(temps.begin(), temps.end());
+			pTexte2->Ecrire(w_temps);
+
+
+
+			if (m_Sound->musiqueFadeOut1) {
+				m_Sound->DiminuerSon1(m_Sound->MusiqueMenuPrincipal, &m_Sound->volume1, &m_Sound->musiqueFadeOut1);
+			}
+
+			if (m_Sound->musiqueFadeOut2) {
+				m_Sound->DiminuerSon2(m_Sound->GameMusic, &m_Sound->volume2, &m_Sound->musiqueFadeOut2);
+			}
+
+			if (m_Sound->musiqueFadeIn1) {
+				m_Sound->AugmenterSon1(m_Sound->MusiqueMenuPrincipal, &m_Sound->volume1, &m_Sound->musiqueFadeIn1);
+			}
+
+			if (m_Sound->musiqueFadeIn2) {
+				m_Sound->AugmenterSon2(m_Sound->GameMusic, &m_Sound->volume2, &m_Sound->musiqueFadeIn2);
+			}
+
+			if (scoreboard.init) {
+				scoreboard.pAfficheurScoreboard->Draw();
+			}
+
+			if (scoreboard.init) {
+				scoreboard.Anime();
+			}
 
 			return true;
 		}
@@ -532,18 +599,18 @@ namespace PM3D
 		int nbEnemies;
 
 
-		Terrain* pTerrain1;
-		Terrain* pTerrain2;
-		Terrain* pTerrain3;
+		
 
 		std::map<string, wstring> objToTextTree{};
 		std::map<string, wstring> objToTextStone{};
 
 		CAfficheurTexte* pTexte1;
-		CAfficheurSprite* pAfficheurSprite;
+		CAfficheurTexte* pTexte2;
+
 		std::wstring str;
 
 		std::unique_ptr<Gdiplus::Font> pPolice;
+		std::unique_ptr<Gdiplus::Font> pPolice2;
 
 
 	public:
@@ -599,7 +666,10 @@ namespace PM3D
 
 
 
+		Scoreboard scoreboard;
+		SoundClass* m_Sound;
 		string HoveredOption;
+		CameraManager camManager;
 		bool pause = false;
 		// Le gestionnaire de texture
 		CGestionnaireDeTextures TexturesManager;
@@ -612,7 +682,8 @@ namespace PM3D
 		EntityManager* pEntityManager;
 		std::unique_ptr<CPanneauPE> pPanneauPE;
 		CDIManipulateur& GetGestionnaireDeSaisie() { return GestionnaireDeSaisie; }
-		CameraManager camManager;
+		int minutePassee;
+		float secondePassee;
 	};
 
 } // namespace PM3D

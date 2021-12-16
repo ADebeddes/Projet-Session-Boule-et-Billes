@@ -11,11 +11,11 @@ namespace PM3D
  
 	
 
-	Obstacle::Obstacle(CDispositifD3D11* pDispositif_, string path, LPCWSTR fong_file , bool need_filter )
+	Obstacle::Obstacle(CDispositifD3D11* pDispositif_, string path,int terrain_, LPCWSTR fong_file , bool need_filter )
 		: StaticObject(pDispositif_, path, fong_file , need_filter)
 
 	{
-
+		terrain = terrain_;
 		InitPhysique(path);
 		
 	

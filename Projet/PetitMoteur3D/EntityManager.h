@@ -20,6 +20,8 @@ namespace PM3D {
 		void AddEntity(PxVec3 PremierePosition, CDispositifD3D11* pDispositif);
 		void DelEntity();
 		void AnimeEntities();
+		void resetEntities();
+		void respawnEntities();
 
 		
 
