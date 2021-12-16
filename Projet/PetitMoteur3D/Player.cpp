@@ -80,6 +80,14 @@ namespace PM3D {
 		if (rGestionnaireDeSaisie.ToucheAppuyee(DIK_O)) {
 			rMoteur.pause = false;
 		}
+		if (rGestionnaireDeSaisie.ToucheAppuyee(DIK_K)) {
+			rMoteur.pAfficheurSprite->onScreen = false;
+			rMoteur.scoreboard.pAfficheurScoreboard->onScreen = false;
+		}
+		if (rGestionnaireDeSaisie.ToucheAppuyee(DIK_L)) {
+			rMoteur.pAfficheurSprite->onScreen = true;
+			rMoteur.scoreboard.pAfficheurScoreboard->onScreen = true;
+		}
 
 
 		if (need_to_respawn)

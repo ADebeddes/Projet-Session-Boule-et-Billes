@@ -13,7 +13,7 @@ namespace PM3D {
         auto dot = XMVectorGetX(vecCamObj) * XMVectorGetX(dirCam) + XMVectorGetY(vecCamObj) * XMVectorGetY(dirCam) + XMVectorGetZ(vecCamObj) * XMVectorGetZ(dirCam);
         if (dot > 0) {
             auto disObj = sqrt(XMVectorGetX(vecCamObj) * XMVectorGetX(vecCamObj) + XMVectorGetY(vecCamObj) * XMVectorGetY(vecCamObj) + XMVectorGetZ(vecCamObj) * XMVectorGetZ(vecCamObj));
-            if (disObj < 500) {
+            if (disObj < 2000) {
                 return true;
             }
             else {
