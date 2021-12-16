@@ -11,6 +11,7 @@
 #include "Skybox.h"
 #include "Obstacle.h"
 #include "Bonus.h"
+#include <random>
 //class EntityManager;
 namespace PM3D {
 
@@ -30,6 +31,7 @@ namespace PM3D {
 		std::vector<int> zonesActives{};
 		std::vector<BasicColider*> collider_pool{};
 		std::vector<Bonus*> bonus_pool{};
+		mt19937 prng{ random_device{}() };
 
 		SceneManager();
 
@@ -49,6 +51,7 @@ namespace PM3D {
 		void desactiverZone(int i);
 
 		void placeRandomObstacle(int zone, Terrain* where, string obj, wstring texture);
+		void placeRandomBonus(int zone, Terrain* where, Bonus* obs);
 		void placeRandomObstacle(int zone, Terrain* where, Obstacle obs);
 	};
 };

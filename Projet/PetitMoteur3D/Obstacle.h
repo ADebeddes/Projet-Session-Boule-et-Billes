@@ -23,7 +23,7 @@ namespace PM3D
 		void loadMesh(string path);
 		void Anime(float tempsEcoule);
 		void createMesh(string path);
-		std::map<string, PxShape*> possible_shape; 
+		static std::map<string, PxShape*> possible_shape;
 
 	
 		void place(float x ,float y, float z);
