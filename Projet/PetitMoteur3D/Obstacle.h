@@ -17,6 +17,8 @@ namespace PM3D
     {
     public:
         Obstacle(CDispositifD3D11* pDispositif_, string path , LPCWSTR fong_file = L"SimplePhong.fx", bool need_filter = false);
+
+		void Draw() override;
 	
 		void InitPhysique(string path);
 		bool InitMesh(string path);

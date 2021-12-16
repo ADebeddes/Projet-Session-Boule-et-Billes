@@ -181,6 +181,30 @@ void CDispositifD3D11::PresentSpecific()
 	pSwapChain->Present(0, 0);
 }
 
+void CDispositifD3D11::SetViewPortDimension(float largeur_in, float hauteur_in)
+{
+	D3D11_VIEWPORT vp;
+	vp.Width = largeur_in;
+	vp.Height = hauteur_in;
+	vp.MinDepth = 0.0f;
+	vp.MaxDepth = 1.0f;
+	vp.TopLeftX = 0;
+	vp.TopLeftY = 0;
+	pImmediateContext->RSSetViewports(1, &vp);
+}
+
+void CDispositifD3D11::ResetViewPortDimension()
+{
+	D3D11_VIEWPORT vp;
+	vp.Width = static_cast<float>(largeurEcran);
+	vp.Height = static_cast<float>(hauteurEcran);
+	vp.MinDepth = 0.0f;
+	vp.MaxDepth = 1.0f;
+	vp.TopLeftX = 0;
+	vp.TopLeftY = 0;
+	pImmediateContext->RSSetViewports(1, &vp);
+}
+
 void CDispositifD3D11::SetRenderTargetView(ID3D11RenderTargetView* pRenderTargetView_in, ID3D11DepthStencilView* pDepthStencilView_in)
 {
 	pRenderTargetView = pRenderTargetView_in;
@@ -331,6 +355,10 @@ void CDispositifD3D11::InitBlendStates()
 	// On créé l’état alphaBlendDisable  
 	DXEssayer(pD3DDevice->CreateBlendState(&blendDesc, &alphaBlendDisable),
 		DXE_ERREURCREATION_BLENDSTATE);
+}
+void CDispositifD3D11::SetNormalRSState()
+{
+	pImmediateContext->RSSetState(mSolidCullBackRS);
 }
 
 } // namespace PM3D

@@ -8,8 +8,8 @@ namespace PM3D
 {
 	
 
-	Terrain::Terrain(CDispositifD3D11* pDispositif_, string path, PxVec3 pos,LPCWSTR fong_file , bool need_filter )
-		: StaticObject(pDispositif_, path,  fong_file,  need_filter )
+	Terrain::Terrain(CDispositifD3D11* pDispositif_, string path, PxVec3 pos,LPCWSTR fong_file , bool need_filter, bool shadow_ok)
+		: StaticObject(pDispositif_, path,  fong_file,  need_filter, shadow_ok )
 	{
 		fileName = path.substr(0, path.find("."));
 		fileName = fileName + "serialized_.dat";
@@ -119,6 +119,9 @@ namespace PM3D
 
 	}
 
-
+	void Terrain::Draw()
+	{
+		DrawShadows(); 
+	}
 
 }

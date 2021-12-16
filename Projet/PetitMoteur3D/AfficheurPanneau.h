@@ -36,7 +36,7 @@ namespace PM3D
 			float _dx = 0, float _dy = 0, bool _idle = false);
 		bool onScreen;
 
-	private:
+	protected:
 		class CPanneau
 		{
 		public:

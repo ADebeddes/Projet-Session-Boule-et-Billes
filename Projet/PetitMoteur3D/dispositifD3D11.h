@@ -28,9 +28,13 @@ public:
 
 	void SetRenderTargetView(ID3D11RenderTargetView* pRenderTargetView_in, ID3D11DepthStencilView* pDepthStencilView_in);
 
+	void SetViewPortDimension(float largeur_in, float hauteur_in);
+	void ResetViewPortDimension();
 
 	void ActiverMelangeAlpha();
 	void DesactiverMelangeAlpha();
+
+	void SetNormalRSState();
 
 	void ActiverZBuffer();
 	void DesactiverZBuffer();
@@ -66,6 +70,9 @@ private:
 	// Pour le mélange alpha (transparence) 
 	ID3D11BlendState* alphaBlendEnable;
 	ID3D11BlendState* alphaBlendDisable;
+
+	
+	
 
 	void InitBlendStates();
 };

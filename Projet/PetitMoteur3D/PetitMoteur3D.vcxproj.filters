@@ -365,5 +365,6 @@
     </FxCompile>
     <FxCompile Include="Panneau.fx" />
     <FxCompile Include="posteffect.fx" />
+    <FxCompile Include="MiniPhongSM.fx" />
   </ItemGroup>
 </Project>

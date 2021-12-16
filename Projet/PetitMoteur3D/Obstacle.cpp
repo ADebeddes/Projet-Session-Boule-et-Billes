@@ -9,7 +9,7 @@ namespace PM3D
 	
 
 	Obstacle::Obstacle(CDispositifD3D11* pDispositif_, string path, LPCWSTR fong_file , bool need_filter )
-		: StaticObject(pDispositif_, path, fong_file , need_filter)
+		: StaticObject(pDispositif_, path, fong_file , need_filter, true)
 
 	{
 
@@ -17,6 +17,12 @@ namespace PM3D
 		
 	
 	}
+
+	void Obstacle::Draw()
+	{
+		DrawShadows();
+	}
+
 
 	void Obstacle::InitPhysique(string path)
 	{
@@ -26,8 +32,7 @@ namespace PM3D
 		}
 		
 		loadMesh(path);
-		
-		
+	
 	}
 
 	bool Obstacle::InitMesh(string path)

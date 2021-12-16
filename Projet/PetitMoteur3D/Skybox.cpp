@@ -5,7 +5,7 @@
 
 Skybox::Skybox(CDispositifD3D11* pDispositif_, string path, char* name)
 
-	: ImportedObject(pDispositif_, path,L"Skybox.fx")
+	: ImportedObject(pDispositif_, path,L"Skybox.fx",false, false)
 		, object_name{ name }
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
