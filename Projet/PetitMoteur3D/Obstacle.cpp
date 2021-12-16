@@ -6,6 +6,9 @@
 
 namespace PM3D
 {
+
+	map<string, PxShape*> Obstacle::possible_shape{};
+ 
 	
 
 	Obstacle::Obstacle(CDispositifD3D11* pDispositif_, string path, LPCWSTR fong_file , bool need_filter )
@@ -82,7 +85,7 @@ namespace PM3D
 		}
 		PxTriangleMeshGeometry geometry = physx::PxTriangleMeshGeometry(aTriangleMesh);
 
-		physx::PxShape* shape = rMoteur.Moteur_Physique.gPhysics->createShape(geometry, *rMoteur.Moteur_Physique.gMaterial, true);
+		physx::PxShape* shape = rMoteur.Moteur_Physique.gPhysics->createShape(geometry, *rMoteur.Moteur_Physique.gMaterial, false);
 
 		PxFilterData filterData;
 		filterData.word0 = FilterGroup::obstacle;

@@ -1,10 +1,14 @@
 ﻿  AfficheurPanneau.cpp
   AfficheurSprite.cpp
+<<<<<<< HEAD
   AfficheurTexte.cpp
+=======
+>>>>>>> main
   BasicColider.cpp
   Bloc.cpp
   BlocEffet1.cpp
   Bonus.cpp
+<<<<<<< HEAD
   CDIManipulateur.cpp
   Camera.cpp
   CameraManager.cpp
@@ -21,10 +25,20 @@
   ImportedObject.cpp
   InfoDispositif.cpp
   LOD.cpp
+=======
+  Camera.cpp
+  CameraManager.cpp
+  Contact.cpp
+  Cube.cpp
+  Enemy.cpp
+  EntityManager.cpp
+  ImportedObject.cpp
+>>>>>>> main
   MenuController.cpp
   Moteur.cpp
   MoteurWindows.cpp
   NosBonus.cpp
+<<<<<<< HEAD
   Objectimporter.cpp
   Obstacle.cpp
   PanneauPE.cpp
@@ -80,3 +94,14 @@ Effects11d.lib(EffectNonRuntime.obj) : warning LNK4099: PDB 'Effects11d.pdb' was
 Effects11d.lib(EffectReflection.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectReflection.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
 Effects11d.lib(EffectRuntime.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectRuntime.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
   PetitMoteur3D.vcxproj -> D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe
+=======
+  Obstacle.cpp
+  PetitMoteur3D.cpp
+  Player.cpp
+  SceneManager.cpp
+  Skybox.cpp
+  Sphere.cpp
+  StaticObject.cpp
+  Terrain.cpp
+  PetitMoteur3D.vcxproj -> D:\TRAVAIL\Projet Final\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe
+>>>>>>> main
