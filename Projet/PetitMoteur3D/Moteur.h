@@ -86,6 +86,7 @@ namespace PM3D
 	public:
 		Physique Moteur_Physique{};
 		std::mutex mtx;
+		std::mutex mtxAddZone;
 	public:
 
 		virtual void Run()
@@ -253,11 +254,11 @@ namespace PM3D
 		virtual void Cleanup()
 		{
 			// d�truire les objets
-			Moteur_Physique.cleanupPhysics(true);
+			
 			sceneManager.zones.clear();
 			pEntityManager->enemies.clear();
 			free(pEntityManager->pPlayer);
-			free(pEntityManager);
+			//free(pEntityManager);
 
 			// D�truire le dispositif
 			if (pDispositif)
@@ -265,6 +266,7 @@ namespace PM3D
 				delete pDispositif;
 				pDispositif = nullptr;
 			}
+			Moteur_Physique.cleanupPhysics(true);
 		}
 
 		virtual int InitScene()
@@ -327,18 +329,18 @@ namespace PM3D
 				{
 				case BonusTypes::UP:
 				{
-					b = new AgrandirBalle(pDispositif, "boule.obj");
+					b = new AgrandirBalle(pDispositif, "boule.obj",zone);
 					break;
 				}
 				case BonusTypes::DOWN:
 				{
-					b = new DiminuerBalle(pDispositif, "boule.obj");
+					b = new DiminuerBalle(pDispositif, "boule.obj", zone);
 					break;
 				}
 
 				case BonusTypes::LIGHTNING:
 				{
-					b = new DiminuerAutreBalle(pDispositif, "boule.obj");
+					b = new DiminuerAutreBalle(pDispositif, "boule.obj", zone);
 					break;
 				}
 				default:
@@ -398,7 +400,7 @@ namespace PM3D
 			sceneManager.addToZone(2, pTerrain2);
 
 			////Creation du terrain
-			pTerrain3 = new Terrain(pDispositif, "Pente3.obj");
+			pTerrain3 = new Terrain(pDispositif, "Pente3PlusTunnel.obj");
 
 			////Affectation des textures a notre terrain
 			pTerrain3->SetTexture(TexturesManager.GetNewTexture(L"snow.dds", pDispositif));
@@ -454,6 +456,7 @@ namespace PM3D
 			pPolice2 = std::make_unique<Gdiplus::Font>(&oFamily, 48.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
 			pTexte2 = new CAfficheurTexte(pDispositif, 135, 48, pPolice2.get());
 			pAfficheurSprite->AjouterSpriteTexte(pTexte2->GetTextureView(), "temps", e_largeur/2, 48);
+			pAfficheurSprite->AjouterSprite("Chronofond.dds", e_largeur / 2, (e_Hauteur / 10) * 3, e_largeur / 2, e_Hauteur / 4);
 
 			pAfficheurPanneau = new CAfficheurPanneau(pDispositif);
 			//pAfficheurPanneau->AjouterPanneau("panic.dds",XMFLOAT3(0,0,0),100,100);
@@ -597,8 +600,6 @@ namespace PM3D
 
 		// Les managers
 		int nbEnemies;
-
-
 		
 
 		std::map<string, wstring> objToTextTree{};
@@ -663,9 +664,9 @@ namespace PM3D
 		}
 
 
-
-
-
+		Terrain* pTerrain1;
+		Terrain* pTerrain2;
+		Terrain* pTerrain3;
 		Scoreboard scoreboard;
 		SoundClass* m_Sound;
 		string HoveredOption;
@@ -674,6 +675,7 @@ namespace PM3D
 		// Le gestionnaire de texture
 		CGestionnaireDeTextures TexturesManager;
 		// Le dispositif de rendu
+		CAfficheurSprite* pAfficheurSprite;
 		CAfficheurPanneau* pAfficheurPanneau;
 		TClasseDispositif* pDispositif;
 		PxVec3 PremierePosition;

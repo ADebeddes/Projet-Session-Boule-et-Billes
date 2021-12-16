@@ -72,8 +72,10 @@ namespace PM3D {
 	bool SceneManager::addToZone(int key, StaticObject* objet)
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
+		rMoteur.mtxAddZone.lock();
 		zones[key].emplace_back(objet);
 		rMoteur.Moteur_Physique.gScene->addActor(*(objet->body));
+		rMoteur.mtxAddZone.unlock();
 		return false;
 	}
 

@@ -5,7 +5,7 @@ namespace PM3D {
 
 	int Bonus::count = 1;
 
-	Bonus::Bonus(CDispositifD3D11* pDispositif_, string path, int terrain_,LPCWSTR fong_file, bool need_filter) :
+	Bonus::Bonus(CDispositifD3D11* pDispositif_, string path, int terrain_, LPCWSTR fong_file, bool need_filter) :
 		StaticObject(pDispositif_, path, fong_file, need_filter)
 	{
 		terrain = terrain_;

@@ -5,7 +5,7 @@
 
 namespace PM3D {
 	AgrandirBalle::AgrandirBalle(CDispositifD3D11* pDispositif_, string path, int terrain, LPCWSTR fong_file, bool need_filter) :
-		Bonus(pDispositif_, path,terrain, fong_file, need_filter)
+		Bonus(pDispositif_, path, terrain, fong_file, need_filter)
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 		SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"up.dds", pDispositif));
@@ -27,7 +27,7 @@ namespace PM3D {
 		}
 	}
 	DiminuerBalle::DiminuerBalle(CDispositifD3D11* pDispositif_, string path, int terrain, LPCWSTR fong_file, bool need_filter)
-		: Bonus(pDispositif_, path,terrain, fong_file, need_filter)
+		: Bonus(pDispositif_, path, terrain, fong_file, need_filter)
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 		SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"down.dds", pDispositif));
@@ -47,7 +47,7 @@ namespace PM3D {
 		}
 	}
 	DiminuerAutreBalle::DiminuerAutreBalle(CDispositifD3D11* pDispositif_, string path, int terrain, LPCWSTR fong_file, bool need_filter)
-		: Bonus(pDispositif_, path,  terrain, fong_file, need_filter)
+		: Bonus(pDispositif_, path, terrain, fong_file, need_filter)
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 		SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"eclair.dds", pDispositif));

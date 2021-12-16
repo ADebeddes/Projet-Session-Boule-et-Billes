@@ -25,9 +25,10 @@ namespace PM3D
 	{
 		DirectX::XMMATRIX lights_DL_PtL = {
 			300.0f, 400.0f, 100.0f, 1.0f, //directionnal light
-			-127.0f, 980.0f, -122.0f, 0.0f,
-			8.0f, 912.0f, -76.0f, 0.0f,
-			165.0f, 941.0f, -153.0f, 0.0f
+			
+			-127.0f, 980.0f, -122.0f, 0.4f,
+			8.0f, 912.0f, -76.0f, 0.4f,
+			165.0f, 941.0f, -153.0f, 0.4f
 		};
 		
 		

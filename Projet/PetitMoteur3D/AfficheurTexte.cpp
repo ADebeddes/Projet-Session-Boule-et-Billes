@@ -37,7 +37,7 @@ CAfficheurTexte::CAfficheurTexte(CDispositifD3D11* pDispositif, int largeur, int
 	// Un brosse noire pour le remplissage
 	//		Notez que la brosse aurait pu être passée 
 	//		en paramètre pour plus de flexibilité
-	pBlackBrush = std::make_unique<Gdiplus::SolidBrush>(Gdiplus::Color(255, 0, 0, 0));
+	pBlackBrush = std::make_unique<Gdiplus::SolidBrush>(Gdiplus::Color(255, 255, 255, 255));
 
 	// On efface le bitmap (notez le NOIR TRANSPARENT...)
 	pCharGraphics->Clear(Gdiplus::Color(0, 0, 0, 0));
@@ -107,7 +107,7 @@ CAfficheurTexte::~CAfficheurTexte()
 void CAfficheurTexte::Ecrire(const std::wstring& s)
 {
 	// Effacer
-	pCharGraphics->Clear(Gdiplus::Color(0, 0, 0, 0));
+	pCharGraphics->Clear(Gdiplus::Color(125, 0, 200, 255));
 
 	// Écrire le nouveau texte
 	pCharGraphics->DrawString(s.c_str(), static_cast<int>(s.size()), pFont, Gdiplus::PointF(0.0f, 0.0f), pBlackBrush.get());

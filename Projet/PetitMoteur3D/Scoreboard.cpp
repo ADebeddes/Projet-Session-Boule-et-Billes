@@ -25,7 +25,7 @@ void PM3D::Scoreboard::Init()
 
 	textes.push_back(new CAfficheurTexte(rMoteur.pDispositif, 135, 26, pPolice.get()));
 	pAfficheurScoreboard->AjouterSpriteTexte(textes[textes.size() - 1]->GetTextureView(), "noms", e_largeur - 80, e_Hauteur / 20 * 2 + count*26);
-	
+
 	string nom = to_string(count) + "- "s + string(rMoteur.pEntityManager->pPlayer->nom);
 	std::wstring w_nom(nom.begin(), nom.end());
 	textes[textes.size() - 1]->Ecrire(w_nom);
@@ -40,6 +40,7 @@ void PM3D::Scoreboard::Init()
 		std::wstring w_nom(nom.begin(), nom.end());
 		textes[textes.size() - 1]->Ecrire(w_nom);
 	}
+	pAfficheurScoreboard->AjouterSprite("ArriereScoreboard.dds", e_largeur, (e_Hauteur / 10) * 5, e_largeur / 2, e_Hauteur / 4);
 	pAfficheurScoreboard->onScreen = true;
 	init = true;
 
