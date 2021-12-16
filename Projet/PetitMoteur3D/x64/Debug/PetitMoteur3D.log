@@ -1,50 +1,55 @@
-﻿  AfficheurPanneau.cpp
+﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\MiniPhong.cso
+  compilation object save succeeded; see D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\MiniPhong.cso
+  compilation object save succeeded; see D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\MiniPhong.cso
+  compilation object save succeeded; see D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\ps1.cso
+  compilation object save succeeded; see D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\vs1.cso
+  stdafx.cpp
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  AfficheurPanneau.cpp
   AfficheurSprite.cpp
-<<<<<<< HEAD
   AfficheurTexte.cpp
-=======
->>>>>>> main
   BasicColider.cpp
   Bloc.cpp
   BlocEffet1.cpp
   Bonus.cpp
-<<<<<<< HEAD
-  CDIManipulateur.cpp
   Camera.cpp
   CameraManager.cpp
+  CDIManipulateur.cpp
   CheckPoint.cpp
   Contact.cpp
   Cube.cpp
   DDSTextureLoader.cpp
+  dispositif.cpp
+  dispositifD3D11.cpp
   DynamicObject.cpp
   Enemy.cpp
   EntityManager.cpp
   FileObject.cpp
   GestionnaireDeTextures.cpp
   Horloge.cpp
-  ImportedObject.cpp
   InfoDispositif.cpp
   LOD.cpp
-=======
-  Camera.cpp
-  CameraManager.cpp
-  Contact.cpp
-  Cube.cpp
-  Enemy.cpp
-  EntityManager.cpp
-  ImportedObject.cpp
->>>>>>> main
   MenuController.cpp
   Moteur.cpp
   MoteurWindows.cpp
   NosBonus.cpp
-<<<<<<< HEAD
   Objectimporter.cpp
   Obstacle.cpp
   PanneauPE.cpp
   ParticleManager.cpp
   PetitMoteur3D.cpp
-  LINK : D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe not found or not built by the last incremental link; performing full link
+  Physique.cpp
+  Player.cpp
+  SceneManager.cpp
+  Skybox.cpp
+  sommetbloc.cpp
+  Sphere.cpp
+  StaticObject.cpp
+  ImportedObject.cpp
+  Terrain.cpp
+  Texture.cpp
 PhysXExtensions_static_64.lib(ExtCpuWorkerThread.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtCpuWorkerThread.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
 PhysXExtensions_static_64.lib(ExtD6Joint.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtD6Joint.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
 PhysXExtensions_static_64.lib(ExtDefaultCpuDispatcher.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(ExtDefaultCpuDispatcher.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
@@ -76,11 +81,11 @@ PhysXExtensions_static_64.lib(SnConvX_Convert.obj) : warning LNK4099: PDB 'PhysX
 PhysXExtensions_static_64.lib(SnConvX_Error.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX_Error.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
 PhysXExtensions_static_64.lib(SnConvX_MetaData.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX_MetaData.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
 PhysXExtensions_static_64.lib(SnConvX_Output.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX_Output.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
-PhysXExtensions_static_64.lib(SnConvX_Union.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnConvX_Union.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
+PhysXExtensions_static_64.lib(SnConvX_Union.obj) : warning LNK4099: PDB '' was not found with 'PhysXExtensions_static_64.lib(SnConvX_Union.obj)' or at ''; linking object as if no debug info
 PhysXExtensions_static_64.lib(SnSerializationContext.obj) : warning LNK4099: PDB 'PhysXExtensions_static_64.pdb' was not found with 'PhysXExtensions_static_64.lib(SnSerializationContext.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXExtensions_static_64.pdb'; linking object as if no debug info
 PhysXPvdSDK_static_64.lib(PxProfileEventImpl.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxProfileEventImpl.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
 PhysXPvdSDK_static_64.lib(PxPvd.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvd.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
-PhysXPvdSDK_static_64.lib(PxPvdDataStream.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdDataStream.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
+PhysXPvdSDK_static_64.lib(PxPvdDataStream.obj) : warning LNK4099: PDB '' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdDataStream.obj)' or at ''; linking object as if no debug info
 PhysXPvdSDK_static_64.lib(PxPvdDefaultSocketTransport.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdDefaultSocketTransport.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
 PhysXPvdSDK_static_64.lib(PxPvdImpl.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdImpl.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
 PhysXPvdSDK_static_64.lib(PxPvdMemClient.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdMemClient.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
@@ -89,19 +94,8 @@ PhysXPvdSDK_static_64.lib(PxPvdObjectRegistrar.obj) : warning LNK4099: PDB 'Phys
 PhysXPvdSDK_static_64.lib(PxPvdProfileZoneClient.obj) : warning LNK4099: PDB 'PhysXPvdSDK_static_64.pdb' was not found with 'PhysXPvdSDK_static_64.lib(PxPvdProfileZoneClient.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PhysXPvdSDK_static_64.pdb'; linking object as if no debug info
 Effects11d.lib(d3dxGlobal.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(d3dxGlobal.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
 Effects11d.lib(EffectAPI.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectAPI.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
-Effects11d.lib(EffectLoad.obj) : warning LNK4099: PDB '' was not found with 'Effects11d.lib(EffectLoad.obj)' or at ''; linking object as if no debug info
+Effects11d.lib(EffectLoad.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectLoad.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
 Effects11d.lib(EffectNonRuntime.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectNonRuntime.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
 Effects11d.lib(EffectReflection.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectReflection.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
 Effects11d.lib(EffectRuntime.obj) : warning LNK4099: PDB 'Effects11d.pdb' was not found with 'Effects11d.lib(EffectRuntime.obj)' or at 'D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\Effects11d.pdb'; linking object as if no debug info
   PetitMoteur3D.vcxproj -> D:\Infographie\GitHub\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe
-=======
-  Obstacle.cpp
-  PetitMoteur3D.cpp
-  Player.cpp
-  SceneManager.cpp
-  Skybox.cpp
-  Sphere.cpp
-  StaticObject.cpp
-  Terrain.cpp
-  PetitMoteur3D.vcxproj -> D:\TRAVAIL\Projet Final\Projet-Session-Boule-et-Billes\Projet\x64\Debug\PetitMoteur3D.exe
->>>>>>> main
