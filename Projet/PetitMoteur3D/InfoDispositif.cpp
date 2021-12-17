@@ -81,7 +81,6 @@ CInfoDispositif::CInfoDispositif(DXGI_MODE_DESC modeDesc)
 	IDXGIOutput* pOutput = nullptr;
 	if (pOutput == nullptr)pOutput = nullptr;
 
-	//vAdapters[0]->EnumOutputs(0, &pOutput);
 	vAdapters.at(0)->EnumOutputs(0, &pOutput);
 
 	// Obtenir le mode le plus intéressant

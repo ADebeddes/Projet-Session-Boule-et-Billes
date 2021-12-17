@@ -172,10 +172,6 @@ namespace PM3D
 			rotationMatrix
 		);
 
-		/*if (is_free_cam)
-		{
-			SetLookAtPos(pos);
-		}*/
 	}
 	void CCamera::Anime(float posMapY)
 	{

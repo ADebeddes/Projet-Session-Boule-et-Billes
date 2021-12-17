@@ -22,6 +22,7 @@ namespace PM3D {
 
 		Player(PxVec3 pos, PxVec3 dir, Sphere& object);
 		Player(PxVec3 pos, PxVec3 dir, Cube& object);
+		~Player();
 
 		//Recupere les inputs du joueur et deplace la boule, fait grossir la boule en fonction de la scale du joueur
 		void Anime();

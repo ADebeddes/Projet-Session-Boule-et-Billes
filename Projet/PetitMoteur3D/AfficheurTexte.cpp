@@ -43,10 +43,6 @@ CAfficheurTexte::CAfficheurTexte(CDispositifD3D11* pDispositif, int largeur, int
 	// On efface le bitmap (notez le NOIR TRANSPARENT...)
 	pCharGraphics->Clear(Gdiplus::Color(0, 0, 0, 0));
 
-	// Nous pourrions ici écrire une valeur initiale sur le bitmap
-	// std::wstring s=L"Valeur initiale";
-	// pCharGraphics->DrawString( s.c_str(), s.size(), pFont, PointF( 0.0f, 0.0f ), pBlackBrush.get() );  
-
 	// Accéder aux bits du bitmap
 	Gdiplus::BitmapData bmData;
 	pCharBitmap->LockBits(&Gdiplus::Rect(0, 0, TexWidth, TexHeight), Gdiplus::ImageLockModeRead, PixelFormat32bppARGB, &bmData);
@@ -102,6 +98,7 @@ void CAfficheurTexte::Close()
 CAfficheurTexte::~CAfficheurTexte()
 {
 	DXRelacher(pTextureView);
+	DXRelacher(pSurface);
 	DXRelacher(pTexture);
 }
 

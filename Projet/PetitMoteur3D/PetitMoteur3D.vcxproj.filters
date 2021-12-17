@@ -118,4 +118,9 @@
     <None Include="small.ico" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="logo.png" />
+    <Image Include="icon1.ico" />
+    <Image Include="logo.ico" />
+  </ItemGroup>
 </Project>

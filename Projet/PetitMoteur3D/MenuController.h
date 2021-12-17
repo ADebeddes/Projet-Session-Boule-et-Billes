@@ -9,6 +9,7 @@ namespace PM3D
 	class MenuController {
 	public:
 		MenuController(CDispositifD3D11* _pDispositif);
+		~MenuController();
 		CAfficheurSprite* AfficheurMenuPrincipal;
 		CAfficheurSprite* AfficheurOption;
 		CAfficheurSprite* AfficheurVictoire;

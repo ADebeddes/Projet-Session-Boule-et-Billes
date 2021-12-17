@@ -15,16 +15,15 @@ namespace PM3D {
 	public:
 		Player* pPlayer;
 		vector<Enemy*> enemies;
+		vector<std::string> modele;
 	
 		EntityManager(int nbEnemies, PxVec3 _PremierePosition,  CDispositifD3D11* pDispositif);
+		~EntityManager();
 		void AddEntity(PxVec3 PremierePosition, CDispositifD3D11* pDispositif);
 		void DelEntity();
 		void AnimeEntities();
 		void resetEntities();
 		void respawnEntities();
-
-		
-
 	};
 
 }

@@ -3,35 +3,10 @@
 #include "MoteurWindows.h"
 namespace PM3D {
 
-	//Enemy::Enemy(PxVec3 pos, DynamicObject& object,const char* nom) 
-	//	: lastCheckPointPos{ pos }
-	//	, enemyCharacter{ object }
-	//	, nom{ nom } {
-	//	//CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
-	//	enemyCharacter.body->setGlobalPose(PxTransform(pos));
-	//	const PxU32 numShapes = enemyCharacter.body->getNbShapes();
-	//	PxFilterData filterData;
-	//	filterData.word0 = FilterGroup::boule;
-	//	filterData.word1 = FilterGroup::boule || FilterGroup::obstacle || FilterGroup::terrain;
-	//	PxShape** shapes = (PxShape**)malloc(sizeof(PxShape*) * numShapes);
-	//	enemyCharacter.body->getShapes(shapes, numShapes);
-
-	//	for (PxU32 i = 0; i < numShapes; i++)
-	//	{
-	//		PxShape* shape = shapes[i];
-	//		shape->setSimulationFilterData(filterData);
-	//		shape->setName(nom);
-	//	}
-	//	free(shapes);
-	//	enemyCharacter.body->setContactReportThreshold(PxReal(400000.0f));
-
-	//}
-
 	Enemy::Enemy(PxVec3 pos, DynamicObject& object, const char* nom)
 		: lastCheckPointPos{ pos }
 		, enemyCharacter{ object }
 		, nom{ nom } {
-		//CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 		enemyCharacter = object; 
 
 		enemyCharacter.body->setGlobalPose(PxTransform(pos));
@@ -41,42 +16,10 @@ namespace PM3D {
 		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
 		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
 		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
-		//pAfficheurParticule->onScreen = true;
 	}
-
-	//void Enemy::Anime()
-	//{
-	//	CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
-	//	
-
-	//	/*if (enemyCharacter.body->getGlobalPose().p.y < -200) {
-	//		Respawn();
-	//	}*/
-
-	//	const PxU32 numShapes = enemyCharacter.body->getNbShapes();
-	//	PxShape** shapes = (PxShape**)malloc(sizeof(PxShape*) * numShapes);
-	//	enemyCharacter.body->getShapes(shapes, numShapes);
-
-	//	for (PxU32 i = 0; i < numShapes; i++)
-	//	{
-	//		PxShape* shape = shapes[i];
-	//		enemyCharacter.body->detachShape(*shape);
-	//	}
-	//	free(shapes);
-
-
-	//	PxShape* shape = rMoteur.Moteur_Physique.gPhysics->createShape(PxSphereGeometry(0.8f * enemyCharacter.scale), *rMoteur.Moteur_Physique.gMaterial, true);
-	//	PxFilterData filterData;
-	//	filterData.word0 = FilterGroup::boule;
-	//	filterData.word1 = FilterGroup::boule || FilterGroup::obstacle || FilterGroup::terrain;
-	//	shape->setSimulationFilterData(filterData);
-	//	shape->setName(nom);
-	//	enemyCharacter.body->attachShape(*shape);
-
-	//	enemyCharacter.body->setMaxLinearVelocity(12.0f * enemyCharacter.scale);
-	//	enemyCharacter.body->setMass(100.0f * enemyCharacter.scale);
-	//}
-
+	Enemy::~Enemy() {
+		free(pParticleManager);
+	}
 	void Enemy::Anime()
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
@@ -102,9 +45,6 @@ namespace PM3D {
 			enemyCharacter.body->getGlobalPose().p.y,
 			enemyCharacter.body->getGlobalPose().p.z
 		));
-		/*for (auto& p : pParticleManager->pAfficheurParticule->tabPanneau) {
-			p->position = XMFLOAT3(enemyCharacter.body->getGlobalPose().p.x, enemyCharacter.body->getGlobalPose().p.y, enemyCharacter.body->getGlobalPose().p.z);
-		}*/
 	}
 
 	void Enemy::Growth()

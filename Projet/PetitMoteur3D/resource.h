@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// fichier Include Microsoft Visual C++.
-// Utilisé par PetitMoteur3D.rc
+// Microsoft Visual C++ generated include file.
+// Used by PetitMoteur3D.rc
 //
 #define IDC_MYICON                      2
 #define IDD_PETITMOTEUR3D_DIALOG        102
@@ -11,9 +11,7 @@
 #define IDM_EXIT                        105
 #define DXE_ERREUROBTENTIONBUFFER       105
 #define DXE_ERREURCREATIONRENDERTARGET  106
-#define IDI_PETITMOTEUR3D               107
 #define DXE_CREATION_VS                 107
-#define IDI_SMALL                       108
 #define DXE_FICHIER_VS                  108
 #define IDC_PETITMOTEUR3D               109
 #define DXE_CREATION_PS                 110
@@ -33,6 +31,8 @@
 #define DXE_ERREURCREATION_BLENDSTATE   124
 #define IDR_MAINFRAME                   128
 #define IDR_ACCELERATOR1                134
+#define IDB_PNG1                        135
+#define IDI_ICON2                       137
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -40,7 +40,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        135
+#define _APS_NEXT_RESOURCE_VALUE        138
 #define _APS_NEXT_COMMAND_VALUE         32772
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110

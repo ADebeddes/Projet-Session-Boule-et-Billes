@@ -35,6 +35,7 @@ namespace PM3D {
 		std::vector<Obstacle*> obstacle_pool{};
 
 		SceneManager();
+		~SceneManager();
 
 		bool createZone(int key);
 		bool addToZone(int key, Terrain* objet, bool is_tunnel = false);
@@ -63,6 +64,5 @@ namespace PM3D {
 
 		void placeRandomObstacle(int zone, Terrain* where, string obj, wstring texture);
 		void placeRandomBonus(int zone, Terrain* where, Bonus* obs);
-		void placeRandomObstacle(int zone, Terrain* where, Obstacle obs);
 	};
 };

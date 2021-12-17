@@ -67,6 +67,8 @@ CAfficheurSprite::CAfficheurSprite(CDispositifD3D11* _pDispositif)
 
 CAfficheurSprite ::~CAfficheurSprite()
 {
+	DXRelacher(pPasse);
+	DXRelacher(pTechnique);
 	DXRelacher(pConstantBuffer);
 	DXRelacher(pSampleState);
 
@@ -245,7 +247,6 @@ void CAfficheurSprite::AjouterSprite(const std::string& NomTexture,
 	pSprite->pTextureD3D =
 		TexturesManager.GetNewTexture(ws.c_str(), pDispositif)->GetD3DTexture();
 
-	//Alexandre's test
 	ID3D11Texture2D* pTextureInterface = 0;
 	ID3D11Resource* res;
 	pSprite->pTextureD3D->GetResource(&res);
@@ -254,7 +255,6 @@ void CAfficheurSprite::AjouterSprite(const std::string& NomTexture,
 	pTextureInterface->GetDesc(&descText);
 	DXRelacher(res);
 	DXRelacher(pTextureInterface);
-	//end of Alexandre's test
 
 	// Obtenir les dimensions de la texture si _dx et _dy sont à 0;
 	if (_dx == 0 && _dy == 0)

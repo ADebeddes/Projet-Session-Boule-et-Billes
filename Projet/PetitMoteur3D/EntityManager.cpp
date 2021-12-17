@@ -7,22 +7,26 @@ namespace PM3D {
 
 	EntityManager::EntityManager(int nbEnemies, PxVec3 PremierePosition, CDispositifD3D11* pDispositif)
 	{
-		pPlayer = new Player(PremierePosition, PxVec3(0, -1, 0), *(new Sphere(pDispositif, "Boule.obj", "Player")));
+		modele = { "BDNeige2.obj","BDNeige3.obj","BDNeige4.obj" };
+		pPlayer = new Player(PremierePosition, PxVec3(0, -1, 0), *(new Sphere(pDispositif, "BDNeige2.obj", "Player")));
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 		pPlayer->playerCharacter.SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"snow.dds", pDispositif));
 
 		for (int i = 1; i <= nbEnemies; i++) {
 			auto name = new string("Enemy"s + to_string(i));
-
-
-
 			enemies.push_back(
 				new Enemy(
 					PremierePosition + PxVec3(5.0f, 0, 0) * static_cast<float>(i)
-					, *(new Sphere(pDispositif, "Boule.obj", const_cast<char*>((*name).c_str())))
+					, *(new Sphere(pDispositif, modele.at(i%3), const_cast<char*>((*name).c_str())))
 					, (*name).c_str()));
 			enemies[i - 1]->enemyCharacter.SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"granite.dds", pDispositif));
 		}
+	}
+	EntityManager::~EntityManager()
+	{
+		free(pPlayer);
+		enemies.clear();
+		modele.clear();
 	}
 	void EntityManager::AddEntity(PxVec3 PremierePosition, CDispositifD3D11* pDispositif)
 	{

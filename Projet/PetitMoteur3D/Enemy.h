@@ -20,6 +20,7 @@ namespace PM3D {
 		PxVec3 lastCheckPointPos;
 	
 		Enemy(PxVec3 pos, DynamicObject& object,const char* nom);
+		~Enemy();
 		void Anime();
 
 		void Crash();

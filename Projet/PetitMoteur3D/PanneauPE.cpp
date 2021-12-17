@@ -25,6 +25,8 @@ namespace PM3D
 
 	CPanneauPE::~CPanneauPE()
 	{
+		DXRelacher(pTechnique);
+		DXRelacher(pPasse);
 		DXRelacher(pResourceView);
 		DXRelacher(pRenderTargetView);
 		DXRelacher(pTextureScene);
@@ -34,11 +36,13 @@ namespace PM3D
 		DXRelacher(pSampleState);
 
 		DXRelacher(pEffet);
+
 		for (int i = 0; i < NOMBRE_TECHNIQUES; ++i)
 		{
 			DXRelacher(pVertexLayout[i]);
 		}
 		DXRelacher(pVertexBuffer);
+
 	}
 
 	//   FONCTION : CPanneauPE, constructeur paramètré 
@@ -303,10 +307,6 @@ namespace PM3D
 		ID3DX11EffectScalarVariable* distance;
 		distance = pEffet->GetVariableByName("distance")->AsScalar();
 		distance->SetFloat((float)0.02f);
-
-		/*ID3DX11EffectScalarVariable* randomNB;
-		randomNB = pEffet->GetVariableByName("randomNB")->AsScalar();
-		randomNB->SetFloat((float)fmod(float(rand())/float((RAND_MAX)), 1.0f));*/
 
 		ID3DX11EffectShaderResourceVariable* variableTexture;
 		variableTexture = pEffet->GetVariableByName("textureEntree")->AsShaderResource();

@@ -56,12 +56,8 @@ namespace PM3D {
 		bool DiminuerSon2(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadeout);
 		bool AugmenterSon1(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadein);
 		bool AugmenterSon2(IDirectSoundBuffer8* secondaryBuffer, int* volume, bool* fadein);
-
-
-		
-
-
 		bool stopWaveFile(IDirectSoundBuffer8* secondaryBuffer);
+
 		IDirectSoundBuffer8* MusiqueMenuPrincipal;
 		bool musiqueFadeOut1 = false;
 		bool musiqueFadeIn1 = false;

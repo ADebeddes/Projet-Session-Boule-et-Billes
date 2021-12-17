@@ -399,6 +399,11 @@
   <ItemGroup>
     <ResourceCompile Include="PetitMoteur3D.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
+    <Image Include="logo.ico" />
+    <Image Include="logo.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

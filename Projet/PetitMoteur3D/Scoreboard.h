@@ -13,9 +13,9 @@ namespace PM3D {
 		bool init = false;
 
 		Scoreboard();
+		~Scoreboard();
 		void Init();
 		void Anime();
-
 	};
 }
 

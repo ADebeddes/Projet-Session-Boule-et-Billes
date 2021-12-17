@@ -152,7 +152,6 @@ namespace PM3D
 		
 		
 		ID3DX11EffectShaderResourceVariable* variableTexture;
-		//variableTexture = pEffet->GetVariableByName("textureEntrees")->AsShaderResource();
 		variableTexture = pEffet->GetVariableByName("textureEntrees")->AsShaderResource();
 		variableTexture->SetResourceArray(resourcesView.data(), 0, (uint32_t)resourcesView.size());
 
@@ -199,12 +198,15 @@ namespace PM3D
 
 	ImportedObject::~ImportedObject()
 	{
+		DXRelacher(pTechnique);
+		DXRelacher(pPasse);
 		DXRelacher(pVertexBuffer);
 		DXRelacher(pIndexBuffer);
 		DXRelacher(pConstantBuffer);
 		DXRelacher(pEffet);
 		DXRelacher(pVertexLayout);
 		DXRelacher(pSampleState);
+		
 	}
 
 	

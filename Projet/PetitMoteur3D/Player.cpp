@@ -21,7 +21,6 @@ namespace PM3D {
 		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
 		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
 		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
-		//pAfficheurParticule->onScreen = true;
 	}
 
 	Player::Player(PxVec3 pos, PxVec3 dir, Cube& object)
@@ -32,14 +31,18 @@ namespace PM3D {
 		, nom{ "Player" }
 	{
 		playerCharacter = object;
-		/*playerCharacter.body->setGlobalPose(PxTransform(pos));
-		pAfficheurParticule = new CAfficheurPanneau(CMoteurWindows::GetInstance().pDispositif);
-		pAfficheurParticule->AjouterPanneau("SnowParticle.dds", XMFLOAT3(pos.x, pos.y, pos.z), 1, 1);
-		pAfficheurParticule->AjouterPanneau("SnowParticle.dds", XMFLOAT3(pos.x, pos.y, pos.z), 1, 1);
-		pAfficheurParticule->AjouterPanneau("SnowParticle.dds", XMFLOAT3(pos.x, pos.y, pos.z), 1, 1);
-		pAfficheurParticule->AjouterPanneau("SnowParticle.dds", XMFLOAT3(pos.x, pos.y, pos.z), 1, 1);
-		pAfficheurParticule->AjouterPanneau("SnowParticle.dds", XMFLOAT3(pos.x, pos.y, pos.z), 1, 1);
-		pAfficheurParticule->onScreen = true;*/
+		playerCharacter.body->setGlobalPose(PxTransform(pos));
+		pParticleManager = new ParticleManager(CMoteurWindows::GetInstance().pDispositif, XMFLOAT3(pos.x, pos.y, pos.z), 20);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+		pParticleManager->AjouterParticle("SnowParticle.dds", 1, 1);
+	}
+
+	Player::~Player()
+	{
+		free(pParticleManager);
 	}
 
 	void Player::Anime()
@@ -55,11 +58,9 @@ namespace PM3D {
 
 		if (rGestionnaireDeSaisie.ToucheAppuyee(DIK_LEFT)) {
 			playerCharacter.body->addForce(viewY * speed * playerCharacter.scale, PxForceMode::eIMPULSE);
-			//mEye += viewY * speed;
 		}
 		if (rGestionnaireDeSaisie.ToucheAppuyee(DIK_RIGHT)) {
 			playerCharacter.body->addForce(-viewY * speed * playerCharacter.scale, PxForceMode::eIMPULSE);
-			//mEye -= viewY * speed;
 		}
 
 		if (rGestionnaireDeSaisie.ToucheAppuyee(DIK_UP)) {
@@ -119,9 +120,6 @@ namespace PM3D {
 			playerCharacter.body->getGlobalPose().p.y,
 			playerCharacter.body->getGlobalPose().p.z
 		));
-		/*for (auto& p : pParticleManager->pAfficheurParticule->tabPanneau) {
-			p->position = XMFLOAT3(playerCharacter.body->getGlobalPose().p.x, playerCharacter.body->getGlobalPose().p.y, playerCharacter.body->getGlobalPose().p.z);
-		}*/
 	}
 
 	void Player::Growth()

@@ -254,10 +254,6 @@ namespace PM3D
 		virtual void Cleanup()
 		{
 			// d�truire les objets
-			
-			sceneManager.zones.clear();
-			sceneManager.obstacle_pool.clear();
-			sceneManager.bonus_pool.clear();
 
 			pEntityManager->enemies.clear();
 			free(pEntityManager->pPlayer);
@@ -270,6 +266,11 @@ namespace PM3D
 				pDispositif = nullptr;
 			}
 			Moteur_Physique.cleanupPhysics(true);
+			free(m_Sound);
+			free(menuController);
+			pPanneauPE.release();
+			pPolice.release();
+			pPolice2.release();
 		}
 
 		virtual int InitScene()
@@ -356,10 +357,6 @@ namespace PM3D
 			}
 		}
 
-
-
-
-
 		bool InitObjets()
 		{
 			objToTextTree.emplace("Tree1.obj", L"fir_tree.dds");
@@ -368,8 +365,6 @@ namespace PM3D
 			objToTextStone.emplace("Rock1.obj", L"RockTexture.dds");
 			objToTextStone.emplace("Rock2.obj", L"RockTexture.dds");
 			objToTextStone.emplace("Rock3.obj", L"RockTexture.dds");
-
-
 
 			////Creation du terrain
 			pTerrain1 = new Terrain(pDispositif, "Pente1.obj");
@@ -464,9 +459,6 @@ namespace PM3D
 
 			pAfficheurSprite = new CAfficheurSprite(pDispositif);
 			CAfficheurTexte::Init();
-			/*const Gdiplus::FontFamily oFamily(L"Arial", nullptr);
-			pPolice1 = std::make_unique<Gdiplus::Font>(&oFamily, 16.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
-			pTexte1 = new CAfficheurTexte(pDispositif, 128, 24, pPolice1.get());*/
 			const Gdiplus::FontFamily oFamily(L"Arial", nullptr);
 			pPolice = std::make_unique<Gdiplus::Font>(&oFamily, 36.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
 			pTexte1 = new CAfficheurTexte(pDispositif, 135, 40, pPolice.get());
@@ -478,7 +470,6 @@ namespace PM3D
 			auto e_largeur = pDispositif->GetLargeur();
 			auto e_Hauteur = pDispositif->GetHauteur();
 
-			//pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(), e_largeur-128, e_Hauteur- 24 );
 			pAfficheurSprite->AjouterSpriteTexte(pTexte1->GetTextureView(),"speed", e_largeur - 120, e_Hauteur - 90);
 			pAfficheurSprite->AjouterSprite("CompteurBleu.dds", e_largeur -128, e_Hauteur-24, e_largeur / 4, e_Hauteur / 4);
 			
@@ -488,7 +479,6 @@ namespace PM3D
 			pAfficheurSprite->AjouterSprite("chrono.dds", e_largeur / 2- 100, 100, e_largeur / 8, e_Hauteur / 8);
 
 			pAfficheurPanneau = new CAfficheurPanneau(pDispositif);
-			//pAfficheurPanneau->AjouterPanneau("panic.dds",XMFLOAT3(0,0,0),100,100);
 			pAfficheurPanneau->AjouterPanneau("Finish.dds", XMFLOAT3(20,-275,pTerrain3->oi.object.min_z+50), 220, 25, true);
 
 
@@ -497,18 +487,9 @@ namespace PM3D
 			sceneManager.addToUI(menuController->AfficheurMenuPrincipal);
 			sceneManager.addToUI(menuController->AfficheurOption);
 			sceneManager.addToUI(menuController->AfficheurVictoire);
-		
-
-			/*BasicColider* porte = new BasicColider(200, 200, 1); 
-			porte->place(-50, pTerrain1->getHeightAt(-50, -60) + 10, -70);
-
-			sceneManager.add(porte);*/
-
 			
 			PremierePosition = PxVec3(-50, pTerrain1->getHeightAt(-50, -60) + 10, -60);
 
-
-			/*sceneManager.addEntities(pEntityManager);*/
 			sceneManager.addToZone(new Skybox(pDispositif, "Boule.obj"));
 			m_Sound->fadeIn1();
 			m_Sound->PlayWaveFile(m_Sound->MusiqueMenuPrincipal);
@@ -547,7 +528,6 @@ namespace PM3D
 
 			camManager.switchCamera();
 			camManager.Anime(pEntityManager->pPlayer->playerCharacter, pTerrain1->getHeightAt(camManager.getActive().pos.x, camManager.getActive().pos.z));
-			//pEntityManager->pPlayer->Anime();
 			pEntityManager->AnimeEntities();
 			m_MatViewProj = camManager.getActive().pMatView * camManager.getActive().pMatProj;
 
@@ -558,7 +538,6 @@ namespace PM3D
 				GestionnaireDeSaisie.click = false;
 			}
 
-
 			//Vitesse
 			string speed = std::to_string(static_cast<int>(pEntityManager->pPlayer->playerCharacter.body->getLinearVelocity().magnitude())) + " m/s ";
 			
@@ -567,12 +546,6 @@ namespace PM3D
 			}
 
 			std::wstring w_speed(speed.begin(), speed.end());
-
-			/*string position = "x : " + std::to_string(camManager.getActive().position.vector4_f32[0]) +
-				" , y : " + std::to_string(camManager.getActive().position.vector4_f32[1]) +
-				" , z : " + std::to_string(camManager.getActive().position.vector4_f32[2]);
-			std::wstring w_position(position.begin(), position.end());*/
-
 			
 			pTexte1->Ecrire(w_speed);
 

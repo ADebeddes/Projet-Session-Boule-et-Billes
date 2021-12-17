@@ -52,11 +52,6 @@ float4 NulPS(VS_Sortie vs) : SV_Target
 
 	couleur = textureEntree.Sample(SampleState, vs.CoordTex);
 
-    /*if (int(randomNB * 10) == 3) {
-        couleur = float4(1.0f, 1.0f, 1.0f, 1.0f);
-    }*/
-    //couleur = float4(randomNB, 0.0f, 0.0f, 1.0f);
-
     return couleur;
 }
 

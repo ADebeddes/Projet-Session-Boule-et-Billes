@@ -15,7 +15,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Français (Canada) resources
+// French (Canada) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRC)
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_CANADIAN
@@ -28,9 +28,7 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH_CANADIAN
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_PETITMOTEUR3D       ICON                    "PetitMoteur3D.ico"
-
-IDI_SMALL               ICON                    "small.ico"
+IDI_ICON2               ICON                    "logo.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -73,7 +71,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
 CAPTION "À propos de"
 FONT 8, "System"
 BEGIN
-    ICON            IDI_PETITMOTEUR3D,IDC_MYICON,14,9,16,16
+    ICON            DXE_CREATION_VS,IDC_MYICON,14,9,16,16
     LTEXT           "PetitMoteur3D version 1.0",IDC_STATIC,49,10,119,8,SS_NOPREFIX
     LTEXT           "Copyright (C) 2007",IDC_STATIC,49,20,119,8
     DEFPUSHBUTTON   "OK",IDOK,195,6,30,11,WS_GROUP
@@ -106,6 +104,14 @@ BEGIN
 END
 
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDB_PNG1                PNG                     "logo.png"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -146,7 +152,7 @@ BEGIN
     DXE_ERREURCREATION_BLENDSTATE "DXE_ERREURCREATION_BLENDSTATE"
 END
 
-#endif    // Français (Canada) resources
+#endif    // French (Canada) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

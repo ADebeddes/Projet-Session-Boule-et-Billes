@@ -15,6 +15,10 @@ namespace PM3D {
 		pAfficheurParticule->onScreen = false;
 		pAfficheurParticule->tabPanneau.clear();
 	}
+	ParticleManager::~ParticleManager()
+	{
+		free(pAfficheurParticule);
+	}
 	void ParticleManager::AjouterParticle(const std::string& NomTexture, float _dx, float _dy)
 	{
 

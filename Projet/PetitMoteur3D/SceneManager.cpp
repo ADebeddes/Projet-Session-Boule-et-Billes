@@ -15,6 +15,14 @@ namespace PM3D {
 		zones.emplace(std::make_pair(0, std::move(liste)));
 		zonesActives.push_back(0);
 	}
+	SceneManager::~SceneManager()
+	{
+		zones.clear();
+		obstacle_pool.clear();
+		collider_pool.clear();
+		bonus_pool.clear();
+		UI.clear();
+	}
 	bool SceneManager::createZone(int key)
 	{
 		std::vector<std::unique_ptr<CObjet3D>> liste;

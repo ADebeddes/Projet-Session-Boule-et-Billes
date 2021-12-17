@@ -13,7 +13,7 @@ namespace PM3D
     public:
 
         ParticleManager(CDispositifD3D11* _pDispositif, XMFLOAT3 _pos, int _duration);
-
+        ~ParticleManager();
 
         CAfficheurPanneau* pAfficheurParticule;
 
@@ -29,15 +29,11 @@ namespace PM3D
 
         std::vector< XMFLOAT3> directions{};
 
-
         void AjouterParticle(const std::string& NomTexture = "snow.dds", float _dx = 0.1f, float _dy = 0.1);
 
         void  play();
 
-
-
         void UpdatePosition(XMFLOAT3 new_pos);
-
 
     };
 }

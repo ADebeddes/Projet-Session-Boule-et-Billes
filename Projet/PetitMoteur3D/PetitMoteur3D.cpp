@@ -54,7 +54,7 @@ int APIENTRY _tWinMain(
 		::LoadString(hInstance, codeErreur, szErrMsg, MAX_LOADSTRING);
 		::MessageBox(nullptr, szErrMsg, L"Erreur", MB_ICONWARNING);
 
-		return (int)99; // POURQUOI 99???
+		return (int)99; 
 	}
 
 }

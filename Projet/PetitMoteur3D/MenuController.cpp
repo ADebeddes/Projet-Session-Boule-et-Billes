@@ -16,17 +16,11 @@ namespace PM3D
 		AfficheurMenuPrincipal = new CAfficheurSprite(pDispositif);
 		const Gdiplus::FontFamily oFamily(L"Arial", nullptr);
 		pPolice1 = make_unique<Gdiplus::Font>(&oFamily, 48.0f, Gdiplus::FontStyleBold, Gdiplus::UnitPixel);
-		/*TitrePrincipal = new CAfficheurTexte(_pDispositif, 350, 48, pPolice1.get());
-		string sTitre = "Boule et Billes";
-		wstring w_sTitre(sTitre.begin(), sTitre.end());
-		TitrePrincipal->Ecrire(w_sTitre);
-		AfficheurMenuPrincipal->AjouterSpriteTexte(TitrePrincipal->GetTextureView(),"TitrePrincipal", e_largeur / 2, e_hauteur / 8 * 2);*/
 
 		AfficheurMenuPrincipal->AjouterSprite("BoulesEtBilles.dds", e_largeur / 2, (e_hauteur / 10) * 3, e_largeur / 2, e_hauteur / 4);
 		AfficheurMenuPrincipal->AjouterSprite("Play.dds", e_largeur / 2, (e_hauteur / 10) * 5, e_largeur / 4, e_hauteur / 8);
 		AfficheurMenuPrincipal->AjouterSprite("Settings.dds", e_largeur / 2, (e_hauteur / 10) * 7, e_largeur / 8, e_hauteur / 8);
 		AfficheurMenuPrincipal->AjouterSprite("Quit.dds", e_largeur / 2, (e_hauteur / 10) * 9, e_largeur / 4, e_hauteur / 8);
-		//AfficheurMenuPrincipal->AjouterMenu("menu.dds", 0, e_Hauteur, e_largeur, e_Hauteur);
 	
 		AfficheurMenuPrincipal->onScreen = true;
 
@@ -72,7 +66,6 @@ namespace PM3D
 		AfficheurOption->AjouterSprite("Right.dds", (e_largeur / 6) * 5, (e_hauteur / 10) * 5, e_largeur / 15, e_hauteur / 15, "Resolution");
 		AfficheurOption->AjouterSprite("Left.dds", (e_largeur / 6) * 4, (e_hauteur / 10) * 4, e_largeur / 15, e_hauteur / 15, "Shader");
 		AfficheurOption->AjouterSprite("Right.dds", (e_largeur / 6) * 5, (e_hauteur / 10) * 4, e_largeur / 15, e_hauteur / 15, "Shader");
-		//AfficheurOption->AjouterMenu("menu.dds", 0, e_hauteur, e_largeur, e_hauteur);
 
 		AfficheurOption->onScreen = false;
 
@@ -91,6 +84,19 @@ namespace PM3D
 
 
 
+	}
+	MenuController::~MenuController()
+	{
+		free(AfficheurMenuPrincipal);
+		free(AfficheurOption);
+		free(AfficheurVictoire);
+		free(TitrePrincipal);
+		free(TitreOption);
+		free(TitreVictoire);
+		free(optionEnnemies);
+		free(optionPleinEcran);
+		free(optionResolution);
+		free(optionShader);
 	}
 	void MenuController::setOn()
 	{
@@ -124,9 +130,7 @@ namespace PM3D
 				alreadyPlayed = true;
 				rMoteur.scoreboard.Init();
 			}
-			
-			
-			//rMoteur.pEntityManager->respawnEntities();
+
 			return false;
 		}
 		if (s == "Settings.dds") {

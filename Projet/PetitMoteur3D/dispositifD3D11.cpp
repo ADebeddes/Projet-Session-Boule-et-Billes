@@ -12,6 +12,9 @@ CDispositifD3D11::~CDispositifD3D11()
 	pSwapChain->SetFullscreenState(FALSE, nullptr); // passer en mode fenêtré
 
 	DXRelacher(mSolidCullBackRS);
+	DXRelacher(mSolidCullBackRSInv);
+	DXRelacher(alphaBlendEnable);
+	DXRelacher(alphaBlendDisable);
 	DXRelacher(pDepthTexture);
 	DXRelacher(pDepthStencilView);
 
@@ -21,6 +24,8 @@ CDispositifD3D11::~CDispositifD3D11()
 	}
 	DXRelacher(pRenderTargetView);
 	DXRelacher(pImmediateContext);
+	DXRelacher(pDepthStencilDephtEnable);
+	DXRelacher(pDepthStencilDephtDisable);
 	DXRelacher(pSwapChain);
 	DXRelacher(pD3DDevice);
 }
@@ -148,9 +153,7 @@ CDispositifD3D11::CDispositifD3D11(const CDS_MODE cdsMode,
 	pImmediateContext->OMSetRenderTargets(1, &pRenderTargetView, pDepthStencilView);
 
 	D3D11_VIEWPORT vp;
-	//vp.Width = (FLOAT)largeur;
 	vp.Width = static_cast<float>(largeur);
-	//vp.Height = (FLOAT)hauteur;
 	vp.Height = static_cast<float>(hauteur);
 	vp.MinDepth = 0.0f;
 	vp.MaxDepth = 1.0f;

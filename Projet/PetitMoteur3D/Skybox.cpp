@@ -85,7 +85,6 @@ void Skybox::Draw()
 
 
 	ID3DX11EffectShaderResourceVariable* variableTexture;
-	//variableTexture = pEffet->GetVariableByName("textureEntrees")->AsShaderResource();
 	variableTexture = pEffet->GetVariableByName("textureEntrees")->AsShaderResource();
 	variableTexture->SetResourceArray(resourcesView.data(), 0, (uint32_t)resourcesView.size());
 

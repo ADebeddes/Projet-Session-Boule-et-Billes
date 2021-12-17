@@ -9,7 +9,6 @@ namespace PM3D {
 struct ShadersParams
 {
 	XMMATRIX matWVP;	// la matrice totale 
-	//XMMATRIX matVP;
 };
 // Definir l'organisation de notre sommet
 D3D11_INPUT_ELEMENT_DESC CSommetPanneau::layout[] =
@@ -64,10 +63,13 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 	}
 	CAfficheurPanneau ::~CAfficheurPanneau()
 	{
+		DXRelacher(pPasse);
+		DXRelacher(pTechnique);
 		DXRelacher(pConstantBuffer);
 		DXRelacher(pSampleState);
 
 		DXRelacher(pEffet);
+		
 		DXRelacher(pVertexLayout);
 		DXRelacher(pVertexBuffer);
 
@@ -173,8 +175,6 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 			ID3DX11EffectShaderResourceVariable* variableTexture;
 			variableTexture =
 				pEffet->GetVariableByName("textureEntree")->AsShaderResource();
-
-			//pDispositif->ActiverMelangeAlpha();
 
 			CDIManipulateur& GestionnaireDeSaisie =
 				CMoteurWindows::GetInstance().GetGestionnaireDeSaisie();
@@ -285,11 +285,6 @@ CSommetPanneau CAfficheurPanneau::sommets[6] =
 
 		pPanneau->matPosDim = XMMatrixScaling(pPanneau->dimension.x, pPanneau->dimension.y, 1.0f) * 
 			XMMatrixTranslation(pPanneau->position.x, pPanneau->position.y, pPanneau->position.z);
-		/*pPanneau->matPosDim = XMMatrixScaling(pPanneau->dimension.x,
-			pPanneau->dimension.y, 1.0f) *
-			XMMatrixTranslation(pPanneau->position.x,
-				pPanneau->position.y, pPanneau->position.z) *
-			viewProj;*/
 
 		// On l'ajoute à notre vecteur
 		tabPanneau.push_back(std::move(pPanneau));
