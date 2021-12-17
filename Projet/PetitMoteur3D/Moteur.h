@@ -63,7 +63,6 @@ namespace PM3D
 
 	const int IMAGESPARSECONDE = 60;
 	const double EcartTemps = 1.0 / static_cast<double>(IMAGESPARSECONDE);
-
 	enum BonusTypes { UP, DOWN, LIGHTNING };
 
 	
@@ -87,6 +86,7 @@ namespace PM3D
 		Physique Moteur_Physique{};
 		std::mutex mtx;
 		std::mutex mtxAddZone;
+		int nbSapin = 250;
 	public:
 
 		virtual void Run()
@@ -228,7 +228,7 @@ namespace PM3D
 				// Appeler les fonctions de dessin de chaque objet de la sc�ne
 				for (auto& object3D : sceneManager.zones[i])
 				{
-					if (object3D->visible && LOD::afficherFaceCamera(camManager.getActive(), object3D->pos)) {
+					if (object3D->visible && LOD::afficherFaceCamera(camManager.getActive(), object3D->pos,nbSapin)) {
 						object3D->Draw();
 					}
 				}
@@ -625,21 +625,21 @@ namespace PM3D
 		void createZone3()
 		{
 
-			createRandomObstacle(120, 3, pTerrain3, objToTextTree);
-			createRandomObstacle(20, 3, pTerrain3, objToTextStone);
+			createRandomObstacle((int)(nbSapin*1.2), 3, pTerrain3, objToTextTree);
+			createRandomObstacle(40, 3, pTerrain3, objToTextStone);
 
 		}
 		void createZone2()
 		{
 
-			createRandomObstacle(80, 2, pTerrain2, objToTextTree);
-			createRandomObstacle(20, 2, pTerrain2, objToTextStone);
+			createRandomObstacle((int)(nbSapin), 2, pTerrain2, objToTextTree);
+			createRandomObstacle(40, 2, pTerrain2, objToTextStone);
 		}
 		void createZone1()
 		{
 
-			createRandomObstacle(60, 1, pTerrain1, objToTextTree);
-			createRandomObstacle(20, 1, pTerrain1, objToTextStone);
+			createRandomObstacle((int)(nbSapin*0.8), 1, pTerrain1, objToTextTree);
+			createRandomObstacle(40, 1, pTerrain1, objToTextStone);
 
 		}
 

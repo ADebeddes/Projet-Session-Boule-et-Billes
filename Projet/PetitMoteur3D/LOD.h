@@ -5,7 +5,7 @@ namespace PM3D {
 	class LOD
 	{
 	public:
-		static bool afficherFaceCamera(const CCamera& cam, XMFLOAT3 pos);
+		static bool afficherFaceCamera(const CCamera& cam, XMFLOAT3 pos, int nbSapin);
 
 	};
 }
