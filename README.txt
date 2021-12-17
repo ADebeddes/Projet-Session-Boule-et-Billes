@@ -9,6 +9,9 @@
     "PhysX": ">=4.3"
   }
 }
+
+Cette application graphique n'est pas à but lucratif. Tous droits des ressources utilisés par cette application sont réservés à leur auteurs respectifs.
+
 Les contrôles donner ci-dessous ne contiennent aucune touche du pavé numérique
 Liste des contrôles du joueur:
 - Aller à gauche : Flèche de gauche
@@ -60,3 +63,4 @@ Sur le terrain sont disposé trois différent objet ramassable:
 
 Si le joueur heurte un obstacle trop rapidement sa taille diminue et crée
 un effet de particule de neige qui part du joueur.
+

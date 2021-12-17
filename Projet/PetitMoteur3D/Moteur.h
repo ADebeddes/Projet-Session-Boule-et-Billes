@@ -86,7 +86,7 @@ namespace PM3D
 		Physique Moteur_Physique{};
 		std::mutex mtx;
 		std::mutex mtxAddZone;
-		int nbSapin = 250;
+		int nbSapin = 80;
 	public:
 
 		virtual void Run()
