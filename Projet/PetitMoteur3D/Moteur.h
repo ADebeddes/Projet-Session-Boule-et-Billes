@@ -66,6 +66,8 @@ namespace PM3D
 
 	enum BonusTypes { UP, DOWN, LIGHTNING };
 
+	const int nb_sapin = 300; 
+
 	
 
 	//
@@ -228,7 +230,7 @@ namespace PM3D
 				// Appeler les fonctions de dessin de chaque objet de la sc�ne
 				for (auto& object3D : sceneManager.zones[i])
 				{
-					if (object3D->visible && LOD::afficherFaceCamera(camManager.getActive(), object3D->pos)) {
+					if (object3D->visible && LOD::afficherFaceCamera(camManager.getActive(), object3D->pos, ( int)(2000- (nb_sapin* 4)))) {
 						object3D->Draw();
 					}
 				}
@@ -651,21 +653,22 @@ namespace PM3D
 	public:
 		void createZone3()
 		{
+			
 
-			createRandomObstacle(120, 3, pTerrain3, objToTextTree);
+			createRandomObstacle((int)(nb_sapin*1.2), 3, pTerrain3, objToTextTree);
 			createRandomObstacle(20, 3, pTerrain3, objToTextStone);
 
 		}
 		void createZone2()
 		{
 
-			createRandomObstacle(80, 2, pTerrain2, objToTextTree);
+			createRandomObstacle((int)(nb_sapin), 2, pTerrain2, objToTextTree);
 			createRandomObstacle(20, 2, pTerrain2, objToTextStone);
 		}
 		void createZone1()
 		{
 
-			createRandomObstacle(60, 1, pTerrain1, objToTextTree);
+			createRandomObstacle((int)(nb_sapin*0.8), 1, pTerrain1, objToTextTree);
 			createRandomObstacle(20, 1, pTerrain1, objToTextStone);
 
 		}
