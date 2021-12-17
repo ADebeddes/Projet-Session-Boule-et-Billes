@@ -7,8 +7,7 @@ namespace PM3D {
 
 	EntityManager::EntityManager(int nbEnemies, PxVec3 PremierePosition, CDispositifD3D11* pDispositif)
 	{
-		modele = { "BDNeige2.obj","BDNeige3.obj","BDNeige4.obj" };
-		pPlayer = new Player(PremierePosition, PxVec3(0, -1, 0), *(new Sphere(pDispositif, "BDNeige2.obj", "Player")));
+		pPlayer = new Player(PremierePosition, PxVec3(0, -1, 0), *(new Sphere(pDispositif, "boule.obj", "Player")));
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
 		pPlayer->playerCharacter.SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"snow.dds", pDispositif));
 
@@ -17,7 +16,7 @@ namespace PM3D {
 			enemies.push_back(
 				new Enemy(
 					PremierePosition + PxVec3(5.0f, 0, 0) * static_cast<float>(i)
-					, *(new Sphere(pDispositif, modele.at(i%3), const_cast<char*>((*name).c_str())))
+					, *(new Sphere(pDispositif, "boule.obj", const_cast<char*>((*name).c_str())))
 					, (*name).c_str()));
 			enemies[i - 1]->enemyCharacter.SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"granite.dds", pDispositif));
 		}
@@ -37,7 +36,7 @@ namespace PM3D {
 			enemies.push_back(
 				new Enemy(
 					PremierePosition + PxVec3(5.0f, 0, 0) * static_cast<float>(enemies.size())
-					, *(new Sphere(pDispositif, "Boule.obj", const_cast<char*>((*name).c_str())))
+					, *(new Sphere(pDispositif, "boule.obj", const_cast<char*>((*name).c_str())))
 					, (*name).c_str()));
 			enemies[enemies.size() - 1]->enemyCharacter.SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"granite.dds", pDispositif));
 
@@ -57,7 +56,7 @@ namespace PM3D {
 	void EntityManager::resetEntities()
 	{
 		CMoteurWindows& rMoteur = CMoteurWindows::GetInstance();
-		pPlayer = new Player(rMoteur.PremierePosition, PxVec3(0, -1, 0), *(new Sphere(rMoteur.pDispositif, "Boule.obj", "Player")));
+		pPlayer = new Player(rMoteur.PremierePosition, PxVec3(0, -1, 0), *(new Sphere(rMoteur.pDispositif, "boule.obj", "Player")));
 		pPlayer->playerCharacter.SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"snow.dds", rMoteur.pDispositif));
 		int nbEnemies = static_cast<int>(enemies.size());
 		enemies.clear();
@@ -69,7 +68,7 @@ namespace PM3D {
 			enemies.push_back(
 				new Enemy(
 					rMoteur.PremierePosition + PxVec3(5.0f, 0, 0) * static_cast<float>(i)
-					, *(new Sphere(rMoteur.pDispositif, "Boule.obj", const_cast<char*>((*name).c_str())))
+					, *(new Sphere(rMoteur.pDispositif, "boule.obj", const_cast<char*>((*name).c_str())))
 					, (*name).c_str()));
 			enemies[i - 1]->enemyCharacter.SetTexture(rMoteur.GetTextureManager().GetNewTexture(L"granite.dds", rMoteur.pDispositif));
 		}

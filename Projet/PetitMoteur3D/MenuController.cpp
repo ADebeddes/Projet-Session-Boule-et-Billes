@@ -77,9 +77,8 @@ namespace PM3D
 		TitreVictoire->Ecrire(w_sVictoire);
 		AfficheurVictoire->AjouterSpriteTexte(TitreVictoire->GetTextureView(), "TitreVictoire", e_largeur / 2, e_hauteur / 8 * 2);
 		AfficheurVictoire->onScreen = false;
-		AfficheurVictoire->AjouterSprite("Replay.dds", e_largeur / 2, (e_hauteur / 10) * 5, e_largeur / 4, e_hauteur / 10);
-
-		AfficheurMenuPrincipal->AjouterSprite("Replay.dds", e_largeur / 5 *4 , (e_hauteur / 10) *5, e_largeur / 4, e_hauteur / 10);
+		AfficheurVictoire->AjouterSprite("Replay.dds", e_largeur / 2, (e_hauteur / 10) * 5, e_largeur / 4, e_hauteur / 8);
+		AfficheurMenuPrincipal->AjouterSprite("Replay.dds", e_largeur / 5 *4 , (e_hauteur / 10) *5, e_largeur / 4, e_hauteur / 8);
 		AfficheurMenuPrincipal->unDisplay("Replay.dds");
 
 
@@ -141,11 +140,17 @@ namespace PM3D
 		if (s == "CheckBoxFenetre.dds") {
 			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
 			rMoteur.pDispositif->GetSwapChain()->SetFullscreenState(TRUE, nullptr);
+			string sResolution = "Current Resolution : " + to_string(rMoteur.pDispositif->GetLargeur()) + "x" + to_string(rMoteur.pDispositif->GetHauteur());
+			wstring w_sResolution(sResolution.begin(), sResolution.end());
+			optionResolution->Ecrire(w_sResolution);
 			AfficheurOption->Display("CheckBoxPleinEcran.dds");
 			AfficheurOption->unDisplay("CheckBoxFenetre.dds");
 		}
 		if (s == "CheckBoxPleinEcran.dds") {
 			rMoteur.m_Sound->PlayWaveFile(rMoteur.m_Sound->Click);
+			rMoteur.pDispositif->setLargeur(1024);
+			rMoteur.pDispositif->setHauteur(768);
+			rMoteur.pDispositif->Resize();
 			rMoteur.pDispositif->GetSwapChain()->SetFullscreenState(FALSE, nullptr);
 			AfficheurOption->Display("CheckBoxFenetre.dds");
 			AfficheurOption->unDisplay("CheckBoxPleinEcran.dds");
